@@ -17,7 +17,7 @@ namespace TileMap
             }
         }
 
-        public Vector2Int gridPosition;
+        [HideInInspector]public Vector2Int gridPosition;
 
         public Action OnCreepEnter;
         

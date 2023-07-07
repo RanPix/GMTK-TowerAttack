@@ -19,7 +19,7 @@ namespace TileMap
         [SerializeField] private float tileSize;
         [SerializeField] private Vector2 origin;
         
-        [SerializeField] private List<TileType> tileTypes;
+        [SerializeField] private List<TileType> tileTypes; 
 
         [field: SerializeField] public List<Tile> StartTiles { get; private set; }
 
