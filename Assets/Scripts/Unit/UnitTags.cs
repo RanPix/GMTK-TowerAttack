@@ -1,19 +1,14 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UnitsTags
+public class UnitTags : MonoBehaviour, IEnumerable
 {
-    Light,
-    Heavy,
-    Organic,
-}
-public class UnitTags : MonoBehaviour
-{
-    [field : SerializeField] public List<UnitsTags> ThisUnitTags { get; private set; } = new List<UnitsTags>();
+    [SerializeField] private List<UnitTypes> thisUnitTags;
 
-    public bool ContainsUnitTag(UnitsTags requestedTag)
+    public bool ContainsUnitTag(UnitTypes requestedTag)
     {
-        foreach(var unitTag in ThisUnitTags)
+        foreach(var unitTag in thisUnitTags)
         {
             if(unitTag == requestedTag)
                 return true;
@@ -21,4 +16,7 @@ public class UnitTags : MonoBehaviour
 
         return false;
     }
+
+    public IEnumerator GetEnumerator()
+        => thisUnitTags.GetEnumerator();
 }
