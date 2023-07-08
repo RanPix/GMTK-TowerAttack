@@ -6,14 +6,17 @@ namespace Tower
 {
     public class Tower: MonoBehaviour
     {
+        [SerializeField] private Bullet bullet;
+        
         [SerializeField] private float attackRadius;
         [SerializeField] private float attackRate;
-        [SerializeField] private float attackTimer;
+        private float attackTimer;
 
         [SerializeField] private Transform rotatablePart;
 
-        [SerializeField] private Unit target;
+        [SerializeField] private GameObject target;
         public bool canAttack;
+        
 
         public Vector2 position
         {
@@ -36,7 +39,11 @@ namespace Tower
                     if(!GetTarget())
                         return;
                 }
+
+                
                 rotatablePart.LookAt(target.transform);
+                print(rotatablePart.rotation.eulerAngles);
+                rotatablePart.rotation = Quaternion.Euler(new Vector3(0,0, -rotatablePart.rotation.eulerAngles.y));
                 TryAttack();
             }
             else
@@ -52,20 +59,26 @@ namespace Tower
             if(attackTimer < attackRate)
                 return;
             attackTimer = 0;
-            
-            
+            Shoot();
+
         }
 
-        private Unit GetTarget()
+        private void Shoot()
+        {
+            Bullet instantiatedBullet = Instantiate(bullet);
+            instantiatedBullet.transform.position = transform.position;
+
+            instantiatedBullet.Target = target;
+        }
+
+        private GameObject GetTarget()
         {
             if (!Physics2D.CircleCast(position, attackRadius, Vector2.zero, 0, LayerMask.GetMask("Unit")))
                 return null;
 
-            Collider2D target = Physics2D.OverlapCircle(position, attackRadius, LayerMask.GetMask("Unit"));
-
-            this.target = target.GetComponent<Unit>();
+            target = Physics2D.OverlapCircle(position, attackRadius, LayerMask.GetMask("Unit")).gameObject;
             
-            return this.target;
+            return target;
         }
 
         private void OnDrawGizmos()

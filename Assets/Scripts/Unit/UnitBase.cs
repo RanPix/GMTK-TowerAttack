@@ -15,7 +15,7 @@ public class UnitBase : MonoBehaviour
 
     private void Death()
     {
-        Destroy(this);
+        Destroy(gameObject, 1f);
     }
 
     private void Explode()
