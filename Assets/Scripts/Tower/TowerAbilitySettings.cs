@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Tower
+namespace Towers
 {
     [CreateAssetMenu(fileName = "TowerAbilitySettings", menuName = "ScriptableObjects/TowerAbilitySettings")]
     public class TowerAbilitySettings : ScriptableObject

@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tower 
+namespace Towers
 {
     public class Tower: MonoBehaviour
     {

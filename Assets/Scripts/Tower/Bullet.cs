@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Tower
+namespace Towers
 {
     public class Bullet : MonoBehaviour
     {
