@@ -5,6 +5,8 @@ public class LevelStatsCounter : MonoBehaviour
 {
     public static LevelStatsCounter Instance { get; private set; }
 
+    [SerializeField] private int MaxWave;
+
     [property: SerializeField] public int GateHealth 
     { 
         get => gateHealth;
@@ -28,15 +30,20 @@ public class LevelStatsCounter : MonoBehaviour
         get => waveNumber;
         private set
         {
+            if (value > MaxWave && GateHealth > 0)
+                Lose?.Invoke();
+
             waveNumber = value;
             OnWaveChanged.Invoke();
         }
     }
     public bool GameIsPaused { get; private set; } = true;
 
-    public Action OnGateHealthChanged = () => { };
-    public Action OnWaveChanged = () => { };
-    public Action OnTimeChanged = () => { };
+    public Action OnGateHealthChanged;
+    public Action OnWaveChanged;
+    public Action OnTimeChanged;
+
+    public Action Lose;
 
     [SerializeField] private int gateHealth = 100;
     
