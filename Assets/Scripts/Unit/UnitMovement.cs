@@ -12,8 +12,6 @@ public class UnitMovement : MonoBehaviour
 
     private int currentPointIndex = 0;
 
-    private bool isAtTheGate = false;
-
     private void Start()
     {
         var unitBase = GetComponent<UnitBase>();
@@ -35,7 +33,7 @@ public class UnitMovement : MonoBehaviour
     private void TryChangeIndex()
     {
         if (currentPointIndex > MovementPoints.Count - 2)
-            isAtTheGate = true;
+            OnPrelastPosition.Invoke();
 
         if (IsNearPoint() && currentPointIndex < MovementPoints.Count - 1)
             currentPointIndex++;
