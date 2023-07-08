@@ -10,8 +10,6 @@ public class UnitMovement : MonoBehaviour
     [SerializeField] private float Speed;
     public Action OnPrelastPosition = () => {};
 
-    [SerializeField] private float RequiredDistanceSquare = 0.00001f;
-
     private int currentPointIndex = 0;
 
     private UnitBase unitBase;
@@ -29,10 +27,10 @@ public class UnitMovement : MonoBehaviour
 
         TryChangeIndex();
 
-        transform.position = Vector2.MoveTowards(transform.position, MovementTrack.MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
+        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
     }
     private void MoveUnit()
-        => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
+        => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
     private void TryChangeIndex()
     {
         if (currentPointIndex > MovementPoints.Count - 2)
