@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace TileMap
         private void Start()
         {
             BuildTilemap();
+
+            AI.Instance.BuildStartTowers();
         }
 
         public Tile[,] GetTiles() => tiles;
@@ -57,12 +60,16 @@ namespace TileMap
             return tilePos + origin + new Vector2(tileSize, tileSize) * 0.5f;
         }
 
-        public void AddTile(Tile spawnTile)
+        public void AddTile(Tile spawnTile, TileType tileType)
         {
             Vector2Int gridSpawnPosition = GetTileXY(spawnTile.Position);
 
             spawnTile.Position = GetTileWorldPos(gridSpawnPosition);
             spawnTile.gridPosition = gridSpawnPosition;
+
+            if(tileType == TileType.TowerPlace)
+                TowerTiles.Add(spawnTile);
+
             tiles[gridSpawnPosition.x, gridSpawnPosition.y] = spawnTile;
 
             BuildTilemap();

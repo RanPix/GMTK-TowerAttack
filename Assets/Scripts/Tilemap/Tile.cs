@@ -32,7 +32,7 @@ namespace TileMap
 
         public void Start()
         {
-            TileGrid.instance.AddTile(this);
+            TileGrid.instance.AddTile(this, _type);
             TypeProcessing();
         }
 
