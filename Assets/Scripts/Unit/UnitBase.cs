@@ -10,10 +10,17 @@ public class UnitBase : MonoBehaviour
     {
         HP = new(this);
         HP.Death += Death;
+        GetComponent<UnitMovement>().OnPrelastPosition += Explode;
     }
 
     private void Death()
     {
         Destroy(this);
+    }
+
+    private void Explode()
+    {
+        LevelStatsCounter.Instance.DamageGate(unitData.Damage);
+        Death();
     }
 }
