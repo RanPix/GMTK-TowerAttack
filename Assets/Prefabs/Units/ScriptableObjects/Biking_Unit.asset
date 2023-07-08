@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Biking
   Description: Standard light unit
-  price: 10
+  Price: 10
   Type: 0
-  Damage:
-    amount: 3
-    type: 0
+  Damage: 3
   Speed: 1
   MaxHP: 20

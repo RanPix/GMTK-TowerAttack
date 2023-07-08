@@ -42,8 +42,6 @@ namespace Tower
 
                 
                 rotatablePart.LookAt(target.transform);
-                print(rotatablePart.rotation.eulerAngles);
-                rotatablePart.rotation = Quaternion.Euler(new Vector3(0,0, -rotatablePart.rotation.eulerAngles.y));
                 TryAttack();
             }
             else

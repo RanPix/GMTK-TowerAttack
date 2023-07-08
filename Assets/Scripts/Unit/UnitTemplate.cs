@@ -6,7 +6,7 @@ public class UnitTemplate : ScriptableObject
     public string Name;
     public string Description;
 
-    public int price;
+    public int Price;
 
     public UnitTypes Type;
     public int Damage;
