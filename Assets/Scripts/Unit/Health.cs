@@ -53,7 +53,7 @@ public class Health
         Current -= CountAmount(damage);
 
         if (Current < 0)
-            Death.Invoke();
+            Kill();
     }
 
     private float CountAmount(Damage damage)
@@ -109,5 +109,10 @@ public class Health
         }
 
         return amount;
+    }
+
+    public void Kill()
+    {
+        Death.Invoke();
     }
 }

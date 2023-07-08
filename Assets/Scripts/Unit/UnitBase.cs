@@ -8,7 +8,11 @@ public class UnitBase : MonoBehaviour
     private void Awake()
     {
         HP = new(this);
-        HP.Death += () 
-            => Destroy(this);
+        HP.Death += Death;
+    }
+
+    private void Death()
+    {
+        Destroy(this);
     }
 }
