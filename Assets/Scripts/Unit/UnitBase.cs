@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(UnitMovement), typeof(UnitTags))]
 public class UnitBase : MonoBehaviour
 {
     [field: SerializeField] public UnitTemplate unitData { get; private set; }
