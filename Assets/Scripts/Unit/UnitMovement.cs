@@ -1,11 +1,15 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
 {
-    [SerializeField] private Track MovementTrack;
+    public Action OnPrelastPosition = () => {};
 
-    [SerializeField] private float RequiredDistanceSquare = 4f;
+    [SerializeField] private List<Transform> MovementPoints;
+
+    [SerializeField] private float RequiredDistanceSquare = 0.00001f;
 
     private int currentPointIndex = 0;
 
@@ -17,33 +21,26 @@ public class UnitMovement : MonoBehaviour
         => unitBase = GetComponent<UnitBase>();
     private void Update()
     {
-        TryChangeIndex();
-
         MoveUnit();
 
         TryChangeIndex();
+
+        if(isAtTheGate)
+            OnPrelastPosition.Invoke();
     }
     private void MoveUnit()
-    {
-        if (isAtTheGate)
-            return;
-
-        transform.position = Vector2.MoveTowards(transform.position, MovementTrack.MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
-    }
+        => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
     private void TryChangeIndex()
     {
-        if (currentPointIndex > MovementTrack.MovementPoints.Count - 1)
+        if (currentPointIndex > MovementPoints.Count - 2)
             isAtTheGate = true;
 
-        if (isAtTheGate)
-            return;
-
-        if (IsNearPoint())
+        if (IsNearPoint() && currentPointIndex < MovementPoints.Count - 1)
             currentPointIndex++;
     }
     private bool IsNearPoint()
     {
-        var distance = MovementTrack.MovementPoints[currentPointIndex].position - transform.position;
+        var distance = MovementPoints[currentPointIndex].position - transform.position;
 
         var distanceSqr = distance.sqrMagnitude;
 
