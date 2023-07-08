@@ -5,27 +5,20 @@ namespace DefaultNamespace
 {
     public class AI : MonoBehaviour
     {
-        public static AI Instance { get; private set; }
-
         [SerializeField] private GameObject[] towers;
-        
-        private void Awake()
+
+        public void Start()
         {
-            if (Instance == null)
-                Instance = this;
-        }
-        public void BuildStartTowers()
-        {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 6; i++)
                 BuildTower();
         }
         private void BuildTower()
         {
             GameObject tower = GetRandomTower();
 
-            Tile tile = TileGrid.instance.TowerTiles[Random.Range(0, TileGrid.instance.TowerTiles.Count)];
+            Transform tile = TileGrid.instance.TowerTiles[Random.Range(0, TileGrid.instance.TowerTiles.Count)];
 
-            Instantiate(tower, tile.transform);
+            Instantiate(tower, tile.position, Quaternion.identity);
         }
 
         private GameObject GetRandomTower()

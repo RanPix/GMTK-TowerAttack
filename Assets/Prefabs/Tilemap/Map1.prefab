@@ -2395,6 +2395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3634254867576607733}
   - component: {fileID: 3634254867576607730}
+  - component: {fileID: 7188935112713469339}
   m_Layer: 0
   m_Name: Map1
   m_TagString: Untagged
@@ -2437,6 +2438,82 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &7188935112713469339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634254867576607731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d30e280cde4d6c967185f8829e4166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  tilemapBaseTiles: []
+  tilePrefab: {fileID: 0}
+  gridSize: {x: 0, y: 0}
+  tileSize: 0
+  origin: {x: 0, y: 0}
+  tileTypes: 
+  <TowerTiles>k__BackingField:
+  - {fileID: 8600992576057278105}
+  - {fileID: 4840813843535322047}
+  - {fileID: 1820307784278345575}
+  - {fileID: 655578996060583216}
+  - {fileID: 7252750972655015938}
+  - {fileID: 6140568430802889423}
+  - {fileID: 3263126390224349196}
+  - {fileID: 2731100114624064184}
+  - {fileID: 8997019633827922138}
+  - {fileID: 5973169696490491847}
+  - {fileID: 8734099738725885199}
+  - {fileID: 8606863432607988684}
+  - {fileID: 479914006423637329}
+  - {fileID: 6009042700697245527}
+  - {fileID: 6942031529675078235}
+  - {fileID: 3889925634864382832}
+  - {fileID: 782332616212366915}
+  - {fileID: 6345667109751191851}
+  - {fileID: 3514212455682461462}
+  - {fileID: 959726563661661797}
+  - {fileID: 5594133054536092282}
+  - {fileID: 5419122628595844684}
+  - {fileID: 6991202061273402362}
+  - {fileID: 3454895569201542856}
+  - {fileID: 8679265960787198999}
+  - {fileID: 3475435894696950553}
+  - {fileID: 7076794930976323576}
+  - {fileID: 8311111197640158503}
+  - {fileID: 2840497006078216751}
+  - {fileID: 8233566262520631933}
+  - {fileID: 7451846850582566438}
+  - {fileID: 7323422438869077278}
+  - {fileID: 2276042202085629467}
+  - {fileID: 321736817528719136}
+  - {fileID: 7578542613086466921}
+  - {fileID: 3552092532325766543}
+  - {fileID: 6874513848944094543}
+  - {fileID: 783229067162942780}
+  - {fileID: 657374723897507378}
+  - {fileID: 4402634675858762742}
+  - {fileID: 6303902915224958742}
+  - {fileID: 7487529389396958517}
+  - {fileID: 305866585948171260}
+  - {fileID: 6829808191662925273}
+  - {fileID: 1705598106809829531}
+  - {fileID: 7573147633164145946}
+  - {fileID: 875865857708131350}
+  - {fileID: 6726089221278472272}
+  - {fileID: 2205917433662207860}
+  - {fileID: 314865058987030666}
+  - {fileID: 4557876998124781435}
+  - {fileID: 247257727873039059}
+  - {fileID: 3818124380317581155}
+  - {fileID: 4800332935128109740}
+  - {fileID: 308682239432860637}
+  - {fileID: 5535373511686648099}
 --- !u!1 &3634254868878020799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,7 +2525,6 @@ GameObject:
   - component: {fileID: 3634254868878020798}
   - component: {fileID: 3634254868878020784}
   - component: {fileID: 3634254868878020785}
-  - component: {fileID: 3634254868878020787}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -9492,38 +9568,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &3634254868878020787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3634254868878020799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7d30e280cde4d6c967185f8829e4166, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilemap: {fileID: 3634254868878020784}
-  tilemapBaseTiles:
-  - {fileID: 11400000, guid: 68e07d26dd0461e4486fa9cfb681d48c, type: 2}
-  - {fileID: 11400000, guid: f99daa0aad98bd342a25598b4d1bce61, type: 2}
-  - {fileID: 11400000, guid: 749d0608344e9ce4ca2b229adffd1123, type: 2}
-  - {fileID: 11400000, guid: d07df3e3142449047b63e5c8be054f50, type: 2}
-  - {fileID: 11400000, guid: ad86a6df79674d244a01fe1b08538bda, type: 2}
-  - {fileID: 11400000, guid: 8b014cb6220a6544d8758610b86f9e38, type: 2}
-  - {fileID: 11400000, guid: dce5d5dbff63dcd429b0d5a3ba7cf153, type: 2}
-  - {fileID: 11400000, guid: 916de4545903ba645a952c39c389e3ed, type: 2}
-  - {fileID: 11400000, guid: a0d24a1c6040c4347a97cf52314f6b83, type: 2}
-  - {fileID: 11400000, guid: 8455565790e49d4468f4ba12b8886690, type: 2}
-  - {fileID: 11400000, guid: ca6d42c767b9015478fb8efc5dfcb1a6, type: 2}
-  - {fileID: 11400000, guid: b347bd85a2cdec74c89449475d48a125, type: 2}
-  tilePrefab: {fileID: 4336064117075333770, guid: 49f20f4a960df114db8d1f88ea0c4c81, type: 3}
-  gridSize: {x: 22, y: 10}
-  tileSize: 1
-  origin: {x: -11, y: -5}
-  tileTypes: 0000000001000000
-  <TowerTiles>k__BackingField: []
 --- !u!1 &3767047375053168941
 GameObject:
   m_ObjectHideFlags: 0
@@ -12786,7 +12830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9075361626029616443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.75, y: 5.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

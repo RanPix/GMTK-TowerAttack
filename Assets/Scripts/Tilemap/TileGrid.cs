@@ -22,7 +22,7 @@ namespace TileMap
         
         [SerializeField] private List<TileType> tileTypes; 
         
-        [field:SerializeField] public List<Tile> TowerTiles { get; private set; }
+        [field:SerializeField] public List<Transform> TowerTiles { get; private set; }
 
         private void Awake()
         {
@@ -37,8 +37,6 @@ namespace TileMap
         private void Start()
         {
             BuildTilemap();
-
-            AI.Instance.BuildStartTowers();
         }
 
         public Tile[,] GetTiles() => tiles;
@@ -66,9 +64,6 @@ namespace TileMap
 
             spawnTile.Position = GetTileWorldPos(gridSpawnPosition);
             spawnTile.gridPosition = gridSpawnPosition;
-
-            if(tileType == TileType.TowerPlace)
-                TowerTiles.Add(spawnTile);
 
             tiles[gridSpawnPosition.x, gridSpawnPosition.y] = spawnTile;
 
