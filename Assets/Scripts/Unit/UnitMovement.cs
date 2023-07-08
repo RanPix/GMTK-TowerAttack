@@ -12,6 +12,8 @@ public class UnitMovement : MonoBehaviour
 
     private UnitBase unitBase;
 
+    private bool isAtTheGate = false;
+
     private void Start()
         => unitBase = GetComponent<UnitBase>();
     private void Update()
@@ -23,13 +25,21 @@ public class UnitMovement : MonoBehaviour
         TryChangeIndex();
     }
     private void MoveUnit()
-        => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime* unitBase.Speed * .75f);
+    {
+        if (isAtTheGate)
+            return;
+
+        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
+    }
     private void TryChangeIndex()
     {
         if (currentPointIndex > MovementPoints.Count - 1)
-            currentPointIndex = 0;
+            isAtTheGate = true;
 
-        if(IsNearPoint())
+        if (isAtTheGate)
+            return;
+
+        if (IsNearPoint())
             currentPointIndex++;
     }
     private bool IsNearPoint()
