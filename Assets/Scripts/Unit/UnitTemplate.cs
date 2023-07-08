@@ -6,10 +6,10 @@ public class UnitTemplate : ScriptableObject
     public string Name;
     public string Description;
 
-    public int price;
+    public int Price;
 
     public UnitTypes Type;
-    public Damage Damage;
+    public float Damage;
     public float Speed;
     public float MaxHP;
 }

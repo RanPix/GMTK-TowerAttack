@@ -640,6 +640,7 @@ MonoBehaviour:
   - {fileID: 541318855}
   - {fileID: 97805911}
   RequiredDistanceSquare: 0.00001
+  Speed: 0
 --- !u!114 &1156425976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,9 +653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de65fb9d8f4255945ad69f73b5b2db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UnitHealth>k__BackingField: {fileID: 0}
-  <UnitTags>k__BackingField: {fileID: 0}
-  Speed: 1
 --- !u!212 &1156425977
 SpriteRenderer:
   m_ObjectHideFlags: 0
