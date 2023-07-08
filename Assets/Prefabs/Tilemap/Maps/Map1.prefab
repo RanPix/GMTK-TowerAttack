@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 3634254867576607733}
   - component: {fileID: 3634254867576607730}
   - component: {fileID: 7188935112713469339}
+  - component: {fileID: 1723997370266571703}
   m_Layer: 0
   m_Name: Map1
   m_TagString: Untagged
@@ -498,6 +499,27 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &1723997370266571703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634254867576607731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f033fe4f1ae514784c31bfa3eda3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 2687595527733178615}
+  - {fileID: 2006895773473983429}
+  - {fileID: 1563435805523790337}
+  waypoints:
+  - {fileID: 3180192887597095160}
+  - {fileID: 306217364331934963}
+  - {fileID: 1315993120981547678}
+  units: {fileID: 11400000, guid: e61ebc9b837314c41a9579b0a9370cda, type: 2}
 --- !u!1 &3634254868878020799
 GameObject:
   m_ObjectHideFlags: 0
@@ -8126,7 +8148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9075361626029616443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -14.75, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
