@@ -6,8 +6,10 @@ namespace Tower
 {
     public class Tower: MonoBehaviour
     {
+        [field: SerializeField] public int TowerTier { get; private set; }
+
         [SerializeField] private Bullet bullet;
-        
+
         [SerializeField] private float attackRadius;
         [SerializeField] private float attackRate;
         private float attackTimer;

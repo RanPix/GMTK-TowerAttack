@@ -8,6 +8,8 @@ public class UnitBase : MonoBehaviour
     
     private void Awake()
     {
+        UnitList.AddObject();
+
         HP = new(this);
         HP.Death += Death;
         GetComponent<UnitMovement>().OnPrelastPosition += Explode;
@@ -15,6 +17,7 @@ public class UnitBase : MonoBehaviour
 
     private void Death()
     {
+        UnitList.RemoveObject();
         Destroy(gameObject, 1f);
     }
 
