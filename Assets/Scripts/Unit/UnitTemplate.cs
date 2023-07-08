@@ -9,7 +9,7 @@ public class UnitTemplate : ScriptableObject
     public int price;
 
     public UnitTypes Type;
-    public Damage Damage;
+    public int Damage;
     public float Speed;
     public float MaxHP;
 }

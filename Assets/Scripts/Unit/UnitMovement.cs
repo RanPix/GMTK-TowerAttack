@@ -12,13 +12,12 @@ public class UnitMovement : MonoBehaviour
 
     private int currentPointIndex = 0;
 
-    private UnitBase unitBase;
-
     private bool isAtTheGate = false;
 
     private void Start()
     {
-        unitBase = GetComponent<UnitBase>();
+        var unitBase = GetComponent<UnitBase>();
+        Speed = unitBase.unitData.Speed;
     }
 
     private void Update()
@@ -29,8 +28,10 @@ public class UnitMovement : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
     }
+
     private void MoveUnit()
         => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+
     private void TryChangeIndex()
     {
         if (currentPointIndex > MovementPoints.Count - 2)
@@ -39,6 +40,7 @@ public class UnitMovement : MonoBehaviour
         if (IsNearPoint() && currentPointIndex < MovementPoints.Count - 1)
             currentPointIndex++;
     }
+
     private bool IsNearPoint()
     {
         var distance = MovementPoints[currentPointIndex].position - transform.position;

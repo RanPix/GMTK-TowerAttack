@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UnitTags))]
-public class Health : MonoBehaviour
+public class Health
 {
     public float Current { get; private set; }
-    [SerializeField] public float Max { get; private set; }
+    public float Max { get; private set; }
+    public float HealthPercent
+        => Current / Max;
+
     public Action Death;
     private List<CountAmountFor> counters = new();
     private delegate float CountAmountFor(Damage damage);
 
-    public void Awake()
+    public Health(UnitBase parent)
     {
+        Max = parent.unitData.MaxHP;
+
         Current = Max;
-        AddTagCounters();
+        AddTagCounters(parent);
     }
 
-    private void AddTagCounters()
+    private void AddTagCounters(UnitBase parent)
     {
-        var tags = GetComponent<UnitTags>();
+        var tags = parent.GetComponent<UnitTags>();
 
         foreach (var tag in tags)
         {
@@ -45,8 +50,8 @@ public class Health : MonoBehaviour
 
     public void DealDamage(Damage damage)
     {
-
         Current -= CountAmount(damage);
+
         if (Current < 0)
             Death.Invoke();
     }
