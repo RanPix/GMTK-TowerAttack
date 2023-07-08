@@ -4,5 +4,6 @@ namespace TileMap
     {
         Decor,
         Road,
+        TowerPlace,
     }
 }
