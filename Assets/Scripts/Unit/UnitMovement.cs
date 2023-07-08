@@ -5,9 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
 {
-    public Action OnPrelastPosition = () => {};
-
     [SerializeField] private List<Transform> MovementPoints;
+    [SerializeField] private float RequiredDistanceSquare = 4f;
+    [SerializeField] private float Speed;
+    public Action OnPrelastPosition = () => {};
 
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
 
@@ -18,15 +19,17 @@ public class UnitMovement : MonoBehaviour
     private bool isAtTheGate = false;
 
     private void Start()
-        => unitBase = GetComponent<UnitBase>();
+    {
+        unitBase = GetComponent<UnitBase>();
+    }
+
     private void Update()
     {
         MoveUnit();
 
         TryChangeIndex();
 
-        if(isAtTheGate)
-            OnPrelastPosition.Invoke();
+        transform.position = Vector2.MoveTowards(transform.position, MovementTrack.MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
     }
     private void MoveUnit()
         => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
