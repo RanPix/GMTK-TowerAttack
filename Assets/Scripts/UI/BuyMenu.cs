@@ -8,7 +8,7 @@ public class BuyMenu : MonoBehaviour
 
     public byte SelectedUnitType { get; private set; }
 
-    private byte[,] unitTypesLine = new byte[3, 30];
+    private byte[,] unitTypeLines = new byte[3, 30];
 
     private void Awake()
     {
@@ -17,14 +17,14 @@ public class BuyMenu : MonoBehaviour
         else
             Debug.LogError("INSTANCE OF BUY MENU CURSOR DATA ALREADY EXISTS");
 
-        int yLen = unitTypesLine.GetLength(0);
-        int xLen = unitTypesLine.GetLength(1);
+        int yLen = unitTypeLines.GetLength(0);
+        int xLen = unitTypeLines.GetLength(1);
 
         for (int y = 0; y < yLen; y++)
         {
             for (int x = 0; x < xLen; x++)
             {
-                unitTypesLine[y, x] = 255;
+                unitTypeLines[y, x] = 255;
             }
         }
     }
@@ -36,7 +36,7 @@ public class BuyMenu : MonoBehaviour
 
     public bool BuyUnit(int lineIndex, int linePosition) 
     {
-        byte existingUnitType = unitTypesLine[lineIndex, linePosition];
+        byte existingUnitType = unitTypeLines[lineIndex, linePosition];
 
         if (existingUnitType == SelectedUnitType)
             return false;
@@ -44,7 +44,7 @@ public class BuyMenu : MonoBehaviour
         if (SelectedUnitType == 255)
         {
             PlayerData.Money += units.unitTemplates[existingUnitType].Price;
-            unitTypesLine[lineIndex, linePosition] = SelectedUnitType;
+            unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
             return true;
         }    
 
@@ -56,8 +56,7 @@ public class BuyMenu : MonoBehaviour
                 PlayerData.Money += units.unitTemplates[existingUnitType].Price;
 
             PlayerData.Money -= selectedUnitPrice;
-            unitTypesLine[lineIndex, linePosition] = SelectedUnitType;
-            //UnitSpawner.Instance.SetUnitType(lineIndex, linePosition, SelectedUnitType);
+            unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
 
             return true;
         }
@@ -75,4 +74,7 @@ public class BuyMenu : MonoBehaviour
 
         return false;
     }
+
+    public byte[,] GetUnitTypeLines()
+        => unitTypeLines;
 }

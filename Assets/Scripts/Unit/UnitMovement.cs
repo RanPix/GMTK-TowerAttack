@@ -6,7 +6,7 @@ using UnityEngine;
 public class UnitMovement : MonoBehaviour
 {
     [SerializeField] private List<Transform> MovementPoints;
-    [SerializeField] private float RequiredDistanceSquare = 4f;
+    [SerializeField] private float RequiredDistanceSquare = 0.00001f;
     [SerializeField] private float Speed;
     public Action OnPrelastPosition = () => {};
 
@@ -46,5 +46,10 @@ public class UnitMovement : MonoBehaviour
         var distanceSqr = distance.sqrMagnitude;
 
         return distanceSqr <= RequiredDistanceSquare;
+    }
+
+    public void SetWaypoints(List<Transform> waypoints)
+    {
+        MovementPoints = waypoints;
     }
 }

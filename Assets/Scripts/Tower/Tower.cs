@@ -6,15 +6,17 @@ namespace Towers
     {
         [field: SerializeField] public int TowerTier { get; private set; }
 
-        [SerializeField] private Bullet bullet;
+        [SerializeField] protected Bullet bullet;
 
-        [SerializeField] private float attackRadius;
-        [SerializeField] private float attackRate;
-        private float attackTimer;
+        [SerializeField] protected float attackRadius;
+        [SerializeField] protected float attackRate;
+        protected float attackTimer;
 
-        [SerializeField] private Transform rotatablePart;
+        public Action OnReload;
 
-        [SerializeField] private GameObject target;
+        [SerializeField] protected Transform rotatablePart;
+
+        [SerializeField] protected GameObject target;
         public bool canAttack;
         
 
@@ -31,6 +33,9 @@ namespace Towers
         private void Update()
         {
             attackTimer += Time.deltaTime;
+            
+            if(attackTimer >= attackRate)
+                OnReload?.Invoke();
             if (target)
             {
                 if (((Vector2)target.transform.position - position).sqrMagnitude > attackRadius*attackRadius)
@@ -61,7 +66,7 @@ namespace Towers
 
         }
 
-        private void Shoot()
+        protected virtual void Shoot()
         {
             Bullet instantiatedBullet = Instantiate(bullet);
             instantiatedBullet.transform.position = transform.position;

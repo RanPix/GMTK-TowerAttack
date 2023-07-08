@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 public static class UnitList
 {
@@ -19,6 +18,6 @@ public static class UnitList
     public static void RemoveObject()
     {
         if (--unitCount < 1)
-            LostAllUnits.Invoke();
+            LostAllUnits?.Invoke();
     }
 }
