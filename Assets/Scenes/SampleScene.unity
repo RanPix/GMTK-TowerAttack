@@ -877,14 +877,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 4426396316323333788, guid: e944c9b39421fc0438da47b3bb9469fb, type: 3}
-      propertyPath: gameObjects.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4426396316323333788, guid: e944c9b39421fc0438da47b3bb9469fb, type: 3}
-      propertyPath: gameObjects.Array.data[3]
-      value: 
-      objectReference: {fileID: 8630419832755884791, guid: efbebdd895f8d344aaeaa4f1e5f4841d, type: 3}
     - target: {fileID: 8956404367233372103, guid: e944c9b39421fc0438da47b3bb9469fb, type: 3}
       propertyPath: m_RootOrder
       value: 1

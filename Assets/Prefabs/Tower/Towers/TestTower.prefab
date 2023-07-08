@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9d22cc46224455a18089d1eef96af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 3128359518952493298, guid: 1f4297d90565ed74ab1faea8a3e93989, type: 3}
+  bullet: {fileID: 8401872505280255291, guid: a4449734d74e7a84a825290fbc93e12c, type: 3}
   attackRadius: 3
   attackRate: 1
   rotatablePart: {fileID: 6374254594028744813}
