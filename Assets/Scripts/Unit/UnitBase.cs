@@ -11,9 +11,4 @@ public class UnitBase : MonoBehaviour
         HP.Death += () 
             => Destroy(this);
     }
-
-    private void Update()
-    {
-        var thing = Physics2D.OverlapCircle(new Vector2(1, 1), 2);
-    }
 }
