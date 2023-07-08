@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 3128359518952493298, guid: 1f4297d90565ed74ab1faea8a3e93989, type: 3}
+  TowerTier: 1
   attackRadius: 3
   attackRate: 1
   rotatablePart: {fileID: 6374254594028744813}
