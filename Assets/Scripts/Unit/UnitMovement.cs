@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
 {
-    [SerializeField] private List<Transform> MovementPoints;
+    [SerializeField] private Track MovementTrack;
 
     [SerializeField] private float RequiredDistanceSquare = 4f;
 
@@ -29,11 +28,11 @@ public class UnitMovement : MonoBehaviour
         if (isAtTheGate)
             return;
 
-        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
+        transform.position = Vector2.MoveTowards(transform.position, MovementTrack.MovementPoints[currentPointIndex].position, Time.deltaTime * unitBase.Speed * .75f);
     }
     private void TryChangeIndex()
     {
-        if (currentPointIndex > MovementPoints.Count - 1)
+        if (currentPointIndex > MovementTrack.MovementPoints.Count - 1)
             isAtTheGate = true;
 
         if (isAtTheGate)
@@ -44,7 +43,7 @@ public class UnitMovement : MonoBehaviour
     }
     private bool IsNearPoint()
     {
-        var distance = MovementPoints[currentPointIndex].position - transform.position;
+        var distance = MovementTrack.MovementPoints[currentPointIndex].position - transform.position;
 
         var distanceSqr = distance.sqrMagnitude;
 
