@@ -20,8 +20,8 @@ namespace TileMap
         [SerializeField] private Vector2 origin;
         
         [SerializeField] private List<TileType> tileTypes; 
-
-        [field: SerializeField] public List<Tile> StartTiles { get; private set; }
+        
+        [field:SerializeField] public List<Tile> TowerTiles { get; private set; }
 
         private void Awake()
         {

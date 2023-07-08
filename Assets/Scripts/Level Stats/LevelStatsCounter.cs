@@ -3,52 +3,73 @@ using UnityEngine;
 
 public class LevelStatsCounter : MonoBehaviour
 {
-    public static LevelStatsCounter Instance = null;
+    public static LevelStatsCounter Instance { get; private set; }
 
-    [property: SerializeField] public float GateHealth 
+    [SerializeField] private int MaxWave;
+
+    [property: SerializeField] public int GateHealth 
     { 
-        get => gateHealth; 
-        private set=> OnGateHealthChanged.Invoke(); 
+        get => gateHealth;
+        private set
+        {
+            gateHealth = value;
+            OnGateHealthChanged?.Invoke();
+        }
     }
     [property: SerializeField] public float PassedTime 
     { 
         get => passedTime; 
-        private set => OnTimeChanged.Invoke(); 
+        private set
+        {
+            passedTime = value;
+            OnTimeChanged?.Invoke();
+        }
     }
-
     [property: SerializeField] public int WaveNumber 
     {
         get => waveNumber;
-        private set => OnWaveChanged.Invoke(); 
+        private set
+        {
+            if (value > MaxWave && GateHealth > 0)
+                Lose?.Invoke();
+
+            waveNumber = value;
+            OnWaveChanged?.Invoke();
+        }
     }
+    public bool GameIsPaused { get; private set; } = true;
 
-    [field: SerializeField] public bool GameIsPaused { get; private set; } = false;
+    public Action OnGateHealthChanged;
+    public Action OnWaveChanged;
+    public Action OnTimeChanged;
 
-    public Action OnGateHealthChanged = () => { };
-    public Action OnWaveChanged = () => { };
-    public Action OnTimeChanged = () => { };
+    public Action Lose;
 
+    [SerializeField] private int gateHealth = 100;
+    
     private int waveNumber = 1;
-
     private float passedTime = 0;
-    private float gateHealth = 100;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
+        else
+            Debug.LogWarning("WTF, YOU HAVE INSTANCE");
     }
 
     private void Update()
     {
         if(!GameIsPaused)
-            passedTime += Time.deltaTime;
+            PassedTime += Time.deltaTime;
     }
-    public void PauseTime()
-        => GameIsPaused = true;
+
+    public void TogglePause()
+        => GameIsPaused = !GameIsPaused;
 
     public void IncreaseWave()
-        => waveNumber++;
-    public void DamageGate(float damage)
-        => gateHealth -= damage;
+        => WaveNumber++;
+
+    public void DamageGate(int damage)
+        => GateHealth -= damage;
 }

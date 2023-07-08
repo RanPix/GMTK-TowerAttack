@@ -1,9 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(UnitMovement), typeof(UnitTags))]
 public class UnitBase : MonoBehaviour
 {
-    private void Update()
+    [field: SerializeField] public UnitTemplate unitData { get; private set; }
+    public Health HP { get; private set; }
+
+    private void Awake()
     {
-        var thing = Physics2D.OverlapCircle(new Vector2(1, 1), 2);
+        HP = new(this);
+        HP.Death += Death;
+        GetComponent<UnitMovement>().OnPrelastPosition += Explode;
+    }
+
+    private void Death()
+    {
+        Destroy(gameObject, 1f);
+    }
+
+    private void Explode()
+    {
+        LevelStatsCounter.Instance.DamageGate(unitData.Damage);
+        Death();
     }
 }

@@ -32,7 +32,7 @@ public class UnitTags : MonoBehaviour, IEnumerable
         RemoveTag(deleteQueue.Dequeue());
     }
 
-    public void AddRemporarTag(UnitTypes tag, float time)
+    public void AddTemporarTag(UnitTypes tag, float time)
     {
         if (!AddTag(tag))
             return;
