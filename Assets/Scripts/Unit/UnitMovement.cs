@@ -6,20 +6,23 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
 {
-    [SerializeField] private UnitBase unitBase;
-    
+    [SerializeField] private float speedBuffMultiplier = 2f;
+    [SerializeField] private float speedDebuffMultiplier = 0.5f;
+
     [SerializeField] private List<Transform> MovementPoints;
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
     [SerializeField] private float currentSpeed;
     public Action OnPrelastPosition;
 
+    private UnitBase unitBase;
     private int currentPointIndex = 0;
 
     private void Start()
     {
-        var unitBase = GetComponent<UnitBase>();
+        unitBase = GetComponent<UnitBase>();
         currentSpeed = unitBase.unitData.NormalSpeed;
-        GetComponent<UnitTags>().OnTagsChanged += ToggleSlowness;
+
+        GetComponent<UnitTags>().OnTagsChanged += ToggleSpeedEffects;
         OnPrelastPosition += AddMoneyForProgress;
     }
 
@@ -35,18 +38,24 @@ public class UnitMovement : MonoBehaviour
         }
     }
 
-    private void ToggleSlowness(UnitTypes tag, bool isOn)
+    private void ToggleSpeedEffects(UnitTypes tag, bool isOn)
     {
-        if(tag != UnitTypes.Slowness)
-            return;
-        if (isOn)
+        if (tag == UnitTypes.Slowness)
         {
-            currentSpeed = unitBase.unitData.NormalSpeed * 0.5f;
+            if (isOn)
+                currentSpeed = unitBase.unitData.NormalSpeed * speedDebuffMultiplier;
+            else
+                currentSpeed = unitBase.unitData.NormalSpeed / speedDebuffMultiplier;
         }
-        else
+
+        if (tag == UnitTypes.SpedUp)
         {
-            currentSpeed = unitBase.unitData.NormalSpeed;
+            if (isOn)
+                currentSpeed = unitBase.unitData.NormalSpeed * speedBuffMultiplier;
+            else
+                currentSpeed = unitBase.unitData.NormalSpeed / speedBuffMultiplier;
         }
+
     }
 
     private void MoveUnit()

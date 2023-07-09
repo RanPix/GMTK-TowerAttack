@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Healer : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Healer : MonoBehaviour
     private void Awake()
     {
         Invoke("StartHeal", healDelay);
-        GetComponentInChildren<Transform>().localScale = new Vector3(Radius, Radius, 1f);
+        GetComponentInChildren<Transform>().localScale = new Vector3(Radius * 2, Radius * 2, 1f);
     }
 
     private IEnumerator Heal()
