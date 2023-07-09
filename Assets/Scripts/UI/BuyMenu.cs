@@ -28,6 +28,10 @@ public class BuyMenu : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 
     public void ChooseUnit(byte unitType)
     {

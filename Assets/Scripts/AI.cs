@@ -11,17 +11,22 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
                 BuildTower();
 
             RoundManager.OnRoundStart += DoRoundStep;
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnRoundStart -= DoRoundStep;
         }
 
         public void DoRoundStep()
         {
             float waveNumber = RoundManager.RoundCount;
 
-            for (int i = 0; i < waveNumber + waveNumber * 0.2f; i++)
+            for (int i = 0; i < waveNumber - waveNumber * 0.5f; i++)
                 BuildTower();
         }
 
@@ -110,7 +115,16 @@ namespace DefaultNamespace
                     neededTierTowers.Add((towerComponent.TowerTier, tower));
             }
 
-            return neededTierTowers[Random.Range(0, neededTierTowers.Count)];
+            if(neededTierTowers.Count > 0)
+            {
+                return neededTierTowers[Random.Range(0, neededTierTowers.Count)];
+            }
+            else
+            {
+                var simpleTower = towers[0];
+
+                return (1, simpleTower);
+            }
         }
 
         private int GetRandomTier(int tier)

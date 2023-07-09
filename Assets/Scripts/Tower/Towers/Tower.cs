@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Towers
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Tower: MonoBehaviour
     {
         [field: SerializeField] public int TowerTier { get; private set; }
@@ -20,16 +21,19 @@ namespace Towers
 
         [SerializeField] protected GameObject target;
         public bool canAttack;
-        
+
+        private AudioSource shootSource;
 
         public Vector2 position
         {
             get => new(transform.position.x, transform.position.y);
         }
         
-        private void Start()
+        protected void Start()
         {
             canAttack = true; 
+
+            shootSource = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -54,6 +58,9 @@ namespace Towers
             else
             {
                 GetTarget();
+
+                if(rotatablePart.eulerAngles.z != 90)
+                    rotatablePart.rotation = Quaternion.Euler(-90, 0, 90);
             }
         }
 
@@ -70,6 +77,8 @@ namespace Towers
 
         protected virtual void Shoot()
         {
+            shootSource.Play();
+
             Bullet instantiatedBullet = Instantiate(bullet);
             instantiatedBullet.transform.position = bulletPos.position;
 
