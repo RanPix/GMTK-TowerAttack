@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Unit", menuName = "Unit Data")]
 public class UnitTemplate : ScriptableObject
@@ -10,6 +11,6 @@ public class UnitTemplate : ScriptableObject
 
     public UnitTypes Type;
     public int Damage;
-    public float Speed;
+    public float NormalSpeed;
     public float MaxHP;
 }

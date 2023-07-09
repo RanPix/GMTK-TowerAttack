@@ -4168,6 +4168,7 @@ GameObject:
   - component: {fileID: 2898111368477778123}
   - component: {fileID: 693218774658642548}
   - component: {fileID: 1638978412746612170}
+  - component: {fileID: 3960794220917662132}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -4278,6 +4279,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3960794220917662132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777723419453879120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de5b83cd2cf8414c9eb0221af265b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1638978412746612170}
 --- !u!1 &6981442221469379038
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,6 +4304,7 @@ GameObject:
   - component: {fileID: 4508824036151596999}
   - component: {fileID: 7342165708635533279}
   - component: {fileID: 7746902171446052322}
+  - component: {fileID: 6342338963536007372}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4399,19 +4414,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7342165708635533279}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 102900000, guid: 27d6570da3d63624a9e772a197bea089, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &6342338963536007372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981442221469379038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de5b83cd2cf8414c9eb0221af265b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7746902171446052322}
 --- !u!1 &7948715968068353924
 GameObject:
   m_ObjectHideFlags: 0

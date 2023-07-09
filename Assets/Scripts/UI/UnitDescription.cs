@@ -16,7 +16,7 @@ public class UnitDescription : MonoBehaviour
         descriptionText.text = template.Description;
         typeText.text = "Type: " + template.Type.ToString();
         damageText.text = "Dmg: " + template.Damage.ToString();
-        speedText.text = "Spd: " + template.Speed.ToString();
+        speedText.text = "Spd: " + template.NormalSpeed.ToString();
         maxHPText.text = "HP: " + template.MaxHP.ToString();
     }
 }

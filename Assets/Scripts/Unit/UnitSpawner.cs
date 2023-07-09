@@ -57,7 +57,7 @@ public class UnitSpawner : MonoBehaviour
                 unitCount = Math.Clamp(unitCount - 1, 0, 100000);
                 print(unitCount);
 
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
             }
 
             if (unitCount == 0)

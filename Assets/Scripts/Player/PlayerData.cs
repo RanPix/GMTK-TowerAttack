@@ -2,7 +2,7 @@ using System;
 
 public class PlayerData
 {
-    private static int _money = 2500;
+    private static int _money = 50;
     public static int Money 
     {  
         get { return _money; }

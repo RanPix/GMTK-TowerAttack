@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d0b10d9a1f7834bb4e5fd0d91cc661, type: 3}
-  m_Name: Spiking_Unit
+  m_Script: {fileID: 11500000, guid: c531ae535072454cb5279b71ad1d575a, type: 3}
+  m_Name: Effect
   m_EditorClassIdentifier: 
-  Name: Spiking
-  Description: Weaker but faster than Biking
-  Price: 25
-  Type: 0
-  Damage: 2
-  NormalSpeed: 1.5
-  MaxHP: 15
+  effectDuration: 0
+  effectType: 0
