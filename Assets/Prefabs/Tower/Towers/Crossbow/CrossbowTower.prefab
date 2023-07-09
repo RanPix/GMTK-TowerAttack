@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0775d3a5bab0479cb8129252b4a5c172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TowerTier>k__BackingField: 0
+  <TowerTier>k__BackingField: 1
   bullet: {fileID: 5807098365467042709, guid: d74c75ef951147a46a7bcada66e885c5, type: 3}
   bulletPos: {fileID: 6156601809858181721}
   attackRadius: 3.8

@@ -34,7 +34,7 @@ namespace DefaultNamespace
         {
             float waveNumber = LevelStatsCounter.Instance.WaveNumber;
 
-            var tower = GetRandomTower((int)Mathf.Round(waveNumber * 0.5f), waveNumber * 0.1f);
+            var tower = GetRandomTower((int)Mathf.Round(waveNumber * 0.55f), waveNumber * 0.1f);
 
             return tower;
         }
@@ -92,7 +92,9 @@ namespace DefaultNamespace
         }
 
         private (int, GameObject) GetRandomTower(int wantedTier, float chanceToGetLowerTier)
-        {            
+        {
+            wantedTier = Mathf.Clamp(wantedTier, 0, 6);
+
             List<(int, GameObject)> neededTierTowers = new List<(int, GameObject)>();
 
             if (Random.Range(0.1f, 1f) < chanceToGetLowerTier)
