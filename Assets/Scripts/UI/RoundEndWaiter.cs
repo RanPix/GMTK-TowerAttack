@@ -11,7 +11,7 @@ public class RoundEndWaiter : MonoBehaviour
 
     private void RoundEnd()
     {
-        if (objectToEnable != null) { }
+        if (objectToEnable != null)
             objectToEnable.SetActive(true);
     }
 }
