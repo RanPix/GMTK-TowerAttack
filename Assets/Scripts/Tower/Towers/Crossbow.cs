@@ -10,7 +10,7 @@ namespace Towers
         [SerializeField] private Sprite loadedCrossbow;
 
 
-        private void Start()
+        private new void Start()
         {
             base.Start();
 
