@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 2674088382156344391}
   - component: {fileID: 2248863659624184864}
   - component: {fileID: 2008041864364185575}
-  m_Layer: 0
+  - component: {fileID: -5949024418011452882}
+  - component: {fileID: -5911952327182782817}
+  m_Layer: 3
   m_Name: Fatling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,3 +130,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <unitData>k__BackingField: {fileID: 11400000, guid: f2ea15b52e090884bb68740b9c1b5048, type: 2}
+--- !u!58 &-5949024418011452882
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068035794996870615}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00035420805, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.09043654
+--- !u!50 &-5911952327182782817
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068035794996870615}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 3
