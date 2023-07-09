@@ -41,12 +41,18 @@ public class UnitMovement : MonoBehaviour
 
     private void TryChangeIndex()
     {
-        
         if (currentPointIndex > MovementPoints.Count - 2)
             OnPrelastPosition.Invoke();
 
         if (IsNearPoint() && currentPointIndex < MovementPoints.Count - 1)
-            currentPointIndex++;
+            ChangeWaypoint();
+    }
+
+    private void ChangeWaypoint()
+    {
+        transform.rotation = MovementPoints[currentPointIndex].rotation;
+
+        currentPointIndex++;
     }
 
     private bool IsNearPoint()
