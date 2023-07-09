@@ -24,5 +24,7 @@ public class RoundManager
         }
 
         OnRoundStart();
+
+        PlayerData.Money += 15;
     }
 }
