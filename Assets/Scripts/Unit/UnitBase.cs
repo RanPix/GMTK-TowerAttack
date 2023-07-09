@@ -28,6 +28,8 @@ public class UnitBase : MonoBehaviour
 
     private void OnDestroy()
     {
+        GetComponent<UnitMovement>().OnPrelastPosition -= Explode;
+
         UnitList.RemoveObject();
     }
 }

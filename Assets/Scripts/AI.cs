@@ -17,11 +17,16 @@ namespace DefaultNamespace
             RoundManager.OnRoundStart += DoRoundStep;
         }
 
+        private void OnDestroy()
+        {
+            RoundManager.OnRoundStart -= DoRoundStep;
+        }
+
         public void DoRoundStep()
         {
             float waveNumber = RoundManager.RoundCount;
 
-            for (int i = 0; i < waveNumber + waveNumber * 0.2f; i++)
+            for (int i = 0; i < waveNumber + waveNumber * 0.1f; i++)
                 BuildTower();
         }
 

@@ -14,7 +14,10 @@ public class UnitCountUpdater : MonoBehaviour
 
         UpdateText();
     }
-
+    private void OnDestroy()
+    {
+        UnitList.OnUnitRoundCountChange -= UpdateText;
+    }
     private void UpdateText()
     {
         text.text = UnitList.UnitRoundCount.ToString();

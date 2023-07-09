@@ -37,7 +37,6 @@ namespace TileMap
 
             CreateTowerTiles();
         }
-
         private void CreateTowerTiles()
         {
             foreach(var tower in BlankTowerTiles)
