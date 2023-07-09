@@ -12,6 +12,8 @@ namespace Towers
 
         private void Start()
         {
+            base.Start();
+
             canAttack = true;
             OnReload += () => rotatablePart.GetComponentInChildren<SpriteRenderer>().sprite = loadedCrossbow;
         }
