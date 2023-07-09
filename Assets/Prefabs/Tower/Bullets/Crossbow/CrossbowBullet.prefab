@@ -83,8 +83,7 @@ MonoBehaviour:
   Damage:
     amount: 5
     type: 0
-  movementSpeed: 1
-  imageHolder: {fileID: 6374338888254670178}
+  movementSpeed: 10
 --- !u!50 &-7333454189545352779
 Rigidbody2D:
   serializedVersion: 4

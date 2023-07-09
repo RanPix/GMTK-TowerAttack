@@ -39,7 +39,7 @@ namespace Towers
                 
                 Destroy(gameObject);
             }
-            if(timer < lastSpawn  + 3)
+            if(timer < lastSpawn  + 0.4f)
                 return;
             if (!childWasSpawned)
             {
