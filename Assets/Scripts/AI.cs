@@ -110,7 +110,16 @@ namespace DefaultNamespace
                     neededTierTowers.Add((towerComponent.TowerTier, tower));
             }
 
-            return neededTierTowers[Random.Range(0, neededTierTowers.Count)];
+            if(neededTierTowers.Count > 0)
+            {
+                return neededTierTowers[Random.Range(0, neededTierTowers.Count)];
+            }
+            else
+            {
+                var simpleTower = towers[0];
+
+                return (1, simpleTower);
+            }
         }
 
         private int GetRandomTier(int tier)

@@ -54,6 +54,9 @@ namespace Towers
             else
             {
                 GetTarget();
+
+                if(rotatablePart.eulerAngles.z != 90)
+                    rotatablePart.rotation = Quaternion.Euler(-90, 0, 90);
             }
         }
 
