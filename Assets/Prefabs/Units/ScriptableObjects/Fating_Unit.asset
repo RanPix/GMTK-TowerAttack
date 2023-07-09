@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fating_Unit
   m_EditorClassIdentifier: 
   Name: Fating_Unit
-  Description: slower, but - more HP and armor
-  Price: 20
+  Description: Slower,  but - more HP and armor
+  Price: 50
   Type: 1
   Damage: 5
   Speed: 0.75

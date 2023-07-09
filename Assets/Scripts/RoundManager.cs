@@ -12,13 +12,17 @@ public class RoundManager
     
     public static void StartNewRound()
     {
-        Debug.Log(UnitList.UnitRoundCount);
-        Debug.Log(UnitList.UnitRoundCount > 0);
-
         if (UnitList.UnitRoundCount > 0)
             return;
 
         RoundCount++;
+
+        if (RoundCount > LevelStatsCounter.Instance.MaxWave)
+        {
+            OnGameOver();
+            return;
+        }
+
         OnRoundStart();
     }
 }

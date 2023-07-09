@@ -1,8 +1,20 @@
+using System;
 using UnityEngine;
 
 public static class UnitList
 {
-    public static uint UnitRoundCount { get; private set; }
+    public static Action OnUnitRoundCountChange;
+
+    private static uint _UnitRoundCount;
+    public static uint UnitRoundCount
+    {
+        get => _UnitRoundCount;
+        private set
+        {
+            _UnitRoundCount = value;
+            OnUnitRoundCountChange?.Invoke();
+        } 
+    }
 
     public static void ResetCount()
     {
