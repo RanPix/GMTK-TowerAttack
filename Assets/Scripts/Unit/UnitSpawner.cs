@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -53,7 +54,8 @@ public class UnitSpawner : MonoBehaviour
                 GameObject unit = Instantiate(units.units[currentType], spawnPoints[yIndex].position, Quaternion.identity);
                 unit.GetComponent<UnitMovement>().SetWaypoints(waypoints[yIndex].Waypoints);
 
-                unitCount--;
+                unitCount = Math.Clamp(unitCount - 1, 0, 100000);
+                print(unitCount);
 
                 yield return new WaitForSeconds(0.15f);
             }
