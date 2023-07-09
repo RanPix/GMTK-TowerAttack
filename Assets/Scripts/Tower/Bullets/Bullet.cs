@@ -1,14 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
     public class Bullet : MonoBehaviour
     {
         public GameObject Target;
-        [SerializeField] private Damage Damage;
-        [SerializeField] private float movementSpeed;
-        [SerializeField] private Transform image;
+        [SerializeField] protected Damage Damage;
+        [SerializeField] protected float movementSpeed;
+        //[FormerlySerializedAs("image")] [SerializeField] protected Transform imageHolder;
+        
 
         private void Update()
         {
@@ -17,7 +19,8 @@ namespace Towers
                 Destroy(gameObject);
                 return;
             }
-            image.LookAt(Target.transform);
+            transform.LookAt(Target.transform);
+            
             Vector3 direction = (Target.transform.position - transform.position).normalized;
             
             transform.position += direction * movementSpeed * Time.deltaTime;
