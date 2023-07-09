@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7893889674634250326}
   - component: {fileID: 2859903865654127491}
   m_Layer: 0
-  m_Name: Fasting
+  m_Name: Spiking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

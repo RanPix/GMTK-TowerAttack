@@ -5,7 +5,7 @@ public class LevelStatsCounter : MonoBehaviour
 {
     public static LevelStatsCounter Instance { get; private set; }
 
-    [SerializeField] private int MaxWave;
+    [field: SerializeField] public int MaxWave { get; private set; }
 
     [property: SerializeField] public int GateHealth 
     { 

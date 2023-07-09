@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b5e96392f07e04fa410f49dd97ac14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MaxWave>k__BackingField: 30
   gateHealth: 100

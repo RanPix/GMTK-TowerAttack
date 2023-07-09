@@ -7,7 +7,7 @@ public class UnitLineUI : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < UnitSpawner.UNIT_TYPE_LINE_SIZE; i++)
         {
             GameObject newButton = Instantiate(placementButton, transform);
             newButton.GetComponent<UnitLineUIButton>().Setup(i, line);
