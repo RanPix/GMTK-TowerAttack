@@ -8,6 +8,7 @@ namespace Towers
         [field: SerializeField] public int TowerTier { get; private set; }
 
         [SerializeField] protected Bullet bullet;
+        [SerializeField] protected Transform bulletPos;
 
         [SerializeField] protected float attackRadius;
         [SerializeField] protected float attackRate;
@@ -70,7 +71,7 @@ namespace Towers
         protected virtual void Shoot()
         {
             Bullet instantiatedBullet = Instantiate(bullet);
-            instantiatedBullet.transform.position = transform.position;
+            instantiatedBullet.transform.position = bulletPos.position;
 
             instantiatedBullet.Target = target;
         }
