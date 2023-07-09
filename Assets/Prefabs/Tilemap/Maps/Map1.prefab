@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d30e280cde4d6c967185f8829e4166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerTiles: []
   tilemap: {fileID: 0}
   tilemapBaseTiles: []
   tilePrefab: {fileID: 0}
@@ -442,63 +443,63 @@ MonoBehaviour:
   tileSize: 0
   origin: {x: 0, y: 0}
   tileTypes: 
-  <TowerTiles>k__BackingField:
+  BlankTowerTiles:
   - {fileID: 8600992576057278105}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7048799840167409091}
+  - {fileID: 3537419926714144547}
+  - {fileID: 4612273324109821756}
+  - {fileID: 903218969906708298}
+  - {fileID: 6483661293408226540}
+  - {fileID: 396335215157708900}
+  - {fileID: 3733986913027381925}
+  - {fileID: 3848731270494395072}
+  - {fileID: 8663546315412229362}
+  - {fileID: 1115725312576701833}
+  - {fileID: 458450841669543266}
+  - {fileID: 6752683777923550977}
+  - {fileID: 1575386843996789364}
+  - {fileID: 365152696651803510}
+  - {fileID: 9164958618754533429}
+  - {fileID: 6582772883225576304}
+  - {fileID: 1134011687471342120}
+  - {fileID: 1717507676883024945}
+  - {fileID: 5033331001107267707}
+  - {fileID: 2254732527617415795}
+  - {fileID: 1133097962141705950}
+  - {fileID: 6138201635544219693}
+  - {fileID: 3266683082535399059}
+  - {fileID: 3623545790736033367}
+  - {fileID: 4424984710157162250}
+  - {fileID: 6702452362472948122}
+  - {fileID: 7946696338152828881}
+  - {fileID: 1262174052395655901}
+  - {fileID: 7904707290168310490}
+  - {fileID: 1098785983462461797}
+  - {fileID: 6685331725880080860}
+  - {fileID: 8121786818219110908}
+  - {fileID: 541074339727406170}
+  - {fileID: 6825883990164103087}
+  - {fileID: 1031876189022073580}
+  - {fileID: 2632189724603343009}
+  - {fileID: 828915401341951656}
+  - {fileID: 8300989962450578499}
+  - {fileID: 5545749174088537134}
+  - {fileID: 8348683753406706066}
+  - {fileID: 1897441846554629350}
+  - {fileID: 2953271667502457489}
+  - {fileID: 2044118661852698716}
+  - {fileID: 6855786070660231971}
+  - {fileID: 2829660711687151422}
+  - {fileID: 5567186098848019911}
+  - {fileID: 912303487268396025}
+  - {fileID: 5397955803897920958}
+  - {fileID: 4855800306544850578}
+  - {fileID: 1472028743052728437}
+  - {fileID: 2283550866911193443}
+  - {fileID: 5671193158699639582}
+  - {fileID: 6156568946514016390}
+  - {fileID: 1252268918253295819}
+  - {fileID: 560847382598234193}
 --- !u!114 &1723997370266571703
 MonoBehaviour:
   m_ObjectHideFlags: 0
