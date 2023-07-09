@@ -1,23 +1,27 @@
-using System;
+using UnityEngine;
 
 public static class UnitList
 {
-    public static Action LostAllUnits;
-    private static uint unitCount;
+    public static uint UnitRoundCount { get; private set; }
 
     public static void ResetCount()
     {
-        unitCount = 0;
+        UnitRoundCount = 0;
+    }
+
+    public static void SetCount(uint count)
+    {
+        UnitRoundCount = count;
     }
 
     public static void AddObject()
     {
-        unitCount++;
+        //UnitRoundCount++;
     }
 
     public static void RemoveObject()
     {
-        if (--unitCount < 1)
-            LostAllUnits?.Invoke();
+        if (--UnitRoundCount < 1)
+            RoundManager.OnRoundEnd?.Invoke();
     }
 }

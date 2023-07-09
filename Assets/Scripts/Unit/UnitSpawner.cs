@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitSpawner : MonoBehaviour
@@ -11,19 +11,21 @@ public class UnitSpawner : MonoBehaviour
 
     [SerializeField] private Units units;
 
-    private byte[,] unitTypesLine = new byte[3, 30];
-    
+    private byte[,] unitTypeLines = new byte[UNIT_TYPE_LINES, UNIT_TYPE_LINE_SIZE];
+    public const int UNIT_TYPE_LINES = 3;
+    public const int UNIT_TYPE_LINE_SIZE = 70;
+
+    private uint unitCount;
 
     private void Awake()
     {
-        int xLen = unitTypesLine.GetLength(1);
-        int yLen = unitTypesLine.GetLength(0);
+        RoundManager.OnRoundStart += SendNewRound;
 
-        for (int y = 0; y < yLen; y++)
+        for (int y = 0; y < UNIT_TYPE_LINES; y++)
         {
-            for (int x = 0; x < xLen; x++)
+            for (int x = 0; x < UNIT_TYPE_LINE_SIZE; x++)
             {
-                unitTypesLine[y, x] = 255;
+                unitTypeLines[y, x] = 255;
             }
         }
 
@@ -36,38 +38,66 @@ public class UnitSpawner : MonoBehaviour
 
     private IEnumerator SendRound()
     {
-        int xLen = unitTypesLine.GetLength(1);
-        int yLen = unitTypesLine.GetLength(0);
-        
-        for (int x = 0; x < xLen; x++)
+        for (int x = 0; x < UNIT_TYPE_LINE_SIZE; x++)
         {
-            for (int y = 0; y < yLen; y++)
+            for (int y = 0; y < UNIT_TYPE_LINES; y++)
             {
-                byte currentType = unitTypesLine[y, x];
+                byte currentType = unitTypeLines[y, x];
                 if (currentType == 255)
                 {
-                    yield return new WaitForSeconds(0.25f);
+                    yield return new WaitForSeconds(0.1f);
                     continue;
                 }
 
-                GameObject unit = Instantiate(units.units[currentType], spawnPoints[y].position, Quaternion.identity);
-                unit.GetComponent<UnitMovement>().SetWaypoints(waypoints[y].Waypoints);
+                int yIndex = y % spawnPoints.Length;
 
-                yield return new WaitForSeconds(0.25f);
+                GameObject unit = Instantiate(units.units[currentType], spawnPoints[yIndex].position, Quaternion.identity);
+                unit.GetComponent<UnitMovement>().SetWaypoints(waypoints[yIndex].Waypoints);
+
+                unitCount--;
+
+                yield return new WaitForSeconds(0.15f);
             }
 
-            yield return new WaitForSeconds(0.5f);
+            if (unitCount == 0)
+                break;
         }
     }
 
     public void StartNextRound()
     {
+        if (UnitList.UnitRoundCount > 0)
+            return;
+
         GetUnitTypeLines();
+        GetUnitCount();
+
+        if (unitCount < 1)
+            return;
+
+        RoundManager.StartNewRound();
+    }
+
+    private void SendNewRound()
+    {
+        UnitList.SetCount(unitCount);
         StartCoroutine(SendRound());
     }
 
-    public void GetUnitTypeLines()
+    private void GetUnitTypeLines()
     {
-        unitTypesLine = BuyMenu.Instance.GetUnitTypeLines();
+        unitTypeLines = BuyMenu.Instance.GetUnitTypeLines();
+    }
+
+    private void GetUnitCount()
+    {
+        for (int x = 0; x < UNIT_TYPE_LINE_SIZE; x++)
+        {
+            for (int y = 0; y < UNIT_TYPE_LINES; y++)
+            {
+                if (unitTypeLines[y, x] != 255)
+                    unitCount++;
+            }
+        }
     }
 }

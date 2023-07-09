@@ -8,7 +8,7 @@ public class BuyMenu : MonoBehaviour
 
     public byte SelectedUnitType { get; private set; }
 
-    private byte[,] unitTypeLines = new byte[3, 30];
+    private byte[,] unitTypeLines = new byte[UnitSpawner.UNIT_TYPE_LINES, UnitSpawner.UNIT_TYPE_LINE_SIZE];
 
     private void Awake()
     {

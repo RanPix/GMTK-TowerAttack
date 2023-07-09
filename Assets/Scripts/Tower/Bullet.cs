@@ -29,7 +29,7 @@ namespace Towers
             if (other.gameObject == Target)
             {
                 Target.GetComponent<UnitBase>().HP.DealDamage(Damage);
-                print(Target.GetComponent<UnitBase>().HP.Current);
+                Destroy(gameObject);
             }
         }
 

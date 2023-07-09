@@ -18,7 +18,7 @@ public class UnitBase : MonoBehaviour
     private void Death()
     {
         UnitList.RemoveObject();
-        Destroy(gameObject, 1f);
+        Destroy(gameObject);
     }
 
     private void Explode()
