@@ -17,5 +17,5 @@ MonoBehaviour:
   Price: 25
   Type: 0
   Damage: 2
-  Speed: 1.5
+  NormalSpeed: 1.5
   MaxHP: 15

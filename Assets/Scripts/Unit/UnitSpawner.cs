@@ -55,9 +55,8 @@ public class UnitSpawner : MonoBehaviour
                 unit.GetComponent<UnitMovement>().SetWaypoints(waypoints[yIndex].Waypoints);
 
                 unitCount = Math.Clamp(unitCount - 1, 0, 100000);
-                print(unitCount);
 
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
             }
 
             if (unitCount == 0)
@@ -100,5 +99,10 @@ public class UnitSpawner : MonoBehaviour
                     unitCount++;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        RoundManager.RESET();
     }
 }

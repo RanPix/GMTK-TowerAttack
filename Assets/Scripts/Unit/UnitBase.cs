@@ -28,7 +28,7 @@ public class UnitBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        DeathSoundPlayer.instance.PlayDeathSound();
+        DeathSoundPlayer.instance?.PlayDeathSound();
 
         GetComponent<UnitMovement>().OnPrelastPosition -= Explode;
 

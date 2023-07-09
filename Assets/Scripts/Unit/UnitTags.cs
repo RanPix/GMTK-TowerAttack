@@ -8,7 +8,7 @@ public class UnitTags : MonoBehaviour, IEnumerable
     [SerializeField] private List<UnitTypes> thisUnitTags;
 
     [HideInInspector] public Action<UnitTypes, bool> OnTagsChanged;
-    private Queue<UnitTypes> deleteQueue;
+    private Queue<UnitTypes> deleteQueue = new();
 
     public bool ContainsUnitTag(UnitTypes requestedTag)
         => thisUnitTags.Contains(requestedTag);
@@ -28,7 +28,7 @@ public class UnitTags : MonoBehaviour, IEnumerable
 
     public void RemoveTag(UnitTypes tag)
     {
-        OnTagsChanged?.Invoke(tag, true);
+        OnTagsChanged?.Invoke(tag, false);
         thisUnitTags.Remove(tag);
     }
 

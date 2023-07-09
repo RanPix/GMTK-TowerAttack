@@ -23,8 +23,14 @@ public class RoundManager
             return;
         }
 
-        OnRoundStart();
+        OnRoundStart?.Invoke();
 
         PlayerData.Money += 15;
+    }
+
+    public static void RESET()
+    {
+        RoundCount = 0;
+        OnRoundStart = null;
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d0b10d9a1f7834bb4e5fd0d91cc661, type: 3}
   m_Name: Healer_Unit
   m_EditorClassIdentifier: 
-  Name: Spiking
-  Description: Weaker but faster than Biking
-  Price: 25
+  Name: Healer
+  Description: Less speed and HP, but heals neighboring units
+  Price: 80
   Type: 0
   Damage: 2
-  Speed: 1.5
-  MaxHP: 15
+  NormalSpeed: 0.9
+  MaxHP: 5
