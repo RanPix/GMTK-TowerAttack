@@ -16,7 +16,11 @@ MonoBehaviour:
   - {fileID: 2068035794996870615, guid: 4c62d29a19e7dda4daf3861162c1ceaa, type: 3}
   - {fileID: 7233999750334857621, guid: 2b7b799fc36f71645a18c819ed033b26, type: 3}
   - {fileID: 2068035794996870615, guid: f6038621d50bf544593e996e11ed8a1e, type: 3}
+  - {fileID: 2068035794996870615, guid: 8f16f03f7c358294b91c21111388128f, type: 3}
+  - {fileID: 2068035794996870615, guid: 4bef6bdbe3d1b4a4082444ffbbcfb9a6, type: 3}
   unitTemplates:
   - {fileID: 11400000, guid: 30a80e7e6e956f54eb7fd365ccc815c2, type: 2}
   - {fileID: 11400000, guid: a0423253e69542d48a6b6783419c42da, type: 2}
   - {fileID: 11400000, guid: f2ea15b52e090884bb68740b9c1b5048, type: 2}
+  - {fileID: 11400000, guid: cfe5342acfc3e5b44afa45de992a1080, type: 2}
+  - {fileID: 11400000, guid: f4940aab0bfe0c1468589e381c5bff60, type: 2}

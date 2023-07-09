@@ -4,5 +4,5 @@ public enum UnitTypes
     Heavy,
     Organic,
     Slowness,
-    
+    SpedUp,
 }

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16d0b10d9a1f7834bb4e5fd0d91cc661, type: 3}
-  m_Name: Healer_Unit
+  m_Name: Speedy_Unit
   m_EditorClassIdentifier: 
-  Name: Healer
-  Description: Less speed and HP, but heals neighboring units
-  Price: 80
+  Name: Speedy
+  Description: Weak, but buffs speed for everyone around
+  Price: 100
   Type: 0
-  Damage: 2
-  NormalSpeed: 0.9
-  MaxHP: 5
+  Damage: 1
+  NormalSpeed: 1
+  MaxHP: 10
