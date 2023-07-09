@@ -102,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5435acab0f89d444c8ec871e091c4455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitBase: {fileID: 2008041864364185575}
+  speedBuffMultiplier: 2
+  speedDebuffMultiplier: 0.5
   MovementPoints: []
   RequiredDistanceSquare: 0.00001
   currentSpeed: 0
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <unitData>k__BackingField: {fileID: 11400000, guid: 30a80e7e6e956f54eb7fd365ccc815c2, type: 2}
+  DeathEffect: {fileID: 4633208165230931872, guid: a374f9d9e6542cf45943bf09efacc8b6, type: 3}
 --- !u!50 &935509287268024809
 Rigidbody2D:
   serializedVersion: 4

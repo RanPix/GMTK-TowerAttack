@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4633208165230931877}
   - component: {fileID: 4633208165230931878}
   - component: {fileID: 4633208165230931879}
+  - component: {fileID: 256441960509913742}
   m_Layer: 0
   m_Name: Death
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4633208165230931872}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 849.5, y: 450.5, z: -6.9304414}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4870,3 +4871,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &256441960509913742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633208165230931872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341089a1d1b208b46b1b25a3c118f3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
