@@ -28,6 +28,8 @@ public class UnitBase : MonoBehaviour
 
     private void OnDestroy()
     {
+        DeathSoundPlayer.instance.PlayDeathSound();
+
         GetComponent<UnitMovement>().OnPrelastPosition -= Explode;
 
         UnitList.RemoveObject();

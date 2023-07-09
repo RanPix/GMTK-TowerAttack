@@ -8,7 +8,7 @@ public class UnitMovement : MonoBehaviour
     [SerializeField] private List<Transform> MovementPoints;
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
     [SerializeField] private float Speed;
-    public Action OnPrelastPosition = () => {};
+    public Action OnPrelastPosition;
 
     private int currentPointIndex = 0;
 
@@ -16,6 +16,8 @@ public class UnitMovement : MonoBehaviour
     {
         var unitBase = GetComponent<UnitBase>();
         Speed = unitBase.unitData.Speed;
+
+        OnPrelastPosition += AddMoneyForProgress;
     }
 
     private void Update()
@@ -55,6 +57,9 @@ public class UnitMovement : MonoBehaviour
 
         return distanceSqr <= RequiredDistanceSquare;
     }
+
+    private void AddMoneyForProgress()
+        => PlayerData.Money += 30 * RoundManager.RoundCount;
 
     public void SetWaypoints(List<Transform> waypoints)
     {
