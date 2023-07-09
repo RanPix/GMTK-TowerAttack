@@ -11,22 +11,25 @@ public class Health
         => Current / Max;
 
     public Action Death;
+    private UnitTags parentTags;
     private List<CountAmountFor> counters = new();
     private delegate float CountAmountFor(Damage damage);
 
     public Health(UnitBase parent)
     {
         Max = parent.unitData.MaxHP;
-
         Current = Max;
-        AddTagCounters(parent);
+
+        parentTags = parent.GetComponent<UnitTags>();
+        AddTagCounters();
+
+        parentTags.OnTagsChanged += (_, _)
+            => AddTagCounters();
     }
 
-    private void AddTagCounters(UnitBase parent)
+    private void AddTagCounters()
     {
-        var tags = parent.GetComponent<UnitTags>();
-
-        foreach (var tag in tags)
+        foreach (var tag in parentTags)
         {
             switch (tag)
             {
@@ -53,6 +56,14 @@ public class Health
         Current -= CountAmount(damage);
         if (Current < 0)
             Kill();
+    }
+
+    public void Heal(float amount)
+    {
+        Current += amount;
+
+        if (Current > Max)
+            Current = Max;
     }
 
     private float CountAmount(Damage damage)
