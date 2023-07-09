@@ -11,15 +11,16 @@ public class UnitMovement : MonoBehaviour
     [SerializeField] private List<Transform> MovementPoints;
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
     [SerializeField] private float currentSpeed;
-    public Action OnPrelastPosition = () => {};
+    public Action OnPrelastPosition;
 
     private int currentPointIndex = 0;
 
     private void Start()
     {
-        //unitBase = GetComponent<UnitBase>();
+        var unitBase = GetComponent<UnitBase>();
         currentSpeed = unitBase.unitData.NormalSpeed;
         GetComponent<UnitTags>().OnTagsChanged += ToggleSlowness;
+        OnPrelastPosition += AddMoneyForProgress;
     }
 
     private void Update()
@@ -73,6 +74,9 @@ public class UnitMovement : MonoBehaviour
 
         return distanceSqr <= RequiredDistanceSquare;
     }
+
+    private void AddMoneyForProgress()
+        => PlayerData.Money += 30 * RoundManager.RoundCount;
 
     public void SetWaypoints(List<Transform> waypoints)
     {

@@ -55,7 +55,7 @@ public class UnitSpawner : MonoBehaviour
 
                 unitCount--;
 
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
             }
 
             if (unitCount == 0)
