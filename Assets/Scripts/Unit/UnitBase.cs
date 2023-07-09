@@ -17,7 +17,6 @@ public class UnitBase : MonoBehaviour
 
     private void Death()
     {
-        UnitList.RemoveObject();
         Destroy(gameObject);
     }
 
@@ -25,5 +24,10 @@ public class UnitBase : MonoBehaviour
     {
         LevelStatsCounter.Instance.DamageGate(unitData.Damage);
         Death();
+    }
+
+    private void OnDestroy()
+    {
+        UnitList.RemoveObject();
     }
 }

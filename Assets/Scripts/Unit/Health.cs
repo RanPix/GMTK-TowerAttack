@@ -51,7 +51,6 @@ public class Health
     public void DealDamage(Damage damage)
     {
         Current -= CountAmount(damage);
-
         if (Current < 0)
             Kill();
     }
