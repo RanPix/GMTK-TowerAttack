@@ -4,6 +4,9 @@ using UnityEngine;
 public class UnitBase : MonoBehaviour
 {
     [field: SerializeField] public UnitTemplate unitData { get; private set; }
+
+    [SerializeField] private GameObject DeathEffect;
+
     public Health HP { get; private set; }
     
     private void Awake()
@@ -28,6 +31,8 @@ public class UnitBase : MonoBehaviour
 
     private void OnDestroy()
     {
+        Instantiate(DeathEffect, transform.position, Quaternion.identity);
+
         DeathSoundPlayer.instance?.PlayDeathSound();
 
         GetComponent<UnitMovement>().OnPrelastPosition -= Explode;

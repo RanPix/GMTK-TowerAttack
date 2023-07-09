@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <unitData>k__BackingField: {fileID: 11400000, guid: f2ea15b52e090884bb68740b9c1b5048, type: 2}
+  DeathEffect: {fileID: 4633208165230931872, guid: a374f9d9e6542cf45943bf09efacc8b6, type: 3}
 --- !u!58 &-5949024418011452882
 CircleCollider2D:
   m_ObjectHideFlags: 0
