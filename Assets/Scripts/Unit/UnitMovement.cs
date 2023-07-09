@@ -1,21 +1,25 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
 {
+    [SerializeField] private UnitBase unitBase;
+    
     [SerializeField] private List<Transform> MovementPoints;
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
-    [SerializeField] private float Speed;
+    [SerializeField] private float currentSpeed;
     public Action OnPrelastPosition = () => {};
 
     private int currentPointIndex = 0;
 
     private void Start()
     {
-        var unitBase = GetComponent<UnitBase>();
-        Speed = unitBase.unitData.Speed;
+        //unitBase = GetComponent<UnitBase>();
+        currentSpeed = unitBase.unitData.NormalSpeed;
+        GetComponent<UnitTags>().OnTagsChanged += ToggleSlowness;
     }
 
     private void Update()
@@ -26,7 +30,21 @@ public class UnitMovement : MonoBehaviour
 
             TryChangeIndex();
 
-            transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+            transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
+        }
+    }
+
+    private void ToggleSlowness(UnitTypes tag, bool isOn)
+    {
+        if(tag != UnitTypes.Slowness)
+            return;
+        if (isOn)
+        {
+            currentSpeed = unitBase.unitData.NormalSpeed * 0.5f;
+        }
+        else
+        {
+            currentSpeed = unitBase.unitData.NormalSpeed;
         }
     }
 
@@ -34,7 +52,7 @@ public class UnitMovement : MonoBehaviour
     {
         if(MovementPoints.Count < 1)
             return;
-        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
     }
 
     private void TryChangeIndex()

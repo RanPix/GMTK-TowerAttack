@@ -101,9 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5435acab0f89d444c8ec871e091c4455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitBase: {fileID: 2008041864364185575}
   MovementPoints: []
   RequiredDistanceSquare: 0.00001
-  Speed: 0
+  currentSpeed: 0
 --- !u!114 &2248863659624184864
 MonoBehaviour:
   m_ObjectHideFlags: 0

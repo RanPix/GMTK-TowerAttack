@@ -28,7 +28,7 @@ public class UnitTags : MonoBehaviour, IEnumerable
 
     public void RemoveTag(UnitTypes tag)
     {
-        OnTagsChanged?.Invoke(tag, true);
+        OnTagsChanged?.Invoke(tag, false);
         thisUnitTags.Remove(tag);
     }
 
