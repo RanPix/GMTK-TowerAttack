@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class UnitTags : MonoBehaviour, IEnumerable
 {
     [SerializeField] private List<UnitTypes> thisUnitTags;
+
+    [HideInInspector] public Action<UnitTypes, bool> OnTagsChanged;
     private Queue<UnitTypes> deleteQueue;
 
     public bool ContainsUnitTag(UnitTypes requestedTag)
@@ -19,11 +22,13 @@ public class UnitTags : MonoBehaviour, IEnumerable
             return false;
 
         thisUnitTags.Add(tag);
+        OnTagsChanged?.Invoke(tag, true);
         return true;
     }
 
     public void RemoveTag(UnitTypes tag)
     {
+        OnTagsChanged?.Invoke(tag, true);
         thisUnitTags.Remove(tag);
     }
 
