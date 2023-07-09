@@ -10,8 +10,10 @@ namespace Towers
         [SerializeField] private Sprite loadedCrossbow;
 
 
-        private void Start()
+        private new void Start()
         {
+            base.Start();
+
             canAttack = true;
             OnReload += () => rotatablePart.GetComponentInChildren<SpriteRenderer>().sprite = loadedCrossbow;
         }

@@ -90,7 +90,6 @@ namespace Towers
             if (other.gameObject == Target)
             {
                 Target.GetComponent<UnitBase>().HP.DealDamage(Damage);
-                print(Target.GetComponent<UnitBase>().HP.Current);
                 
                RaycastHit2D[] hits = Physics2D.CircleCastAll(nextBulletPos.position, attackRadius, Vector2.zero, 0,
                     LayerMask.GetMask("Unit"));

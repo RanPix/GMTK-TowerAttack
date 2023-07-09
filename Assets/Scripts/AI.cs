@@ -11,7 +11,7 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
                 BuildTower();
 
             RoundManager.OnRoundStart += DoRoundStep;
@@ -26,7 +26,7 @@ namespace DefaultNamespace
         {
             float waveNumber = RoundManager.RoundCount;
 
-            for (int i = 0; i < waveNumber + waveNumber * 0.1f; i++)
+            for (int i = 0; i < waveNumber - waveNumber * 0.5f; i++)
                 BuildTower();
         }
 

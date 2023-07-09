@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(UnitMovement), typeof(UnitTags))]
+[RequireComponent(typeof(UnitMovement), typeof(UnitTags), (typeof(AudioSource)))]
 public class UnitBase : MonoBehaviour
 {
     [field: SerializeField] public UnitTemplate unitData { get; private set; }
