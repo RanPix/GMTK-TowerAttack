@@ -19,7 +19,7 @@ namespace DefaultNamespace
 
         public void DoRoundStep()
         {
-            float waveNumber = LevelStatsCounter.Instance.WaveNumber;
+            float waveNumber = RoundManager.RoundCount;
 
             for (int i = 0; i < waveNumber + waveNumber * 0.2f; i++)
                 BuildTower();
@@ -34,7 +34,7 @@ namespace DefaultNamespace
 
         private (int, GameObject) GetTower()
         {
-            float waveNumber = LevelStatsCounter.Instance.WaveNumber;
+            float waveNumber = RoundManager.RoundCount;
 
             var tower = GetRandomTower((int)Mathf.Round(waveNumber * 0.55f), waveNumber * 0.1f);
 

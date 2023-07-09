@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d0b10d9a1f7834bb4e5fd0d91cc661, type: 3}
   m_Name: Fating_Unit
   m_EditorClassIdentifier: 
-  Name: Fating_Unit
-  Description: Slower,  but - more HP and armor
+  Name: Fating
+  Description: Slower,  but has more HP and armor
   Price: 50
   Type: 1
   Damage: 5

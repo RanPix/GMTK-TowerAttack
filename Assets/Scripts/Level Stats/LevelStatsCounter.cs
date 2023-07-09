@@ -13,6 +13,14 @@ public class LevelStatsCounter : MonoBehaviour
         private set
         {
             gateHealth = value;
+
+            if (gateHealth <= 0) 
+            {
+                gateHealth = 0;
+                GameWon = true;
+                OnVictory?.Invoke();
+            }
+
             OnGateHealthChanged?.Invoke();
         }
     }
@@ -25,29 +33,16 @@ public class LevelStatsCounter : MonoBehaviour
             OnTimeChanged?.Invoke();
         }
     }
-    [property: SerializeField] public int WaveNumber 
-    {
-        get => waveNumber;
-        private set
-        {
-            if (value > MaxWave && GateHealth > 0)
-                Lose?.Invoke();
-
-            waveNumber = value;
-            OnWaveChanged?.Invoke();
-        }
-    }
     public bool GameIsPaused { get; private set; } = true;
 
     public Action OnGateHealthChanged;
-    public Action OnWaveChanged;
     public Action OnTimeChanged;
 
-    public Action Lose;
+    public Action OnVictory;
 
+    public bool GameWon { get; private set; } = false;
     [SerializeField] private int gateHealth = 100;
     
-    private int waveNumber = 1;
     private float passedTime = 0;
 
     private void Awake()
@@ -66,9 +61,6 @@ public class LevelStatsCounter : MonoBehaviour
 
     public void TogglePause()
         => GameIsPaused = !GameIsPaused;
-
-    public void IncreaseWave()
-        => WaveNumber++;
 
     public void DamageGate(int damage)
         => GateHealth -= damage;
