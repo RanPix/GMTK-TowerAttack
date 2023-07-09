@@ -34,13 +34,19 @@ namespace TileMap
                 Debug.LogError("TILE GRID INSTANCE ALREADY EXISTS");
 
             tiles = new Tile[gridSize.x, gridSize.y];
+
+            CreateTowerTiles();
         }
 
         private void CreateTowerTiles()
         {
             foreach(var tower in BlankTowerTiles)
             {
+                var newTowerTile = (TowerTile)ScriptableObject.CreateInstance("TowerTile");
 
+                newTowerTile.SetTile(tower);
+
+                TowerTiles.Add(newTowerTile);
             }
         }
 

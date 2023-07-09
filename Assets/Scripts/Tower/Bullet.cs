@@ -30,7 +30,6 @@ namespace Towers
             {
                 Target.GetComponent<UnitBase>().HP.DealDamage(Damage);
                 Destroy(gameObject);
-                //print(Target.GetComponent<UnitBase>().HP.Current);
             }
         }
 

@@ -27,9 +27,7 @@ namespace DefaultNamespace
         {
             (int, GameObject) towerPair = GetTower();
 
-            Transform tile = GetTile(towerPair.Item1);
-
-            Instantiate(towerPair.Item2, tile.position, Quaternion.identity);
+            GetTile(towerPair);
         }
 
         private (int, GameObject) GetTower()
@@ -41,21 +39,17 @@ namespace DefaultNamespace
             return tower;
         }
 
-        private Transform GetTile(int tier)
+        private void GetTile((int tier, GameObject tower) towerPair)
         {
-            Transform tile;
-
             var towerTiles = TileGrid.instance.TowerTiles;
 
             if (AllCellsAreOccupied())
             {
-                var randomTile = GetWeakestTile(tier, towerTiles);
+                var randomTile = GetWeakestTile(towerPair.tier, towerTiles);
 
                 randomTile.DestroyTower();
 
-                tile = randomTile.TowerTransform;
-
-                return tile;
+                randomTile.CreateTower(towerPair.tower);
             }
 
             TowerTile chosenTile;
@@ -65,12 +59,12 @@ namespace DefaultNamespace
                 chosenTile = towerTiles[Random.Range(0, towerTiles.Count)];
             } while (chosenTile.IsOccupied);
 
-            return chosenTile.transform;
+            chosenTile.CreateTower(towerPair.tower);
         }
 
         private TowerTile GetWeakestTile(int tier, List<TowerTile> tiles)
         {
-            TowerTile chosenTile = new TowerTile();
+            TowerTile chosenTile = null;
 
             foreach(var tile in tiles)
             {
