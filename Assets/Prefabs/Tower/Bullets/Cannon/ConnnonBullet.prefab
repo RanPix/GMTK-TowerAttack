@@ -49,10 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Damage:
-    amount: 2
+    amount: 5
     type: 0
-  movementSpeed: 5
-  image: {fileID: 7921479676934960762}
+  movementSpeed: 15
 --- !u!50 &8105314201058688875
 Rigidbody2D:
   serializedVersion: 4

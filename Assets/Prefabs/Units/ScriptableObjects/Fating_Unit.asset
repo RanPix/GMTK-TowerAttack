@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Fating
   Description: Slower,  but has more HP and armor
-  Price: 50
+  Price: 100
   Type: 1
   Damage: 5
   NormalSpeed: 0.75
-  MaxHP: 50
+  MaxHP: 100

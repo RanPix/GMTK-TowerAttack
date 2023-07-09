@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 2068035794996870615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.689, y: -0.018, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5435acab0f89d444c8ec871e091c4455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitBase: {fileID: 2008041864364185575}
+  speedBuffMultiplier: 2
+  speedDebuffMultiplier: 0.5
   MovementPoints: []
   RequiredDistanceSquare: 0.00001
   currentSpeed: 0
@@ -168,7 +169,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0913036
+  m_Radius: 0.4
 --- !u!82 &6678705956242613312
 AudioSource:
   m_ObjectHideFlags: 0

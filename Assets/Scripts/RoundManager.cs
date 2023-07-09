@@ -32,5 +32,6 @@ public class RoundManager
     {
         RoundCount = 0;
         OnRoundStart = null;
+        PlayerData.Money = 50;
     }
 }

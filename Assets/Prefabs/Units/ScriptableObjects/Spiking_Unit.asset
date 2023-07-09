@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Spiking
   Description: Weaker but faster than Biking
-  Price: 25
+  Price: 35
   Type: 0
   Damage: 2
   NormalSpeed: 1.5

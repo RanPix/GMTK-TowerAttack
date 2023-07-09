@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Buy 2nd Line: 500$'
+  m_text: 'Open 2nd Line: 250$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a621f1d472677384887c8134ae9d0b3e, type: 2}
   m_sharedMaterial: {fileID: -8562007397176997475, guid: a621f1d472677384887c8134ae9d0b3e, type: 2}
@@ -1788,7 +1788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3900242883580540505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 4992768778981214460}
-  price: 1500
+  price: 750
 --- !u!1 &3362855893806011983
 GameObject:
   m_ObjectHideFlags: 0
@@ -4706,7 +4706,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Buy 3rd Line: 1500$'
+  m_text: 'Open 3rd Line: 750$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a621f1d472677384887c8134ae9d0b3e, type: 2}
   m_sharedMaterial: {fileID: -8562007397176997475, guid: a621f1d472677384887c8134ae9d0b3e, type: 2}
@@ -4911,7 +4911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 8892934712951848414}
-  price: 500
+  price: 250
 --- !u!1 &8540433116550381616
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Damage:
-    amount: 1
+    amount: 5
     type: 0
   movementSpeed: 10
 --- !u!50 &2780307548262485673
