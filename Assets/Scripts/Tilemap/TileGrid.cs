@@ -10,6 +10,8 @@ namespace TileMap
     {
         public static TileGrid instance;
 
+        [field: SerializeField] public List<TowerTile> TowerTiles;
+
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private TileBase[] tilemapBaseTiles;
 
@@ -20,9 +22,9 @@ namespace TileMap
         [SerializeField] private float tileSize;
         [SerializeField] private Vector2 origin;
         
-        [SerializeField] private List<TileType> tileTypes; 
-        
-        [field:SerializeField] public List<Transform> TowerTiles { get; private set; }
+        [SerializeField] private List<TileType> tileTypes;
+
+        [SerializeField] private List<Transform> BlankTowerTiles;
 
         private void Awake()
         {
@@ -32,6 +34,14 @@ namespace TileMap
                 Debug.LogError("TILE GRID INSTANCE ALREADY EXISTS");
 
             tiles = new Tile[gridSize.x, gridSize.y];
+        }
+
+        private void CreateTowerTiles()
+        {
+            foreach(var tower in BlankTowerTiles)
+            {
+
+            }
         }
 
         private void Start()

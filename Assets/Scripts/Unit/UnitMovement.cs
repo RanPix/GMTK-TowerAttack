@@ -20,18 +20,26 @@ public class UnitMovement : MonoBehaviour
 
     private void Update()
     {
-        MoveUnit();
+        if (MovementPoints.Count > 0)
+        {
+            MoveUnit();
 
-        TryChangeIndex();
+            TryChangeIndex();
 
-        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+            transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+        }
     }
 
     private void MoveUnit()
-        => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+    {
+        if(MovementPoints.Count < 1)
+            return;
+        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * Speed * .75f);
+    }
 
     private void TryChangeIndex()
     {
+        
         if (currentPointIndex > MovementPoints.Count - 2)
             OnPrelastPosition.Invoke();
 

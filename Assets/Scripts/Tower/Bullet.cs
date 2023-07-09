@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Tower
+namespace Towers
 {
     public class Bullet : MonoBehaviour
     {
@@ -29,7 +29,8 @@ namespace Tower
             if (other.gameObject == Target)
             {
                 Target.GetComponent<UnitBase>().HP.DealDamage(Damage);
-                print(Target.GetComponent<UnitBase>().HP.Current);
+                Destroy(gameObject);
+                //print(Target.GetComponent<UnitBase>().HP.Current);
             }
         }
 
