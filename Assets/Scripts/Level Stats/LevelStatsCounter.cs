@@ -19,6 +19,7 @@ public class LevelStatsCounter : MonoBehaviour
                 gateHealth = 0;
                 GameWon = true;
                 OnVictory?.Invoke();
+                TogglePause();
             }
 
             OnGateHealthChanged?.Invoke();
@@ -33,7 +34,7 @@ public class LevelStatsCounter : MonoBehaviour
             OnTimeChanged?.Invoke();
         }
     }
-    public bool GameIsPaused { get; private set; } = true;
+    public bool GameIsPaused { get; private set; } = false;
 
     public Action OnGateHealthChanged;
     public Action OnTimeChanged;
@@ -47,20 +48,22 @@ public class LevelStatsCounter : MonoBehaviour
 
     private void Awake()
     {
+        RoundManager.OnGameOver += TogglePause;
+
+        Instantiate(PickedMap.map);
+
         if (Instance == null)
             Instance = this;
         else
             Debug.LogWarning("WTF, YOU HAVE INSTANCE");
     }
 
-    private void Update()
-    {
-        if(!GameIsPaused)
-            PassedTime += Time.deltaTime;
-    }
-
     public void TogglePause()
-        => GameIsPaused = !GameIsPaused;
+    {
+        GameIsPaused = !GameIsPaused;
+
+        Time.timeScale = GameIsPaused ? 0 : 1;
+    }
 
     public void DamageGate(int damage)
         => GateHealth -= damage;
