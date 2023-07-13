@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Speedy
   Description: Weak, but buffs speed for everyone around
-  Price: 100
+  Price: 150
   Type: 0
   Damage: 1
   NormalSpeed: 1

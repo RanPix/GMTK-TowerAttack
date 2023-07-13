@@ -9,4 +9,9 @@ public class NextRoundButton : MonoBehaviour
     {
         button.onClick.AddListener(UnitSpawner.Instance.StartNextRound);
     }
+
+    private void Update()
+    {
+        //button.interactable = UnitList.UnitRoundCount < 0;
+    }
 }

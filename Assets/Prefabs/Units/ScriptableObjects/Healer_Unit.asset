@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Healer
   Description: Less speed and HP, but heals neighboring units
-  Price: 80
+  Price: 150
   Type: 0
   Damage: 2
   NormalSpeed: 0.9
