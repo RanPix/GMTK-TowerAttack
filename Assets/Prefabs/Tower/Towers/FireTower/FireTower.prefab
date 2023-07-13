@@ -382,4 +382,6 @@ MonoBehaviour:
   attackRate: 1
   rotatablePart: {fileID: 2471016670872941223}
   target: {fileID: 0}
-  canAttack: 1
+  unitLM:
+    serializedVersion: 2
+    m_Bits: 8

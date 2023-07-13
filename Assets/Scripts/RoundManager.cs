@@ -1,5 +1,4 @@
 using System;
-//тута был юзинг
 
 public class RoundManager
 {
