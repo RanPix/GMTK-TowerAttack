@@ -1,4 +1,4 @@
-using DefaultNamespace;
+using AI;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +8,9 @@ namespace TileMap
 {
     public class TileGrid : MonoBehaviour
     {
-        public static TileGrid instance;
+        public static TileGrid Instance { get; private set; }
 
-        [field: SerializeField] public List<TowerTile> TowerTiles;
+        public List<TowerTile> TowerTiles;
 
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private TileBase[] tilemapBaseTiles;
@@ -28,20 +28,25 @@ namespace TileMap
 
         private void Awake()
         {
-            if (instance == null)
-                instance = this;
-            else
-                Debug.LogError("TILE GRID INSTANCE ALREADY EXISTS");
+            SetInstance();
 
             tiles = new Tile[gridSize.x, gridSize.y];
 
             CreateTowerTiles();
         }
+
+        private void SetInstance()
+        {
+            if (Instance == null)
+                Instance = this;
+            else
+                Debug.LogError("TILE GRID INSTANCE ALREADY EXISTS");
+        }
         private void CreateTowerTiles()
         {
             foreach(var tower in BlankTowerTiles)
             {
-                var newTowerTile = (TowerTile)ScriptableObject.CreateInstance("TowerTile");
+                var newTowerTile = (TowerTile)ScriptableObject.CreateInstance(typeof(TowerTile));
 
                 newTowerTile.SetTile(tower);
 
@@ -55,12 +60,23 @@ namespace TileMap
         }
 
         public Tile[,] GetTiles() => tiles;
+
         public Tile GetTile(Vector2 tilePosition)
         {
             Vector2Int tileIndex = GetTileXY(tilePosition);
             return tiles[tileIndex.x, tileIndex.y];
         }
 
+        public TowerTile GetFreeTowerTile()
+        {
+            foreach(var tile in TowerTiles)
+            {
+                if (!tile.IsOccupied)
+                    return tile;
+            }
+
+            return null;
+        }
 
         private Vector2Int GetTileXY(Vector2 worldPosition)
         {
@@ -78,7 +94,7 @@ namespace TileMap
             Vector2Int gridSpawnPosition = GetTileXY(spawnTile.Position);
 
             spawnTile.Position = GetTileWorldPos(gridSpawnPosition);
-            spawnTile.gridPosition = gridSpawnPosition;
+            spawnTile.GridPosition = gridSpawnPosition;
 
             tiles[gridSpawnPosition.x, gridSpawnPosition.y] = spawnTile;
 
@@ -92,7 +108,7 @@ namespace TileMap
                 for (int y = 0; y < gridSize.y ; y++) 
                 {
                     if (tiles[x, y])
-                        tilemap.SetTile(new Vector3Int(x, y, 0) - new Vector3Int(gridSize.x, gridSize.y, 0) / 2, GetTileBase(tiles[x, y].type));
+                        tilemap.SetTile(new Vector3Int(x, y, 0) - new Vector3Int(gridSize.x, gridSize.y, 0) / 2, GetTileBase(tiles[x, y].Type));
                 }
             }
         }
@@ -108,7 +124,7 @@ namespace TileMap
 
         private void OnDestroy()
         {
-            instance = null;
+            Instance = null;
         }
     }
 }

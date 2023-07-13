@@ -9,23 +9,21 @@ public class GameOverScreen : MonoBehaviour
     private void Start()
     {
         LevelStatsCounter.Instance.OnVictory += YouWin;
-        RoundManager.OnGameOver += GameOver;
+        RoundManager.Instance.OnGameOver += GameOver;
     }
 
     private void GameOver()
     {
-        Enable();
+        EnablePanel();
         gameoverText.SetActive(true);
     }
 
     private void YouWin()
     {
-        Enable();
+        EnablePanel();
         gameoverText.SetActive(true);
     }
 
-    private void Enable()
-    {
-        panel.SetActive(true);
-    }
+    private void EnablePanel()
+        => panel.SetActive(true);
 }

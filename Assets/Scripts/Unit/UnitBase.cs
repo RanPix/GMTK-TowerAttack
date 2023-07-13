@@ -3,11 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(UnitMovement), typeof(UnitTags), (typeof(AudioSource)))]
 public class UnitBase : MonoBehaviour
 {
-    [field: SerializeField] public UnitTemplate unitData { get; private set; }
-
-    [SerializeField] private GameObject DeathEffect;
-
     public Health HP { get; private set; }
+
+    [field: SerializeField] public UnitTemplate unitData { get; private set; }
+    [Space]
+    [SerializeField] private GameObject DeathEffect;
     
     private void Awake()
     {
@@ -20,6 +20,10 @@ public class UnitBase : MonoBehaviour
 
     private void Death()
     {
+        Instantiate(DeathEffect, transform.position, Quaternion.identity);
+
+        DeathSoundPlayer.Instance?.PlayDeathSound();
+
         Destroy(gameObject);
     }
 
@@ -31,10 +35,6 @@ public class UnitBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(DeathEffect, transform.position, Quaternion.identity);
-
-        DeathSoundPlayer.instance?.PlayDeathSound();
-
         GetComponent<UnitMovement>().OnPrelastPosition -= Explode;
 
         UnitList.RemoveObject();

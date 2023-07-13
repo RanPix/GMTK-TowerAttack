@@ -1,21 +1,23 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
 {
     [SerializeField] private float speedBuffMultiplier = 2f;
     [SerializeField] private float speedDebuffMultiplier = 0.5f;
-
+    [Space]
     [SerializeField] private List<Transform> MovementPoints;
+    [Space]
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
     [SerializeField] private float currentSpeed;
+
+    private int currentPointIndex = 0;
+
     public Action OnPrelastPosition;
 
     private UnitBase unitBase;
-    private int currentPointIndex = 0;
 
     private void Start()
     {
@@ -28,14 +30,14 @@ public class UnitMovement : MonoBehaviour
 
     private void Update()
     {
-        if (MovementPoints.Count > 0)
-        {
-            MoveUnit();
+        if (MovementPoints.Count <= 0)
+            return;
 
-            TryChangeIndex();
+        MoveUnit();
 
-            transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
-        }
+        TryChangeIndex();
+
+        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
     }
 
     private void ToggleSpeedEffects(UnitTypes tag, bool isOn)
@@ -55,15 +57,10 @@ public class UnitMovement : MonoBehaviour
             else
                 currentSpeed = unitBase.unitData.NormalSpeed / speedBuffMultiplier;
         }
-
     }
 
     private void MoveUnit()
-    {
-        if(MovementPoints.Count < 1)
-            return;
-        transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
-    }
+        => transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
 
     private void TryChangeIndex()
     {
@@ -91,10 +88,8 @@ public class UnitMovement : MonoBehaviour
     }
 
     private void AddMoneyForProgress()
-        => PlayerData.Money += 30 * RoundManager.RoundCount;
+        => PlayerData.Money += 30 * RoundManager.Instance.RoundCount;
 
     public void SetWaypoints(List<Transform> waypoints)
-    {
-        MovementPoints = waypoints;
-    }
+        => MovementPoints = waypoints;
 }

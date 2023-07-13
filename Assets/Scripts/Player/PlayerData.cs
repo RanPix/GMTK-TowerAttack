@@ -1,11 +1,11 @@
 using System;
 
-public class PlayerData
+public static class PlayerData
 {
     private static int _money = 50;
     public static int Money 
     {  
-        get { return _money; }
+        get => _money;
         set 
         { 
             _money = value;

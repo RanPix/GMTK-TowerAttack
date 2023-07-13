@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickedMap : MonoBehaviour
+public static class PickedMap
 {
     public static GameObject map;
 }

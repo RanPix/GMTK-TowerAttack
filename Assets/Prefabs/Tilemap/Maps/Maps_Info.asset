@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e940ac87d691234c9f5970730488713, type: 3}
   m_Name: Maps_Info
   m_EditorClassIdentifier: 
-  maps:
-  - {fileID: 3634254867576607731, guid: befc409d98c4d0d4b9281f795e5f7a6d, type: 3}
+  Maps:
   - {fileID: 3634254867576607731, guid: 6bf14f5089850594ab5fb9698a913816, type: 3}
-  mapPreviews:
+  - {fileID: 3634254867576607731, guid: befc409d98c4d0d4b9281f795e5f7a6d, type: 3}
+  MapPreviews:
   - {fileID: 21300000, guid: 0d559bd039020ae4fbe372167e3c58eb, type: 3}
   - {fileID: 21300000, guid: ebc2b019f660a9840b0462aa6b91dba7, type: 3}
-  names:
-  - Basicly Simple
-  - Sweep
-  difficulties:
-  - Easy
-  - Normal
+  Names:
+  - Pohuy 1
+  - Pohuy 2
+  Difficulties:
+  - Hard
+  - Ass destroyment

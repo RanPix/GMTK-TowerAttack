@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Unit", menuName = "Unit Data")]
 public class UnitTemplate : ScriptableObject

@@ -15,10 +15,14 @@ public class UnitLineUIButton : MonoBehaviour
     {
         this.unitLine = unitLine;
 
-        button.onClick.AddListener(() => {
-            bool canBuy = BuyMenu.Instance.BuyUnit(unitLine, unitLinePosition);
-            SetButtonUnitSprite(BuyMenu.Instance.SelectedUnitType, canBuy);
-            });
+        button.onClick.AddListener(() 
+            => BuyUnit(unitLinePosition));
+    }
+
+    private void BuyUnit(int unitLinePosition)
+    {
+        bool canBuy = BuyMenu.Instance.BuyUnit(unitLine, unitLinePosition);
+        SetButtonUnitSprite(BuyMenu.Instance.SelectedUnitType, canBuy);
     }
 
     private void SetButtonUnitSprite(byte unitType, bool canBuy)
@@ -26,9 +30,12 @@ public class UnitLineUIButton : MonoBehaviour
         if (!canBuy)
             return;
 
-        if (unitType != 255)
-            unitImage.sprite = units.units[unitType].GetComponent<SpriteRenderer>().sprite;
-        else
+        if (unitType == 255)
+        {
             unitImage.sprite = blankSprite;
+            return;
+        }
+
+        unitImage.sprite = units.units[unitType].GetComponent<SpriteRenderer>().sprite;
     }
 }

@@ -6,7 +6,7 @@ public class RoundEndWaiter : MonoBehaviour
 
     private void Start()
     {
-        RoundManager.OnRoundEnd += RoundEnd;
+        RoundManager.Instance.OnRoundEnd += RoundEnd;
     }
 
     private void RoundEnd()

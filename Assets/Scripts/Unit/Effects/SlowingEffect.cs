@@ -1,4 +1,4 @@
-namespace DefaultNamespace.Unit.Effects
+namespace AI.Unit.Effects
 {
     public class SlowingEffect : Effect
     {

@@ -4,25 +4,32 @@ using UnityEngine.UI;
 
 public class BuyUnitButton : MonoBehaviour
 {
-    private GameObject unitPrefab;
-    private UnitTemplate unitTemplate;
     [SerializeField] private byte sellingUnit;
 
     [SerializeField] private Button button;
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text unitCostText;
+
     private UnitDescription unitDescription;
+
+    private GameObject unitPrefab;
+    private UnitTemplate unitTemplate;
 
     private void Start()
     {
         button.onClick.AddListener(() => { BuyMenu.Instance.ChooseUnit(sellingUnit); UpdateDescription(); });
 
-        if (sellingUnit != 255)
-        {
-            image.sprite = unitPrefab.GetComponent<SpriteRenderer>().sprite;
+        CheckUnit();
+    }
 
-            unitCostText.text = unitTemplate.Price.ToString() + "$";
-        }
+    private void CheckUnit()
+    {
+        if (sellingUnit == 255)
+            return;
+
+        image.sprite = unitPrefab.GetComponent<SpriteRenderer>().sprite;
+
+        unitCostText.text = unitTemplate.Price.ToString() + "$";
     }
 
     private void UpdateDescription()
@@ -35,14 +42,15 @@ public class BuyUnitButton : MonoBehaviour
     {
         this.sellingUnit = sellingUnit;
 
-        if (sellingUnit != 255)
+        if (sellingUnit == 255)
         {
-            this.unitTemplate = template;
-            this.unitPrefab = unitPrefab;
-
-            this.unitDescription = unitDescription;
-        }
-        else
             unitCostText.text = "";
+            return;
+        }
+
+        this.unitTemplate = template;
+        this.unitPrefab = unitPrefab;
+
+        this.unitDescription = unitDescription;
     }
 }

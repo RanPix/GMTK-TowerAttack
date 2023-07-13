@@ -1,27 +1,24 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Towers
 {
     public class Bullet : MonoBehaviour
     {
-        public GameObject Target;
         [SerializeField] protected Damage Damage;
         [SerializeField] protected float movementSpeed;
-        //[FormerlySerializedAs("image")] [SerializeField] protected Transform imageHolder;
-        
+
+        protected GameObject target;
 
         private void Update()
         {
-            if (!Target)
+            if (!target)
             {
                 Destroy(gameObject);
                 return;
             }
-            transform.LookAt(Target.transform);
+            transform.LookAt(target.transform);
             
-            Vector3 direction = (Target.transform.position - transform.position).normalized;
+            Vector3 direction = (target.transform.position - transform.position).normalized;
             
             transform.position += direction * movementSpeed * Time.deltaTime;
             
@@ -29,12 +26,14 @@ namespace Towers
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject == Target)
+            if (other.gameObject == target)
             {
-                Target.GetComponent<UnitBase>().HP.DealDamage(Damage);
+                target.GetComponent<UnitBase>().HP.DealDamage(Damage);
                 Destroy(gameObject);
             }
         }
 
+        public void SetTarget(GameObject target)
+            => this.target = target;
     }
 }

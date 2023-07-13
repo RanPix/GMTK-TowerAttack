@@ -10,10 +10,11 @@ public class Health
     public float HealthPercent
         => Current / Max;
 
-    public Action Death;
     private UnitTags parentTags;
     private List<CountAmountFor> counters = new();
     private delegate float CountAmountFor(Damage damage);
+
+    public Action Death;
 
     public Health(UnitBase parent)
     {
@@ -29,6 +30,8 @@ public class Health
 
     private void AddTagCounters()
     {
+        counters.Clear();
+
         foreach (var tag in parentTags)
         {
             switch (tag)
@@ -54,6 +57,7 @@ public class Health
     public void DealDamage(Damage damage)
     {
         Current -= CountAmount(damage);
+
         if (Current < 0)
             Kill();
     }
@@ -69,9 +73,7 @@ public class Health
     private float CountAmount(Damage damage)
     {
         foreach (var counter in counters)
-        {
             damage.amount = counter(damage);
-        }
 
         return damage.amount;
     }
@@ -122,7 +124,5 @@ public class Health
     }
 
     public void Kill()
-    {
-        Death.Invoke();
-    }
+        => Death.Invoke();
 }

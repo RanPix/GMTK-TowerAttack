@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BuyMenu : MonoBehaviour
 {
-    public static BuyMenu Instance;
+    public static BuyMenu Instance { get; private set; }
 
     [SerializeField] private Units units;
 
@@ -12,11 +12,22 @@ public class BuyMenu : MonoBehaviour
 
     private void Awake()
     {
+        SetInstance();
+
+        InitializeUnitLines();
+    }
+    
+    private void SetInstance()
+    {
         if (Instance == null)
             Instance = this;
         else
             Debug.LogError("INSTANCE OF BUY MENU CURSOR DATA ALREADY EXISTS");
 
+    }
+
+    private void InitializeUnitLines()
+    {
         int yLen = unitTypeLines.GetLength(0);
         int xLen = unitTypeLines.GetLength(1);
 
@@ -28,15 +39,9 @@ public class BuyMenu : MonoBehaviour
             }
         }
     }
-    private void OnDestroy()
-    {
-        Instance = null;
-    }
 
     public void ChooseUnit(byte unitType)
-    {
-        SelectedUnitType = unitType;
-    }
+        => SelectedUnitType = unitType;
 
     public bool BuyUnit(int lineIndex, int linePosition) 
     {
@@ -45,40 +50,43 @@ public class BuyMenu : MonoBehaviour
         if (existingUnitType == SelectedUnitType)
             return false;
 
-        if (SelectedUnitType == 255)
-        {
-            PlayerData.Money += units.unitTemplates[existingUnitType].Price;
-            unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
-            return true;
-        }    
-
         int selectedUnitPrice = units.unitTemplates[SelectedUnitType].Price;
 
-        if (PlayerData.Money >= selectedUnitPrice)
-        {
-            if (existingUnitType != 255)
-                PlayerData.Money += units.unitTemplates[existingUnitType].Price;
+        if (PlayerData.Money < selectedUnitPrice)
+            return false;
 
-            PlayerData.Money -= selectedUnitPrice;
-            unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
+        ReplaceUnit(existingUnitType, lineIndex, linePosition);
 
-            return true;
-        }
+        PlayerData.Money -= selectedUnitPrice;
+        unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
 
-        return false;
+        return true;
+    }
+
+    // замініти наявний продаж новим, нормальним
+    private void ReplaceUnit(byte existingUnitType, int lineIndex, int linePosition)
+    {
+        if (SelectedUnitType != 255)
+            return;
+
+        PlayerData.Money += units.unitTemplates[existingUnitType].Price;
+        unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
     }
 
     public bool BuyNewUnitLine(int price)
     {
-        if (PlayerData.Money >= price)
-        {
-            PlayerData.Money -= price;
-            return true;
-        }
+        if (PlayerData.Money < price)
+            return false;
 
-        return false;
+        PlayerData.Money -= price;
+        return true;
     }
 
     public byte[,] GetUnitTypeLines()
         => unitTypeLines;
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 }

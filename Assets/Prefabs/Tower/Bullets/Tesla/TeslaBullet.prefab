@@ -48,20 +48,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6a67a2bedd4fbbbcfe44c905680cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Damage:
     amount: 3
     type: 1
   movementSpeed: 0
   bulletImage: {fileID: 3737757582634899542}
   bulletPrefab: {fileID: 1134699848541435015}
-  randomSprites:
-  - {fileID: 21300000, guid: 23ea8cc0d347cb8439da854d0fa2388b, type: 3}
-  - {fileID: 21300000, guid: 4da4de8eea6bbd24a9cdbbbbdb291419, type: 3}
-  hitParticles: []
   nextBulletPos: {fileID: 5861742579017466040}
   attackRadius: 0.5
-  tower: {fileID: 0}
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &4616882473656054952
 Rigidbody2D:
   serializedVersion: 4

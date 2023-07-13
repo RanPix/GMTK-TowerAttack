@@ -23,6 +23,7 @@ public class UnitTags : MonoBehaviour, IEnumerable
 
         thisUnitTags.Add(tag);
         OnTagsChanged?.Invoke(tag, true);
+
         return true;
     }
 
@@ -43,6 +44,6 @@ public class UnitTags : MonoBehaviour, IEnumerable
             return;
 
         deleteQueue.Enqueue(tag);
-        Invoke("RemoveQueuedTag", time);
+        Invoke(nameof(RemoveQueuedTag), time);
     }
 }

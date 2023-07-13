@@ -13,66 +13,98 @@ namespace Towers
 
         [SerializeField] protected float attackRadius;
         [SerializeField] protected float attackRate;
-        protected float attackTimer;
-
-        public Action OnReload;
 
         [SerializeField] protected Transform rotatablePart;
-
         [SerializeField] protected GameObject target;
-        public bool canAttack;
+
+        [SerializeField] protected LayerMask unitLM;
+
+        protected bool canAttack;
+        protected float attackTimer;
 
         private AudioSource shootSource;
 
-        public Vector2 position
-        {
-            get => new(transform.position.x, transform.position.y);
-        }
-        
-        protected void Start()
-        {
-            canAttack = true; 
 
+        [HideInInspector] public Vector2 Position
+        {
+            get => transform.position;
+            protected set => transform.position = value;
+        }
+
+        public Action OnReload;
+
+        private void Start()
+        {
+            SetUpTower();
+        }
+
+        protected void SetUpTower()
+        {
             shootSource = GetComponent<AudioSource>();
+
+            canAttack = true;
         }
 
         private void Update()
         {
-            attackTimer += Time.deltaTime;
-            
-            if(attackTimer >= attackRate)
-                OnReload?.Invoke();
-            if (target)
-            {
-                if (((Vector2)target.transform.position - position).sqrMagnitude > attackRadius*attackRadius)
-                {
-                    target = null;
-                    if(!GetTarget())
-                        return;
-                }
+            Reload();
 
-                
+            LocateTarget();
+
+            if (rotatablePart.eulerAngles.z != 90)
+                rotatablePart.rotation = Quaternion.Euler(-90, 0, 90);
+        }
+
+        private void Reload()
+        {
+            attackTimer += Time.deltaTime;
+
+            if (attackTimer >= attackRate)
+                OnReload?.Invoke();
+        }
+
+        private void LocateTarget()
+        {
+            if (TargetIsInRadius())
+            {
                 rotatablePart.LookAt(target.transform);
                 TryAttack();
-            }
-            else
-            {
-                GetTarget();
 
-                if(rotatablePart.eulerAngles.z != 90)
-                    rotatablePart.rotation = Quaternion.Euler(-90, 0, 90);
+                return;
             }
+
+            GetTarget();
         }
+
+        private bool TargetIsInRadius()
+        {
+            if (!target)
+                return false;
+
+            if (!CheckRadius())
+            {
+                target = null;
+
+                return GetTarget();
+            }
+
+            return false;
+        }
+
+        private bool CheckRadius()
+            => ((Vector2)target.transform.position - Position).sqrMagnitude <= attackRadius * attackRadius;
 
         private void TryAttack()
         {
             if(!canAttack)
                 return;
+
             if(attackTimer < attackRate)
                 return;
-            attackTimer = 0;
-            Shoot();
 
+            attackTimer = 0;
+
+            Shoot();
         }
 
         protected virtual void Shoot()
@@ -82,15 +114,15 @@ namespace Towers
             Bullet instantiatedBullet = Instantiate(bullet);
             instantiatedBullet.transform.position = bulletPos.position;
 
-            instantiatedBullet.Target = target;
+            instantiatedBullet.SetTarget(target);
         }
 
         private GameObject GetTarget()
         {
-            if (!Physics2D.CircleCast(position, attackRadius, Vector2.zero, 0, LayerMask.GetMask("Unit")))
+            if (!Physics2D.CircleCast(Position, attackRadius, Vector2.zero, 0, unitLM))
                 return null;
 
-            target = Physics2D.OverlapCircle(position, attackRadius, LayerMask.GetMask("Unit")).gameObject;
+            target = Physics2D.OverlapCircle(Position, attackRadius, unitLM).gameObject;
             
             return target;
         }
@@ -98,7 +130,7 @@ namespace Towers
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(position, attackRadius);
+            Gizmos.DrawWireSphere(Position, attackRadius);
         }
     }
 }

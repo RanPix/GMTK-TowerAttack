@@ -3,14 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class DeathSoundPlayer : MonoBehaviour
 {
-    public static DeathSoundPlayer instance;
+    public static DeathSoundPlayer Instance { get; private set; }
 
     private AudioSource deathAudioSource;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Start()
@@ -19,7 +19,9 @@ public class DeathSoundPlayer : MonoBehaviour
     }
 
     private void OnDestroy()
-        => instance = null;
+    {
+        Instance = null;
+    }
 
     public void PlayDeathSound()
         => deathAudioSource.Play();

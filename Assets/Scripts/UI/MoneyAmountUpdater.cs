@@ -12,12 +12,8 @@ public class MoneyAmountUpdater : MonoBehaviour
     }
     
     private void UpdateText()
-    {
-        moneyText.text = PlayerData.Money.ToString() + "$";
-    }
+        => moneyText.text = PlayerData.Money.ToString() + "$";
 
     private void OnEnable()
-    {
-        UpdateText();
-    }
+        => UpdateText();
 }

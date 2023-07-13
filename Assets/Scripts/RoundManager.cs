@@ -1,19 +1,44 @@
 using System;
-using UnityEngine;
+//тута был юзинг
 
 public class RoundManager
 {
-    public static Action OnRoundStart;
-    public static Action OnRoundEnd;
+    private static RoundManager _instance;
 
-    public static Action OnGameOver;
+    public static RoundManager Instance 
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new();
 
-    public static int RoundCount { get; private set; } = 0;
+            return _instance;
+        }
+    }
+
+    public int RoundCount { get; private set; } = 0;
+
+    public bool IsMidRound { get; private set; } = false;
+
+    public Action OnRoundStart;
+    public Action OnRoundEnd;
+
+    public Action OnGameOver;
+
+    private RoundManager()
+    { 
+        Init();
+    }
     
-    public static void StartNewRound()
+    private void Init()
+        => UnitList.OnUnitRoundCountChange += CheckIfRoundEnded;
+
+    public void StartNewRound()
     {
         if (UnitList.UnitRoundCount > 0)
             return;
+
+        IsMidRound = true;
 
         RoundCount++;
 
@@ -28,9 +53,15 @@ public class RoundManager
         PlayerData.Money += 15;
     }
 
-    public static void RESET()
+    private void CheckIfRoundEnded()
     {
-        RoundCount = 0;
-        OnRoundStart = null;
+        if (UnitList.UnitRoundCount > 0)
+            return;
+
+        IsMidRound = false;
+        OnRoundEnd?.Invoke();
     }
+
+    public void RESET()
+        => _instance = new();
 }

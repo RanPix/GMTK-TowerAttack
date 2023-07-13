@@ -1,46 +1,22 @@
-using System;
 using UnityEngine;
 
 namespace TileMap
 {
     public class Tile : MonoBehaviour
     {
-        [SerializeField] private TileType _type;
+        [field : SerializeField] public TileType Type { get; private set;}
 
-        public TileType type
-        {
-            get => _type;
-            private set
-            {
-                _type = value;
-                TypeProcessing();
-            }
-        }
-
-        [HideInInspector]public Vector2Int gridPosition;
+        [HideInInspector] public Vector2Int GridPosition;
         
         public Vector2 Position
         {
-            get
-                => transform.position;
-
-            set
-                => transform.position = value;
+            get => transform.position;
+            set => transform.position = value;
         }
 
-        public void Start()
+        private void Start()
         {
-            TileGrid.instance.AddTile(this, _type);
-            TypeProcessing();
-        }
-
-        public void SetArgs(TileCreateArgs args)
-        {
-            type = args.type;
-        }
-        
-        private void TypeProcessing()
-        {
+            TileGrid.Instance.AddTile(this, Type);
         }
     }
 }

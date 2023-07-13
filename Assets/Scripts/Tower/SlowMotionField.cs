@@ -1,29 +1,26 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Towers
 {
     public class SlowMotionField : MonoBehaviour
     {
+        [SerializeField] private LayerMask unitLM;
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            /*print(other.gameObject.layer + "     OBG");
-            print( LayerMask.GetMask("Unit") + "    Layer");*/
-            if (other.gameObject.layer == 3)
-            {
-                print("stooooooooooop");
-                UnitTags unit = other.GetComponent<UnitTags>();
-                unit.AddTag(UnitTypes.Slowness);
+            if (other.gameObject.layer == unitLM)
+            {                
+                other.GetComponent<UnitTags>()
+                    .AddTag(UnitTypes.Slowness);
             }
         }
+
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.layer == 3)
+            if (other.gameObject.layer == unitLM)
             {
-                print("goooooooooo");
-                UnitTags unit = other.GetComponent<UnitTags>();
-                
-                unit.RemoveTag(UnitTypes.Slowness);
+                other.GetComponent<UnitTags>()
+                    .RemoveTag(UnitTypes.Slowness);
             }
         }
     }

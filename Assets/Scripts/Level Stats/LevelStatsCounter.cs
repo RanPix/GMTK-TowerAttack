@@ -25,15 +25,7 @@ public class LevelStatsCounter : MonoBehaviour
             OnGateHealthChanged?.Invoke();
         }
     }
-    [property: SerializeField] public float PassedTime 
-    { 
-        get => passedTime; 
-        private set
-        {
-            passedTime = value;
-            OnTimeChanged?.Invoke();
-        }
-    }
+
     public bool GameIsPaused { get; private set; } = false;
 
     public Action OnGateHealthChanged;
@@ -43,12 +35,10 @@ public class LevelStatsCounter : MonoBehaviour
 
     public bool GameWon { get; private set; } = false;
     [SerializeField] private int gateHealth = 100;
-    
-    private float passedTime = 0;
 
     private void Awake()
     {
-        RoundManager.OnGameOver += TogglePause;
+        RoundManager.Instance.OnGameOver += TogglePause;
 
         Instantiate(PickedMap.map);
 

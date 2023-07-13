@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Healer : MonoBehaviour
 {
@@ -11,30 +9,29 @@ public class Healer : MonoBehaviour
     [SerializeField] private int healTicks = 2;
     [SerializeField] private float healTicksDelay = 0.5f;
     [Space]
-    [SerializeField] private float Radius = 0.75f;
+    [SerializeField] private float radius = 0.75f;
+    [Space]
+    [SerializeField] private LayerMask unitLM;
 
     private void Awake()
     {
-        Invoke("StartHeal", healDelay);
-        GetComponentInChildren<Transform>().localScale = new Vector3(Radius * 2, Radius * 2, 1f);
+        Invoke(nameof(StartHeal), healDelay);
+        GetComponentInChildren<Transform>().localScale = new Vector3(radius * 2, radius * 2, 1f);
     }
 
     private IEnumerator Heal()
     {
-
         for (int i = 0; i < healTicks; i++)
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, Radius, Vector2.zero, 0, LayerMask.GetMask("Unit"));
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, radius, Vector2.zero, 0, unitLM);
             
             foreach (var hit in hits)
-            {
                 hit.collider.GetComponent<UnitBase>().HP.Heal(healAmount);
-            }
 
             yield return new WaitForSeconds(healTicksDelay);
         }
 
-        Invoke("StartHeal", healDelay);
+        Invoke(nameof(StartHeal), healDelay);
         
         yield break;
     }

@@ -1,4 +1,4 @@
-namespace DefaultNamespace
+namespace AI
 {
     public class Rounds
     {

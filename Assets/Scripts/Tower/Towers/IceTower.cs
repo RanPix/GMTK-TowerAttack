@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Towers
 {
+    //Уолтер убери свой скрипт, Уолтер
     public class IceTower : Tower
     {
         [SerializeField] private GameObject slowMotionField;
@@ -14,7 +15,7 @@ namespace Towers
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(position, attackRadius);
+            Gizmos.DrawWireSphere(Position, attackRadius);
         }
     }
 }

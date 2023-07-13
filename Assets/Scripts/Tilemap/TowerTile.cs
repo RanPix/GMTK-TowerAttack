@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TowerTile : ScriptableObject
+public class TowerTile : ScriptableObject 
 {
     public Transform TowerTransform { get; private set; }
 
@@ -10,8 +10,7 @@ public class TowerTile : ScriptableObject
 
     public void SetTile(Transform tile) 
         => TowerTransform = tile;
-    public void SetTowerPosition(Transform transform)
-        => TowerTransform = transform;
+
     public void CreateTower(GameObject tower)
     {
         CurrentTower = tower;

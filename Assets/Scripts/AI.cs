@@ -2,71 +2,102 @@ using System.Collections.Generic;
 using TileMap;
 using UnityEngine;
 using Towers;
+using System;
+using Random = UnityEngine.Random;
 
-namespace DefaultNamespace
+namespace AI
 {
     public class AI : MonoBehaviour
     {
         [SerializeField] private GameObject[] towers;
+        [Space]
+        [SerializeField] private int startTowersCount = 4;
+        [Space]
+        [SerializeField] private bool automaticDistribution = true;
+        [SerializeField] private Dictionary<int, int> towersToBuildOnWave = new();
 
         private void Start()
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < startTowersCount; i++)
                 BuildTower();
 
-            RoundManager.OnRoundStart += DoRoundStep;
+            RoundManager.Instance.OnRoundStart += DoRoundStep;
         }
 
         private void OnDestroy()
         {
-            RoundManager.OnRoundStart -= DoRoundStep;
+            RoundManager.Instance.OnRoundStart -= DoRoundStep;
         }
+
+        #region Round step
 
         public void DoRoundStep()
         {
-            float waveNumber = RoundManager.RoundCount;
+            int towersToBuild = TowersToBuild(RoundManager.Instance.RoundCount);
 
-            for (int i = 0; i < waveNumber - waveNumber * 0.5f; i++)
+            for (int i = 0; i <= towersToBuild; i++)
                 BuildTower();
         }
 
-        private void BuildTower()
+        private int TowersToBuild(int wave)
         {
-            (int, GameObject) towerPair = GetTower();
+            if (automaticDistribution)
+                return AutomaticAmountOfTowersToBuild(wave);
 
-            GetTile(towerPair);
+            if (towersToBuildOnWave.Count < startTowersCount)
+            {
+#if DEBUG
+                throw new IndexOutOfRangeException();
+#endif
+
+                return AutomaticAmountOfTowersToBuild(wave);
+            }
+
+            return towersToBuildOnWave[wave];
+
         }
 
-        private (int, GameObject) GetTower()
-        {
-            float waveNumber = RoundManager.RoundCount;
+        private int AutomaticAmountOfTowersToBuild(int wave)
+            => (int)(wave * 0.5f);
 
-            var tower = GetRandomTower((int)Mathf.Round(waveNumber * 0.55f), waveNumber * 0.1f);
+        private void BuildTower()
+        {
+            (int, GameObject) towerPair = GetTowerPair();
+
+            BuildOnTile(towerPair);
+        }
+
+        private (int, GameObject) GetTowerPair()
+        {
+            int waveNumber = RoundManager.Instance.RoundCount;
+
+            var tower = GetRandomTower(Mathf.RoundToInt(waveNumber * 0.55f), waveNumber * 0.1f);
 
             return tower;
         }
 
-        private void GetTile((int tier, GameObject tower) towerPair)
+        #endregion
+
+        #region Building on tile
+
+        private void BuildOnTile((int tier, GameObject tower) towerPair)
         {
-            var towerTiles = TileGrid.instance.TowerTiles;
+            var towerTiles = TileGrid.Instance.TowerTiles;
 
             if (AllCellsAreOccupied())
-            {
-                var randomTile = GetWeakestTile(towerPair.tier, towerTiles);
+                RebuildWeakestTower(towerPair, towerTiles);
+            else
+                TileGrid.Instance.GetFreeTowerTile()
+                    .CreateTower(towerPair.tower);
+        }
 
-                randomTile.DestroyTower();
+        private void RebuildWeakestTower((int tier, GameObject tower) towerPair, List<TowerTile> towerTiles)
+        {
+            var randomTile = GetWeakestTile(towerPair.tier, towerTiles);
 
-                randomTile.CreateTower(towerPair.tower);
-            }
+            randomTile.DestroyTower();
 
-            TowerTile chosenTile;
-
-            do
-            {
-                chosenTile = towerTiles[Random.Range(0, towerTiles.Count)];
-            } while (chosenTile.IsOccupied);
-
-            chosenTile.CreateTower(towerPair.tower);
+            randomTile.CreateTower(towerPair.tower);
         }
 
         private TowerTile GetWeakestTile(int tier, List<TowerTile> tiles)
@@ -89,7 +120,7 @@ namespace DefaultNamespace
 
         private bool AllCellsAreOccupied()
         {
-            foreach(var towerCell in TileGrid.instance.TowerTiles)
+            foreach(var towerCell in TileGrid.Instance.TowerTiles)
             {
                 if (!towerCell.IsOccupied)
                     return false;
@@ -98,48 +129,60 @@ namespace DefaultNamespace
             return true;
         }
 
+        #endregion
+
+        #region Getting tower
+
         private (int, GameObject) GetRandomTower(int wantedTier, float chanceToGetLowerTier)
         {
             wantedTier = Mathf.Clamp(wantedTier, 0, 6);
 
-            List<(int, GameObject)> neededTierTowers = new List<(int, GameObject)>();
+            wantedTier = TryGetLowerTier(wantedTier, chanceToGetLowerTier);
 
-            if (Random.Range(0.1f, 1f) < chanceToGetLowerTier)
-                wantedTier = GetRandomTier(wantedTier);
+            var neededTierTowers = GetNeededTowersTier(wantedTier);
 
-            foreach (var tower in towers)
-            {
-                var towerComponent = tower.GetComponent<Tower>();
+            return GetSuitableTower(neededTierTowers);
+        }
 
-                if (towerComponent.TowerTier == wantedTier)
-                    neededTierTowers.Add((towerComponent.TowerTier, tower));
-            }
-
-            if(neededTierTowers.Count > 0)
+        private (int, GameObject) GetSuitableTower(List<(int, GameObject)> neededTierTowers)
+        {
+            if (neededTierTowers.Count > 0)
             {
                 return neededTierTowers[Random.Range(0, neededTierTowers.Count)];
             }
             else
             {
-                var simpleTower = towers[0];
+#if DEBUG
+                Debug.LogWarning("No suitable tower", this);
+#endif
 
-                return (1, simpleTower);
+                return (1, towers[0]);
             }
         }
 
-        private int GetRandomTier(int tier)
+        private int TryGetLowerTier(int wantedTier, float chanceToGetLowerTier)
         {
-            int memoryTier = tier;
+            if (Random.Range(0.1f, 1f) < chanceToGetLowerTier)
+                wantedTier = Random.Range(1, wantedTier);
 
-            do
-            {
-                tier = Random.Range(1, memoryTier);
-            }
-            while (memoryTier == tier);
-
-            return tier;
+            return wantedTier;
         }
-        /*private float GetPercentValue(float number, float percent)
-            => number * percent;*/
+
+        private List<(int, GameObject)> GetNeededTowersTier(int wantedTier)
+        {
+            List<(int, GameObject)> neededTierTowers = new();
+
+            foreach (var tower in towers)
+            {
+                var towerTier = tower.GetComponent<Tower>().TowerTier;
+
+                if (towerTier == wantedTier)
+                    neededTierTowers.Add((towerTier, tower));
+            }
+
+            return neededTierTowers;
+        }
+
+        #endregion
     }
 }

@@ -1,23 +1,20 @@
-using System;
 using UnityEngine;
 
 namespace Towers
 {
     public class Crossbow : Tower
     {
-
         [SerializeField] private Sprite unloadedCrossbow;
         [SerializeField] private Sprite loadedCrossbow;
 
-
-        private new void Start()
+        private void Start()
         {
-            base.Start();
-
             canAttack = true;
+
             OnReload += () => rotatablePart.GetComponentInChildren<SpriteRenderer>().sprite = loadedCrossbow;
+
+            SetUpTower();
         }
-        
 
         protected override void Shoot()
         {

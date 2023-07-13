@@ -10,23 +10,20 @@ public class UnitCountUpdater : MonoBehaviour
     private void Start()
     {
         UnitList.OnUnitRoundCountChange += UpdateText;
-        RoundManager.OnRoundStart += UpdateMaxUnits;
+        RoundManager.Instance.OnRoundStart += UpdateMaxUnits;
 
         UpdateText();
     }
-    private void OnDestroy()
-    {
-        UnitList.OnUnitRoundCountChange -= UpdateText;
-    }
+
     private void UpdateText()
     {
         text.text = UnitList.UnitRoundCount.ToString();
         slider.value = UnitList.UnitRoundCount;
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        UpdateText();
+        UnitList.OnUnitRoundCountChange -= UpdateText;
     }
 
     private void UpdateMaxUnits()
@@ -34,4 +31,10 @@ public class UnitCountUpdater : MonoBehaviour
         slider.maxValue = UnitList.UnitRoundCount;
         UpdateText();
     }
+
+    private void OnEnable()
+    {
+        UpdateText();
+    }
+
 }

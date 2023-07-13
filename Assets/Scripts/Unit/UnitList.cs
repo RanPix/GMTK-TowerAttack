@@ -2,9 +2,8 @@ using System;
 
 public static class UnitList
 {
-    public static Action OnUnitRoundCountChange;
-
     private static uint _UnitRoundCount;
+
     public static uint UnitRoundCount
     {
         get => _UnitRoundCount;
@@ -15,15 +14,13 @@ public static class UnitList
         } 
     }
 
+    public static Action OnUnitRoundCountChange;
+
     public static void ResetCount()
-    {
-        UnitRoundCount = 0;
-    }
+        => UnitRoundCount = 0;
 
     public static void SetCount(uint count)
-    {
-        UnitRoundCount = count;
-    }
+        => UnitRoundCount = count;
 
     public static void AddObject()
     {
@@ -31,8 +28,5 @@ public static class UnitList
     }
 
     public static void RemoveObject()
-    {
-        if (--UnitRoundCount < 1)
-            RoundManager.OnRoundEnd?.Invoke();
-    }
+        => UnitRoundCount--;
 }
