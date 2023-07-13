@@ -40,6 +40,8 @@ public class LevelStatsCounter : MonoBehaviour
     {
         RoundManager.Instance.OnGameOver += TogglePause;
 
+        PlayerData.ResetMoney();
+
         Instantiate(PickedMap.map);
 
         if (Instance == null)

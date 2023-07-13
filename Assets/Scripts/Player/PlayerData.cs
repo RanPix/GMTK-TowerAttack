@@ -3,6 +3,7 @@ using System;
 public static class PlayerData
 {
     private static int _money = 50;
+
     public static int Money 
     {  
         get => _money;
@@ -12,5 +13,11 @@ public static class PlayerData
             OnMoneyUpdate();
         }
     }
+
+    private const int startMoney = 50;
+
     public static Action OnMoneyUpdate;
+
+    public static void ResetMoney()
+        => _money = startMoney;
 }

@@ -47,12 +47,12 @@ namespace Towers
 
         private void Update()
         {
+            if(!target)
+                FindTarget();
+
             Reload();
 
             LocateTarget();
-
-            if (rotatablePart.eulerAngles.z != 90)
-                rotatablePart.rotation = Quaternion.Euler(-90, 0, 90);
         }
 
         private void Reload()
@@ -73,22 +73,24 @@ namespace Towers
                 return;
             }
 
-            GetTarget();
+            FindTarget();
+
+            rotatablePart.rotation = Quaternion.Euler(rotatablePart.eulerAngles.x, rotatablePart.eulerAngles.y, 0);
         }
 
         private bool TargetIsInRadius()
         {
-            if (!target)
+            if (!target)                                                
                 return false;
 
             if (!CheckRadius())
             {
                 target = null;
 
-                return GetTarget();
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         private bool CheckRadius()
@@ -117,14 +119,12 @@ namespace Towers
             instantiatedBullet.SetTarget(target);
         }
 
-        private GameObject GetTarget()
+        private void FindTarget()
         {
             if (!Physics2D.CircleCast(Position, attackRadius, Vector2.zero, 0, unitLM))
-                return null;
+                return;
 
             target = Physics2D.OverlapCircle(Position, attackRadius, unitLM).gameObject;
-            
-            return target;
         }
 
         private void OnDrawGizmos()

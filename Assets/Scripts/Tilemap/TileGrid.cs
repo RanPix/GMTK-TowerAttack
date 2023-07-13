@@ -69,13 +69,15 @@ namespace TileMap
 
         public TowerTile GetFreeTowerTile()
         {
-            foreach(var tile in TowerTiles)
-            {
-                if (!tile.IsOccupied)
-                    return tile;
-            }
+            TowerTile tile = TowerTiles[0];
 
-            return null;
+            do
+            {
+                tile = TowerTiles[Random.Range(0, TowerTiles.Count)];
+            }
+            while (tile.IsOccupied);
+
+            return tile;
         }
 
         private Vector2Int GetTileXY(Vector2 worldPosition)

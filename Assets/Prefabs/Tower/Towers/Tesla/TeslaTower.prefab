@@ -139,7 +139,9 @@ MonoBehaviour:
   attackRate: 4
   rotatablePart: {fileID: 920796784168774994}
   target: {fileID: 0}
-  canAttack: 1
+  unitLM:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!82 &6086286469731301697
 AudioSource:
   m_ObjectHideFlags: 0

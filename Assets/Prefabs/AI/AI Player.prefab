@@ -49,3 +49,5 @@ MonoBehaviour:
   - {fileID: 1091740413881444184, guid: 54a36f9640c1c784cb09eb11f18805e0, type: 3}
   - {fileID: 5212624775501472695, guid: 5ac40534bf62b244eb92cf0fb4916f8b, type: 3}
   - {fileID: 967846637466811475, guid: 1f52b996fbf9d484685616f6a2e32fe0, type: 3}
+  startTowersCount: 4
+  automaticDistribution: 1

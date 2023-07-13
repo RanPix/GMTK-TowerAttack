@@ -4292,6 +4292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1638978412746612170}
+  mainMenuScene: {fileID: 102900000, guid: 27d6570da3d63624a9e772a197bea089, type: 3}
 --- !u!1 &6981442221469379038
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,6 +4429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 7746902171446052322}
+  mainMenuScene: {fileID: 0}
 --- !u!1 &7948715968068353924
 GameObject:
   m_ObjectHideFlags: 0
