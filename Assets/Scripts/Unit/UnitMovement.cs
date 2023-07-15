@@ -18,6 +18,8 @@ public class UnitMovement : MonoBehaviour
 
     private int currentPointIndex = 0;
 
+    private float rotationSpeed = 6f;
+
     public Action OnPrelastPosition;
 
     private UnitBase unitBase;
@@ -48,7 +50,7 @@ public class UnitMovement : MonoBehaviour
     private void Rotate()
     {
         if(transform.rotation != rotationDirection.rotation)
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotationDirection.rotation, Time.deltaTime * currentSpeed * 3.5f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationDirection.rotation, Time.deltaTime * currentSpeed * rotationSpeed);
     }
 
     private void ToggleSpeedEffects(UnitTypes tag, bool isOn)

@@ -84,7 +84,6 @@ public class Health
         if (_counters == null)
             return damage.amount;
 
-
         foreach (CountAmountFor counter in _counters.GetInvocationList())
             damage.amount = counter.Invoke(damage);
 
