@@ -124,6 +124,9 @@ MonoBehaviour:
   speedBuffDuration: 1.5
   speedBuffDelay: 2
   Radius: 0.75
+  UnitLM:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2248863659624184864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e196782dac2bd44a5c2d4647fcfac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisUnitTags: 
+  thisUnitTags: 0000000002000000
 --- !u!114 &2008041864364185575
 MonoBehaviour:
   m_ObjectHideFlags: 0
