@@ -10,8 +10,8 @@ public class Health
     public float HealthPercent
         => Current / Max;
 
-    private UnitTags parentTags;
-    private List<CountAmountFor> counters = new();
+    private UnitTags _parentTags;
+    private CountAmountFor _counters;
     private delegate float CountAmountFor(Damage damage);
 
     public Action Death;
@@ -21,31 +21,31 @@ public class Health
         Max = parent.unitData.MaxHP;
         Current = Max;
 
-        parentTags = parent.GetComponent<UnitTags>();
+        _parentTags = parent.GetComponent<UnitTags>();
         AddTagCounters();
 
-        parentTags.OnTagsChanged += (_, _)
+        _parentTags.OnTagsChanged += (_, _)
             => AddTagCounters();
     }
 
     private void AddTagCounters()
     {
-        counters.Clear();
+        _counters = null;
 
-        foreach (var tag in parentTags)
+        foreach (var tag in _parentTags)
         {
             switch (tag)
             {
                 case UnitTypes.Light:
-                    counters.Add(CountForLight);
+                    _counters += CountForLight;
                     break;
 
                 case UnitTypes.Heavy:
-                    counters.Add(CountForHeavy);
+                    _counters += CountForHeavy;
                     break;
 
                 case UnitTypes.Organic:
-                    counters.Add(CountForOrganic);
+                    _counters += CountForOrganic;
                     break;
 
                 default:
@@ -72,8 +72,8 @@ public class Health
 
     private float CountAmount(Damage damage)
     {
-        foreach (var counter in counters)
-            damage.amount = counter(damage);
+        foreach (CountAmountFor counter in _counters.GetInvocationList())
+            damage.amount = counter.Invoke(damage);
 
         return damage.amount;
     }
