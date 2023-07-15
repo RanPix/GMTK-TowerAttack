@@ -20,7 +20,7 @@ public class Speedy : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, Radius, Vector2.zero, 0, UnitLM);
 
         foreach (var hit in hits)
-            hit.collider.GetComponent<UnitTags>().AddTemporarTag(UnitTypes.SpedUp, speedBuffDuration);
+            hit.collider.GetComponent<UnitTags>().AddTemporarTag(UnitTypes.SpedUp, speedBuffDuration, false);
 
         Invoke(nameof(StartSpeedBoost), speedBuffDelay);
         
