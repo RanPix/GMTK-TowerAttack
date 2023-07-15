@@ -142,6 +142,7 @@ MonoBehaviour:
   unitLM:
     serializedVersion: 2
     m_Bits: 8
+  audioType: 4
 --- !u!82 &6086286469731301697
 AudioSource:
   m_ObjectHideFlags: 0

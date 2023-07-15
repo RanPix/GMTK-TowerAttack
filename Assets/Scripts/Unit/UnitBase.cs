@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(UnitMovement), typeof(UnitTags), (typeof(AudioSource)))]
+[RequireComponent(typeof(UnitMovement), typeof(UnitTags))]
 public class UnitBase : MonoBehaviour
 {
     public Health HP { get; private set; }
@@ -22,7 +22,9 @@ public class UnitBase : MonoBehaviour
     {
         Instantiate(DeathEffect, transform.position, Quaternion.identity);
 
-        DeathSoundPlayer.Instance?.PlayDeathSound();
+        var validationKey = new AudioValidationKey(AudioKind.Creeps, AudioType.CreepDeath, "Death");
+
+        AudioSystem.instance.PlaySound(AudioKind.Creeps, validationKey, false);
 
         Destroy(gameObject);
     }

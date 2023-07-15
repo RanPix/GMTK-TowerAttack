@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc507d875af68644bf78b8b26dccd8b, type: 3}
+  m_Name: TeslaTower
+  m_EditorClassIdentifier: 
+  Kind: 0
+  Type: 4
+  SoundName: Shoot
+  SoundList:
+  - {fileID: 8300000, guid: 114547af4ecbffb4c8a3d7b11d8ee733, type: 3}

@@ -8,7 +8,7 @@ namespace AI.Unit.Effects
         Running,
     }
 
-    [CreateAssetMenu(fileName = "Effect", menuName = "ScriptableObjects/Effect")]
+    [CreateAssetMenu(fileName = "Effect", menuName = "ScriptableObjects/Units/Effect")]
     public class Effect : ScriptableObject
     {
         public float effectDuration;

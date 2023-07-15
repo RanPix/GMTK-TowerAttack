@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c531ae535072454cb5279b71ad1d575a, type: 3}
-  m_Name: Effect
+  m_Script: {fileID: 11500000, guid: 7cc507d875af68644bf78b8b26dccd8b, type: 3}
+  m_Name: IceTower
   m_EditorClassIdentifier: 
-  effectDuration: 0
-  effectType: 0
+  Kind: 0
+  Type: 3
+  SoundName: Shoot
+  SoundList:
+  - {fileID: 8300000, guid: 7a7a5893b943b6c4683e33a133ef52f2, type: 3}

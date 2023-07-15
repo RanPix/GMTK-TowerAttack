@@ -3,27 +3,25 @@ using UnityEngine;
 
 namespace Towers
 {
-    [RequireComponent(typeof(AudioSource))]
     public class Tower: MonoBehaviour
     {
         [field: SerializeField] public int TowerTier { get; private set; }
-
+        [Space]
         [SerializeField] protected Bullet bullet;
         [SerializeField] protected Transform bulletPos;
-
+        [Space]
         [SerializeField] protected float attackRadius;
         [SerializeField] protected float attackRate;
-
+        [Space]
         [SerializeField] protected Transform rotatablePart;
         [SerializeField] protected GameObject target;
-
+        [Space]
         [SerializeField] protected LayerMask unitLM;
+        [Space]
+        [SerializeField] protected AudioType audioType;
 
         protected bool canAttack;
         protected float attackTimer;
-
-        private AudioSource shootSource;
-
 
         [HideInInspector] public Vector2 Position
         {
@@ -39,11 +37,7 @@ namespace Towers
         }
 
         protected void SetUpTower()
-        {
-            shootSource = GetComponent<AudioSource>();
-
-            canAttack = true;
-        }
+            => canAttack = true;
 
         private void Update()
         {
@@ -111,7 +105,9 @@ namespace Towers
 
         protected virtual void Shoot()
         {
-            shootSource.Play();
+            var validationKey = new AudioValidationKey(AudioKind.Towers, audioType, "Shoot");
+
+            AudioSystem.instance.PlaySound(AudioKind.Towers, validationKey, false);
 
             Bullet instantiatedBullet = Instantiate(bullet);
             instantiatedBullet.transform.position = bulletPos.position;

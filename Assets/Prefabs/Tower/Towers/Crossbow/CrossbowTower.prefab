@@ -57,6 +57,7 @@ MonoBehaviour:
   unitLM:
     serializedVersion: 2
     m_Bits: 8
+  audioType: 1
   unloadedCrossbow: {fileID: 21300000, guid: d220261ff35feea45b0963d1a0675088, type: 3}
   loadedCrossbow: {fileID: 21300000, guid: 1faa0618c491bf449be81cc8d3cf8d75, type: 3}
 --- !u!82 &1398716560673550825
