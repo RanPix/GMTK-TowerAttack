@@ -16,9 +16,9 @@ public class UnitTags : MonoBehaviour, IEnumerable
     public IEnumerator GetEnumerator()
         => thisUnitTags.GetEnumerator();
 
-    public bool AddTag(UnitTypes tag)
+    public bool AddTag(UnitTypes tag, bool canStack = true)
     {
-        if (thisUnitTags.Contains(tag))
+        if (thisUnitTags.Contains(tag) && !canStack)
             return false;
 
         thisUnitTags.Add(tag);
@@ -38,9 +38,9 @@ public class UnitTags : MonoBehaviour, IEnumerable
         RemoveTag(deleteQueue.Dequeue());
     }
 
-    public void AddTemporarTag(UnitTypes tag, float time)
+    public void AddTemporarTag(UnitTypes tag, float time, bool canStack = true)
     {
-        if (!AddTag(tag))
+        if (!AddTag(tag, canStack))
             return;
 
         deleteQueue.Enqueue(tag);
