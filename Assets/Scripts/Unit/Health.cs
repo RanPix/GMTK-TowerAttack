@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UnitTags))]
@@ -24,34 +23,44 @@ public class Health
         _parentTags = parent.GetComponent<UnitTags>();
         AddTagCounters();
 
-        _parentTags.OnTagsChanged += (_, _)
-            => AddTagCounters();
+        _parentTags.OnTagsChanged += ToggleTagInCounters;
     }
 
     private void AddTagCounters()
     {
         _counters = null;
 
-        foreach (var tag in _parentTags)
+        foreach (UnitTypes tag in _parentTags)
+            ToggleTagInCounters(tag, true);
+    }
+
+    private void ToggleTagInCounters(UnitTypes tag, bool toggle)
+    {
+        switch (tag)
         {
-            switch (tag)
-            {
-                case UnitTypes.Light:
-                    _counters += CountForLight;
-                    break;
+            case UnitTypes.Light:
+                ToggleTagCounter(CountForLight, toggle);
+                break;
 
-                case UnitTypes.Heavy:
-                    _counters += CountForHeavy;
-                    break;
+            case UnitTypes.Heavy:
+                ToggleTagCounter(CountForHeavy, toggle);
+                break;
 
-                case UnitTypes.Organic:
-                    _counters += CountForOrganic;
-                    break;
+            case UnitTypes.Organic:
+                ToggleTagCounter(CountForOrganic, toggle);
+                break;
 
-                default:
-                    break;
-            }
+            default:
+                break;
         }
+    }
+
+    private void ToggleTagCounter(CountAmountFor func, bool toggle)
+    {
+        if (toggle)
+            _counters += func;
+        else
+            _counters -= func;
     }
 
     public void DealDamage(Damage damage)
@@ -72,6 +81,10 @@ public class Health
 
     private float CountAmount(Damage damage)
     {
+        if (_counters == null)
+            return damage.amount;
+
+
         foreach (CountAmountFor counter in _counters.GetInvocationList())
             damage.amount = counter.Invoke(damage);
 
