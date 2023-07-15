@@ -7,6 +7,7 @@ public enum AudioKind
     Towers,
     Creeps,
     Music,
+    Base,
 }
 public enum AudioType
 { 
@@ -23,7 +24,7 @@ public enum AudioType
 
 public class AudioSystem : MonoBehaviour
 {
-    public static AudioSystem instance { get; private set; }
+    public static AudioSystem Instance { get; private set; }
 
     [SerializeField] private List<SoundScriptableObject> soundsScriptableObjects;
 
@@ -35,8 +36,13 @@ public class AudioSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        SetInstance();
+    }
+
+    private void SetInstance()
+    {
+        if (Instance == null)
+            Instance = this;
         else
             Debug.LogWarning("Audio System instance already exists!");
     }
@@ -75,7 +81,7 @@ public class AudioSystem : MonoBehaviour
 
     #endregion
 
-    public void PlaySound(AudioKind sourceKind, AudioValidationKey validationKey, bool isRandom)
+    public void PlaySound(AudioValidationKey validationKey, AudioKind sourceKind = AudioKind.Base, bool isRandom = false)
     {
         if(!audioSources.ContainsKey(sourceKind))
         {

@@ -24,7 +24,7 @@ public class UnitBase : MonoBehaviour
 
         var validationKey = new AudioValidationKey(AudioKind.Creeps, AudioType.CreepDeath, "Death");
 
-        AudioSystem.instance.PlaySound(AudioKind.Creeps, validationKey, false);
+        AudioSystem.Instance.PlaySound(validationKey);
 
         Destroy(gameObject);
     }
