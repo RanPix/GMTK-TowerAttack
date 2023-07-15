@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class UnitMovement : MonoBehaviour
     [Space]
     [SerializeField] private float RequiredDistanceSquare = 0.00001f;
     [SerializeField] private float currentSpeed;
+
+    private Transform rotationDirection;
 
     private int currentPointIndex = 0;
 
@@ -37,7 +40,15 @@ public class UnitMovement : MonoBehaviour
 
         TryChangeIndex();
 
+        Rotate();
+
         transform.position = Vector2.MoveTowards(transform.position, MovementPoints[currentPointIndex].position, Time.deltaTime * currentSpeed * .75f);
+    }
+
+    private void Rotate()
+    {
+        if(transform.rotation != rotationDirection.rotation)
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationDirection.rotation, Time.deltaTime * currentSpeed * 3.5f);
     }
 
     private void ToggleSpeedEffects(UnitTypes tag, bool isOn)
@@ -73,7 +84,7 @@ public class UnitMovement : MonoBehaviour
 
     private void ChangeWaypoint()
     {
-        transform.rotation = MovementPoints[currentPointIndex].rotation;
+        rotationDirection = MovementPoints[currentPointIndex];
 
         currentPointIndex++;
     }
@@ -91,5 +102,9 @@ public class UnitMovement : MonoBehaviour
         => PlayerData.Money += 30 * RoundManager.Instance.RoundCount;
 
     public void SetWaypoints(List<Transform> waypoints)
-        => MovementPoints = waypoints;
+    {
+        MovementPoints = waypoints;
+
+        rotationDirection = MovementPoints[0];
+    }
 }
