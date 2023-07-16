@@ -82,12 +82,12 @@ namespace AI
 
         private void BuildOnTile((int tier, GameObject tower) towerPair)
         {
-            var towerTiles = TileGrid.Instance.TowerTiles;
+            var towerTiles = Tiles.Instance.TowerTiles;
 
             if (AllCellsAreOccupied())
                 RebuildWeakestTower(towerPair, towerTiles);
             else
-                TileGrid.Instance.GetFreeTowerTile()
+                Tiles.Instance.GetFreeTowerTile()
                     .CreateTower(towerPair.tower);
         }
 
@@ -120,7 +120,7 @@ namespace AI
 
         private bool AllCellsAreOccupied()
         {
-            foreach(var towerCell in TileGrid.Instance.TowerTiles)
+            foreach(var towerCell in Tiles.Instance.TowerTiles)
             {
                 if (!towerCell.IsOccupied)
                     return false;

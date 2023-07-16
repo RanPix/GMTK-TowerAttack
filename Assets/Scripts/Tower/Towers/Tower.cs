@@ -107,7 +107,7 @@ namespace Towers
         {
             var validationKey = new AudioValidationKey(AudioKind.Towers, audioType, "Shoot");
 
-            AudioSystem.Instance.PlaySound(validationKey);
+            AudioSystem.Instance.PlaySound(validationKey, AudioKind.Towers);
 
             Bullet instantiatedBullet = Instantiate(bullet);
             instantiatedBullet.transform.position = bulletPos.position;

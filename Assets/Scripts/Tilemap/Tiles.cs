@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace TileMap
 {
-    public class TileGrid : MonoBehaviour
+    public class Tiles : MonoBehaviour
     {
-        public static TileGrid Instance { get; private set; }
+        public static Tiles Instance { get; private set; }
 
         public List<TowerTile> TowerTiles { get; private set; } = new List<TowerTile>();
 

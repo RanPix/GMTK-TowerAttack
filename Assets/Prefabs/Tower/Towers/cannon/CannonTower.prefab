@@ -133,7 +133,7 @@ MonoBehaviour:
   <TowerTier>k__BackingField: 1
   bullet: {fileID: 8401872505280255291, guid: a4449734d74e7a84a825290fbc93e12c, type: 3}
   bulletPos: {fileID: 2639336290477120393}
-  attackRadius: 3
+  attackRadius: 3.4
   attackRate: 1
   rotatablePart: {fileID: 6374254594028744813}
   target: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2604663064762669710}
   - component: {fileID: 9187396561144910603}
   m_Layer: 0
-  m_Name: Units
+  m_Name: Creeps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
