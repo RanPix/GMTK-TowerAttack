@@ -31,7 +31,7 @@ public class UnitBase : MonoBehaviour
 
     private void Explode()
     {
-        LevelStatsCounter.Instance.DamageGate(unitData.Damage);
+        Gate.Instance.DamageGate(unitData.Damage);
         Death();
     }
 

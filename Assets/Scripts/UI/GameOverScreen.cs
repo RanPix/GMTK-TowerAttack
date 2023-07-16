@@ -8,7 +8,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void Start()
     {
-        LevelStatsCounter.Instance.OnVictory += YouWin;
+        Gate.Instance.OnVictory += YouWin;
         RoundManager.Instance.OnGameOver += GameOver;
     }
 
