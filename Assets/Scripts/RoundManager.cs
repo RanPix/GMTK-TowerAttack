@@ -19,6 +19,8 @@ public class RoundManager
 
     public bool IsMidRound { get; private set; } = false;
 
+    public const int MaxWaveCount = 25;
+
     public Action OnRoundStart;
     public Action OnRoundEnd;
 
@@ -41,7 +43,7 @@ public class RoundManager
 
         RoundCount++;
 
-        if (RoundCount > LevelStatsCounter.Instance.MaxWave && LevelStatsCounter.Instance.GateHealth > 0)
+        if (RoundCount > MaxWaveCount && Gate.Instance.GateHealth > 0)
         {
             OnGameOver();
             return;

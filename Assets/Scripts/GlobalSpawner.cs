@@ -7,6 +7,8 @@ public class GlobalSpawner : MonoBehaviour
 
     void Start()
     {
+        Instantiate(PickedMap.Map, transform.position, Quaternion.identity);
+
         foreach (GameObject gameObjectToSpawn in gameObjects)
             Instantiate(gameObjectToSpawn);
     }

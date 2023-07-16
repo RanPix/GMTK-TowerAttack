@@ -12,7 +12,7 @@ public class RoundsAmountUpdater : MonoBehaviour
     }
 
     private void UpdateText()
-        => text.text = RoundManager.Instance.RoundCount + " / " + LevelStatsCounter.Instance.MaxWave;
+        => text.text = RoundManager.Instance.RoundCount + " / " + RoundManager.MaxWaveCount;
 
     private void OnEnable()
     {

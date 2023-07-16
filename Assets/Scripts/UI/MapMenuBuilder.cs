@@ -20,7 +20,7 @@ public class MapMenuBuilder : MonoBehaviour
             GameObject currentMap = maps.Maps[i];
             newButton.GetComponent<Button>().onClick.AddListener(() => 
             { 
-                PickedMap.map = currentMap;
+                PickedMap.Map = currentMap;
                 SceneManager.LoadScene(scene.name);
             });
             newButton.GetComponent<Image>().sprite = maps.MapPreviews[i];

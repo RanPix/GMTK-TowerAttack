@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Kind: 1
   Type: 6
-  SoundName: CreepDeath
+  SoundName: Death
   SoundList:
   - {fileID: 8300000, guid: 7050a1c9d1c2e0f4e8d9674a84b07a7e, type: 3}

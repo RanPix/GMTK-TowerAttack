@@ -9,16 +9,16 @@ public class GateHealthUpdater : MonoBehaviour
 
     private void Start()
     {
-        LevelStatsCounter.Instance.OnGateHealthChanged += UpdateText;
-        slider.maxValue = LevelStatsCounter.Instance.GateHealth;
+        Gate.Instance.OnGateHealthChanged += UpdateText;
+        slider.maxValue = Gate.Instance.GateHealth;
 
         UpdateText();
     }
 
     private void UpdateText()
     {
-        text.text = LevelStatsCounter.Instance.GateHealth.ToString();
-        slider.value = LevelStatsCounter.Instance.GateHealth;
+        text.text = Gate.Instance.GateHealth.ToString();
+        slider.value = Gate.Instance.GateHealth;
     }
 
     private void OnEnable()
