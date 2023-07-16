@@ -16,8 +16,8 @@ MonoBehaviour:
   - {fileID: 3634254867576607731, guid: 6bf14f5089850594ab5fb9698a913816, type: 3}
   - {fileID: 3634254867576607731, guid: befc409d98c4d0d4b9281f795e5f7a6d, type: 3}
   MapPreviews:
-  - {fileID: 21300000, guid: ebc2b019f660a9840b0462aa6b91dba7, type: 3}
   - {fileID: 21300000, guid: 0d559bd039020ae4fbe372167e3c58eb, type: 3}
+  - {fileID: 21300000, guid: ebc2b019f660a9840b0462aa6b91dba7, type: 3}
   Names:
   - Pohuy 1
   - Pohuy 2
