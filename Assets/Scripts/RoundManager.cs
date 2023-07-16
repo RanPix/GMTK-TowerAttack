@@ -29,6 +29,7 @@ public class RoundManager
     private RoundManager()
     { 
         Init();
+        PlayerData.ResetMoney();
     }
     
     private void Init()
