@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Towers
 {
-    public class TeslaBullet : Bullet
+    public class ElectricBullet : Bullet
     {
         [SerializeField] private SpriteRenderer bulletImage;
         [SerializeField] private GameObject bulletPrefab;
@@ -11,10 +11,9 @@ namespace Towers
 
         [SerializeField] private float attackRadius;
 
-        [SerializeField] private LayerMask unitLayer;
 
-        private TeslaBullet nextChild;
-        private TeslaBullet previousChild;
+        private ElectricBullet nextChild;
+        private ElectricBullet previousChild;
         private bool childWasSpawned;
 
         private float lastSpawn = 0;
@@ -45,7 +44,7 @@ namespace Towers
 
         private void SpawnChild()
         {
-            nextChild = Instantiate(bulletPrefab).GetComponent<TeslaBullet>();
+            nextChild = Instantiate(bulletPrefab).GetComponent<ElectricBullet>();
             nextChild.transform.position = nextBulletPos.position;
             nextChild.target = target;
             nextChild.previousChild = this;

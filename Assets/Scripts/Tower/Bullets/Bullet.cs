@@ -6,6 +6,7 @@ namespace Towers
     {
         [SerializeField] protected Damage Damage;
         [SerializeField] protected float movementSpeed;
+        [SerializeField] protected LayerMask unitLayer;
 
         protected GameObject target;
 

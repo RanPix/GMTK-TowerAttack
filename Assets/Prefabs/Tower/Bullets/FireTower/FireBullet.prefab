@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1331074985694942258}
-  - component: {fileID: 4674149744688480970}
   - component: {fileID: 4783667565876657396}
   - component: {fileID: 5477428760057680567}
+  - component: {fileID: -1030423054299020939}
   m_Layer: 0
   m_Name: FireBullet
   m_TagString: Untagged
@@ -119,23 +119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4674149744688480970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7732686037656318245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0efe89ae162e45ac8b891fda8a334af3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  Damage:
-    amount: 5
-    type: 0
-  movementSpeed: 10
 --- !u!58 &4783667565876657396
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -173,3 +156,23 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 3
+--- !u!114 &-1030423054299020939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732686037656318245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3682550cd8954c6e8b5ca0d7d46901c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage:
+    amount: 5
+    type: 0
+  movementSpeed: 10
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  splashRadius: 0.7
