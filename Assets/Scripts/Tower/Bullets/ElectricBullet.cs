@@ -46,7 +46,7 @@ namespace Towers
         {
             nextChild = Instantiate(bulletPrefab).GetComponent<ElectricBullet>();
             nextChild.transform.position = nextBulletPos.position;
-            nextChild.target = target;
+            nextChild.SetTarget(target);
             nextChild.previousChild = this;
             lastSpawn = Time.deltaTime;
 
@@ -81,7 +81,7 @@ namespace Towers
             {
                 if (hit.collider.gameObject != target)
                 {
-                    target = hit.collider.gameObject;
+                    SetTarget(hit.collider.gameObject);
                     return;
                 }
 
