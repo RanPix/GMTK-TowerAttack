@@ -7,34 +7,35 @@ namespace Towers
         [SerializeField] protected Damage Damage;
         [SerializeField] protected float movementSpeed;
         [SerializeField] protected LayerMask unitLayer;
+        [SerializeField] protected int pierceAmount;
+        [SerializeField] protected float lifeTime = .7f;
 
         protected GameObject target;
-
+        protected Vector3 direction;
+        
         private void Update()
         {
-            if (!target)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            transform.LookAt(target.transform);
-            
-            Vector3 direction = (target.transform.position - transform.position).normalized;
-            
             transform.position += direction * movementSpeed * Time.deltaTime;
             
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject == target)
+            if (other.gameObject.layer == 3)
             {
-                target.GetComponent<UnitBase>().HP.DealDamage(Damage);
-                Destroy(gameObject);
+                other.gameObject.GetComponent<UnitBase>().HP.DealDamage(Damage);
+                if(pierceAmount == 0)
+                    Destroy(gameObject);
+                pierceAmount--;
             }
         }
 
         public void SetTarget(GameObject target)
-            => this.target = target;
+        {
+            transform.LookAt(target.transform.position);
+            direction = (target.transform.position - transform.position).normalized;
+            Destroy(gameObject, lifeTime);
+        }
+            
     }
 }

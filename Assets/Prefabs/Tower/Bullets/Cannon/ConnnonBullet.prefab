@@ -47,11 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0efe89ae162e45ac8b891fda8a334af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Damage:
     amount: 5
     type: 0
-  movementSpeed: 15
+  movementSpeed: 20
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  pierceAmount: 2
+  lifeTime: 0.4
 --- !u!50 &8105314201058688875
 Rigidbody2D:
   serializedVersion: 4
