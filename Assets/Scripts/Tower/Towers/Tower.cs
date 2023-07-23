@@ -14,7 +14,7 @@ namespace Towers
         [SerializeField] protected float attackRate;
         [Space]
         [SerializeField] protected Transform rotatablePart;
-        [SerializeField] protected GameObject target;
+        [field: SerializeField] protected virtual GameObject target { get; set; }
         [Space]
         [SerializeField] protected LayerMask unitLM;
         [Space]
@@ -23,10 +23,9 @@ namespace Towers
         protected bool canAttack;
         protected float attackTimer;
 
-        [HideInInspector] public Vector2 Position
+        public Vector2 Position
         {
             get => transform.position;
-            protected set => transform.position = value;
         }
 
         public Action OnReload;
@@ -105,14 +104,20 @@ namespace Towers
 
         protected virtual void Shoot()
         {
-            var validationKey = new AudioValidationKey(AudioKind.Towers, audioType, "Shoot");
-
-            AudioSystem.Instance.PlaySound(validationKey, AudioKind.Towers);
-
+            PlayShootSound();
+            
             Bullet instantiatedBullet = Instantiate(bullet);
             instantiatedBullet.transform.position = bulletPos.position;
 
             instantiatedBullet.SetTarget(target);
+        }
+
+        protected void PlayShootSound()
+        {
+            var validationKey = new AudioValidationKey(AudioKind.Towers, audioType, "Shoot");
+
+            AudioSystem.Instance.PlaySound(validationKey, AudioKind.Towers);
+
         }
 
         private void FindTarget()
