@@ -7,7 +7,7 @@ namespace TileMap
     {
         public static Tiles Instance { get; private set; }
 
-        public List<TowerTile> TowerTiles { get; private set; } = new List<TowerTile>();
+        public List<TowerTile> TowerTiles { get; private set; } = new ();
 
         [SerializeField] private List<Transform> BlankTowerTiles;
 

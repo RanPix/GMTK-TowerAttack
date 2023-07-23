@@ -3076,7 +3076,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd469cde24a6e294ebc077e8c978903d, type: 2}
   - {fileID: 11400000, guid: bc12b75c8f34417408bd0b391529ad82, type: 2}
   pickMapButton: {fileID: 545864879937337838, guid: 0291f6e60f788cf43abe3ef369f4947b, type: 3}
-  scene: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
 --- !u!1 &1458785443
 GameObject:
   m_ObjectHideFlags: 0

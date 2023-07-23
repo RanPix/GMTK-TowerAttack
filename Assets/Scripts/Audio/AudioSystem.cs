@@ -11,6 +11,7 @@ public enum AudioKind
 }
 public enum AudioType
 { 
+    None,
     CannonTower,
     CrossbowTower,
     FireTower,
@@ -83,6 +84,9 @@ public class AudioSystem : MonoBehaviour
 
     public void PlaySound(AudioValidationKey validationKey, AudioKind sourceKind = AudioKind.Base, bool isRandom = false)
     {
+        if(validationKey.Key.Item2 == AudioType.None)
+            return;
+        
         if(!audioSources.ContainsKey(sourceKind))
         {
             Debug.LogWarning("No suitable audio source!");
