@@ -9,7 +9,7 @@ namespace Towers
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject != target)
+            if (other.gameObject.layer != 3)
                 return;
             
             foreach (var hit in CheckSplashRadius())

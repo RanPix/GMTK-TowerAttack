@@ -171,7 +171,7 @@ MonoBehaviour:
   Damage:
     amount: 5
     type: 0
-  movementSpeed: 10
+  movementSpeed: 1
   unitLayer:
     serializedVersion: 2
     m_Bits: 8

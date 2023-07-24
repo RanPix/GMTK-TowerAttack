@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TowerTier>k__BackingField: 3
+  <MaxTowerPosFromRoad>k__BackingField: 2
   bullet: {fileID: 1324571910955297732, guid: 6b129cb00df63e94c913a7f89066a156, type: 3}
   bulletPos: {fileID: 5079270221350091062}
   attackRadius: 1.9
@@ -174,9 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb22e005bb648e99bcd9c77eeb6b3a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitLM:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!50 &3548332357861686816
 Rigidbody2D:
   serializedVersion: 4

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class GlobalSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> gameObjects;
 
-    void Start()
+    private void Start()
     {
         Instantiate(PickedMap.Map, transform.position, Quaternion.identity);
 

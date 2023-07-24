@@ -47,11 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0efe89ae162e45ac8b891fda8a334af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Damage:
     amount: 5
     type: 0
-  movementSpeed: 15
+  movementSpeed: 20
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  pierceAmount: 2
+  lifeTime: 0.4
 --- !u!50 &8105314201058688875
 Rigidbody2D:
   serializedVersion: 4
@@ -114,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2267694592545269220}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0057323}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.049372587, y: 0.049372587, z: 0.049372587}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,7 +200,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4647735614955418302}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -204,4 +208,4 @@ Transform:
   - {fileID: 1095711989009660741}
   m_Father: {fileID: 2887530778505288682}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}

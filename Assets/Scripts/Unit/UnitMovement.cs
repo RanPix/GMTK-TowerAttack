@@ -28,7 +28,7 @@ public class UnitMovement : MonoBehaviour
     {
         unitBase = GetComponent<UnitBase>();
         currentSpeed = unitBase.unitData.NormalSpeed;
-
+        
         GetComponent<UnitTags>().OnTagsChanged += ToggleSpeedEffects;
         OnPrelastPosition += AddMoneyForProgress;
     }
@@ -58,17 +58,18 @@ public class UnitMovement : MonoBehaviour
         if (tag == UnitTypes.Slowness)
         {
             if (isOn)
-                currentSpeed = unitBase.unitData.NormalSpeed * speedDebuffMultiplier;
+                currentSpeed *= speedDebuffMultiplier;
             else
-                currentSpeed = unitBase.unitData.NormalSpeed / speedDebuffMultiplier;
+                currentSpeed /= speedDebuffMultiplier;
+                
         }
 
         if (tag == UnitTypes.SpedUp)
         {
             if (isOn)
-                currentSpeed = unitBase.unitData.NormalSpeed * speedBuffMultiplier;
+                currentSpeed *= speedBuffMultiplier;
             else
-                currentSpeed = unitBase.unitData.NormalSpeed / speedBuffMultiplier;
+                currentSpeed /= speedBuffMultiplier;
         }
     }
 

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TowerTier>k__BackingField: 2
+  <MaxTowerPosFromRoad>k__BackingField: 2
   bullet: {fileID: 5807098365467042709, guid: d74c75ef951147a46a7bcada66e885c5, type: 3}
   bulletPos: {fileID: 6156601809858181721}
   attackRadius: 3.8

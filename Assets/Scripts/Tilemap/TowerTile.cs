@@ -4,7 +4,7 @@ public class TowerTile : ScriptableObject
 {
     public Transform TowerTransform { get; private set; }
 
-    public bool IsOccupied { get; private set; } = false;
+    public bool IsOccupied { get; private set; }
 
     public GameObject CurrentTower { get; private set; }
 

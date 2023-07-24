@@ -15,9 +15,9 @@ public class RoundManager
         }
     }
 
-    public int RoundCount { get; private set; } = 0;
+    public int RoundCount { get; private set; }
 
-    public bool IsMidRound { get; private set; } = false;
+    public bool IsMidRound { get; private set; }
 
     public const int MaxWaveCount = 25;
 
