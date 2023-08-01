@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.Unit.UnitTypes;
 
 namespace Towers
 {
@@ -9,7 +10,7 @@ namespace Towers
             if (other.gameObject.layer == 3)
             {                
                 other.GetComponent<UnitTags>()
-                    .AddTag(UnitTypes.Slowness);
+                    .AddTag(UnitStatus.Slowed);
             }
         }
 
@@ -18,7 +19,7 @@ namespace Towers
             if (other.gameObject.layer == 3)
             {
                 other.GetComponent<UnitTags>()
-                    .RemoveTag(UnitTypes.Slowness);
+                    .RemoveTag(UnitStatus.Slowed);
             }
         }
     }

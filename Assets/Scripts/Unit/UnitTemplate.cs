@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.Unit.UnitTypes;
 
 [CreateAssetMenu(fileName = "Unit", menuName = "Unit Data")]
 public class UnitTemplate : ScriptableObject
@@ -8,7 +9,7 @@ public class UnitTemplate : ScriptableObject
 
     public int Price;
 
-    public UnitTypes Type;
+    public UnitStatus Type;
     public int Damage;
     public float NormalSpeed;
     public float MaxHP;

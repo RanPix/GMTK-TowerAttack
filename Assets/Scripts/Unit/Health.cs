@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Assets.Scripts.Unit.UnitTypes;
 
 [RequireComponent(typeof(UnitTags))]
 public class Health
@@ -30,23 +31,23 @@ public class Health
     {
         _counters = null;
 
-        foreach (UnitTypes tag in _parentTags)
+        foreach (UnitStatus tag in _parentTags)
             ToggleTagInCounters(tag, true);
     }
 
-    private void ToggleTagInCounters(UnitTypes tag, bool toggle)
+    private void ToggleTagInCounters(UnitStatus tag, bool toggle)
     {
         switch (tag)
         {
-            case UnitTypes.Light:
+            case UnitStatus.Light:
                 ToggleTagCounter(CountForLight, toggle);
                 break;
 
-            case UnitTypes.Heavy:
+            case UnitStatus.Heavy:
                 ToggleTagCounter(CountForHeavy, toggle);
                 break;
 
-            case UnitTypes.Organic:
+            case UnitStatus.Organic:
                 ToggleTagCounter(CountForOrganic, toggle);
                 break;
 

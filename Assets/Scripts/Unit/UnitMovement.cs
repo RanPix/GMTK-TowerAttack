@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Unit.UnitTypes;
 
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour
@@ -53,9 +53,9 @@ public class UnitMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationDirection.rotation, Time.deltaTime * currentSpeed * rotationSpeed);
     }
 
-    private void ToggleSpeedEffects(UnitTypes tag, bool isOn)
+    private void ToggleSpeedEffects(UnitStatus tag, bool isOn)
     {
-        if (tag == UnitTypes.Slowness)
+        if (tag == UnitStatus.Slowed)
         {
             if (isOn)
                 currentSpeed *= speedDebuffMultiplier;
@@ -64,7 +64,7 @@ public class UnitMovement : MonoBehaviour
                 
         }
 
-        if (tag == UnitTypes.SpedUp)
+        if (tag == UnitStatus.SpedUp)
         {
             if (isOn)
                 currentSpeed *= speedBuffMultiplier;
