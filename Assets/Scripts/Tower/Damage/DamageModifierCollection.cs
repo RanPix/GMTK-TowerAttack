@@ -3,11 +3,12 @@ using AYellowpaper.SerializedCollections;
 
 namespace Assets.Scripts.Tower.Damage
 {
-    public class DamageModifierContainer : MonoBehaviour
+    public class DamageModifierCollection : MonoBehaviour
     {
-        public static DamageModifierContainer Instance { get; private set; }
+        private static DamageModifierCollection Instance;
+
         [SerializedDictionary("DamageType", "Modifiers")]
-        public SerializedDictionary<DamageType, DamageModifiers[]> Modifiers { get; private set; }
+            private SerializedDictionary<DamageType, DamageModifiers[]> Modifiers;
 
         private void Awake()
         {
@@ -21,5 +22,8 @@ namespace Assets.Scripts.Tower.Damage
             else
                 Debug.LogWarning("Damage modifier container already exists");
         }
+
+        public static DamageModifiers[] GetDamageModifiers(DamageType type)
+            => Instance.Modifiers[type];
     }
 }

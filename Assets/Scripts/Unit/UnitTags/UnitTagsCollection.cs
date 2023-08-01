@@ -7,7 +7,7 @@ namespace Assets.Scripts.Unit.UnitTags
     {
         [SerializeField] private UnitTag[] unitTags;
 
-        public static Dictionary<UnitStatus, UnitTag> TagsDictionary { get; private set; } 
+        private static Dictionary<UnitStatus, UnitTag> TagsDictionary;
 
 
         private void Awake()
@@ -34,5 +34,8 @@ namespace Assets.Scripts.Unit.UnitTags
 
             TagsDictionary = tagsDictionary;
         }
+
+        public static UnitTag GetUnitTag(UnitStatus status)
+            => TagsDictionary[status];
     }
 }

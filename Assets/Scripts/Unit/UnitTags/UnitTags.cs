@@ -26,7 +26,7 @@ namespace Assets.Scripts.Unit.UnitTags
             foreach (var status in desiredStatuses)
             {
                 if (!ContainsConflictingTypes(status))
-                    tags.Add(UnitTagsCollection.TagsDictionary[status]);
+                    tags.Add(UnitTagsCollection.GetUnitTag(status));
             }
 
             _unitTags = tags;
@@ -55,18 +55,18 @@ namespace Assets.Scripts.Unit.UnitTags
             return false;
         }
 
-        public bool ContainsUnitStatus(UnitStatus requestedTag)
-            => _unitTags.Contains(UnitTagsCollection.TagsDictionary[requestedTag]);
+        public bool ContainsUnitStatus(UnitStatus status)
+            => _unitTags.Contains(UnitTagsCollection.GetUnitTag(status));
 
         public IEnumerator GetEnumerator()
             => _unitTags.GetEnumerator();
 
         public bool AddTag(UnitStatus status)
         {
-            if (ContainsUnitStatus(status) && !UnitTagsCollection.TagsDictionary[status].IsStackAble)
+            if (ContainsUnitStatus(status) && !UnitTagsCollection.GetUnitTag(status).IsStackAble)
                 return false;
 
-            _unitTags.Add(UnitTagsCollection.TagsDictionary[status]);
+            _unitTags.Add(UnitTagsCollection.GetUnitTag(status));
             OnTagsChanged?.Invoke(status, true);
 
             return true;
@@ -75,7 +75,7 @@ namespace Assets.Scripts.Unit.UnitTags
         public void RemoveTag(UnitStatus status)
         {
             OnTagsChanged?.Invoke(status, false);
-            _unitTags.Remove(UnitTagsCollection.TagsDictionary[status]);
+            _unitTags.Remove(UnitTagsCollection.GetUnitTag(status));
         }
 
         private void RemoveQueuedTag()
