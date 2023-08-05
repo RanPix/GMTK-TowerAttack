@@ -9,8 +9,10 @@
 #define DISABLESTEAMWORKS
 #endif
 
+using System.Net;
 using UnityEngine;
 #if !DISABLESTEAMWORKS
+using System;
 using System.Collections;
 using Steamworks;
 #endif
@@ -25,7 +27,7 @@ public class SteamManager : MonoBehaviour {
 	protected static bool s_EverInitialized = false;
 
 	protected static SteamManager s_instance;
-	protected static SteamManager Instance {
+	public static SteamManager Instance {
 		get {
 			if (s_instance == null) {
 				return new GameObject("SteamManager").AddComponent<SteamManager>();
@@ -36,14 +38,23 @@ public class SteamManager : MonoBehaviour {
 		}
 	}
 
-	protected bool m_bInitialized = false;
-	public static bool Initialized {
-		get {
-			return Instance.m_bInitialized;
+	protected bool m_bInitialized;
+	
+	public static bool Initialized
+	{
+		get => Instance.m_bInitialized;
+		private set
+		{
+			Instance.m_bInitialized = value;
+			if(value)
+				Instance.OnInitialize?.Invoke();
 		}
+
 	}
 
 	protected SteamAPIWarningMessageHook_t m_SteamAPIWarningMessageHook;
+
+	public Action OnInitialize;
 
 	[AOT.MonoPInvokeCallback(typeof(SteamAPIWarningMessageHook_t))]
 	protected static void SteamAPIDebugTextHook(int nSeverity, System.Text.StringBuilder pchDebugText) {
@@ -119,8 +130,8 @@ public class SteamManager : MonoBehaviour {
 		// [*] Your App ID is not completely set up, i.e. in Release State: Unavailable, or it's missing default packages.
 		// Valve's documentation for this is located here:
 		// https://partner.steamgames.com/doc/sdk/api#initialization_and_shutdown
-		m_bInitialized = SteamAPI.Init();
-		if (!m_bInitialized) {
+		Initialized = SteamAPI.Init();
+		if (!Initialized) {
 			Debug.LogError("[Steamworks.NET] SteamAPI_Init() failed. Refer to Valve's documentation or the comment above this line for more information.", this);
 
 			return;
@@ -135,7 +146,7 @@ public class SteamManager : MonoBehaviour {
 			s_instance = this;
 		}
 
-		if (!m_bInitialized) {
+		if (!Initialized) {
 			return;
 		}
 
@@ -157,7 +168,7 @@ public class SteamManager : MonoBehaviour {
 
 		s_instance = null;
 
-		if (!m_bInitialized) {
+		if (!Initialized) {
 			return;
 		}
 
@@ -165,7 +176,7 @@ public class SteamManager : MonoBehaviour {
 	}
 
 	protected virtual void Update() {
-		if (!m_bInitialized) {
+		if (!Initialized) {
 			return;
 		}
 

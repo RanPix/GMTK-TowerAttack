@@ -17,7 +17,7 @@ public class MapMenuBuilder : MonoBehaviour
             GameObject currentMap = mapInfo[i].Map;
             newButton.GetComponent<Button>().onClick.AddListener(() => 
             { 
-                PickedMap.Map = currentMap;
+                PickedMode.Info.ModePrefab = currentMap;
                 SceneManager.LoadScene("GameScene");
             });
             newButton.GetComponent<Image>().sprite = mapInfo[i].MapPreview;
