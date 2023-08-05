@@ -1,10 +1,12 @@
 using System;
+using Mirror;
 
-public static class PlayerData
+public class PlayerData : NetworkBehaviour
 {
-    private static int _money = 50;
+    [SyncVar]
+    private int _money = 50;
 
-    public static int Money 
+    public int Money 
     {  
         get => _money;
         set 
@@ -16,8 +18,11 @@ public static class PlayerData
 
     private const int startMoney = 50;
 
-    public static Action OnMoneyUpdate;
+    public Action OnMoneyUpdate;
 
-    public static void ResetMoney()
+    public void ResetMoney()
         => _money = startMoney;
+        
+    public void AddMoney(int amount)
+        => _money += amount;
 }

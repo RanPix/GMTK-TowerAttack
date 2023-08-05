@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Mirror;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class GameData : MonoBehaviour
+public class GameData : NetworkBehaviour
 {
+    
     private static GameData _Instance;
     public static GameData Instance
     {
@@ -16,6 +16,10 @@ public class GameData : MonoBehaviour
         }
     }
 
+    [SyncVar]
     public Player Attacker;
+    [SyncVar]
     public Player Defender;
+    
+    public Player localPlayer;
 }

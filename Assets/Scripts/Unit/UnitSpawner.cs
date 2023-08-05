@@ -114,6 +114,6 @@ public class UnitSpawner : MonoBehaviour
 
     private void OnDestroy()
     {
-        RoundManager.Instance.RESET();
+        RoundManager.Instance.Reset();
     }
 }

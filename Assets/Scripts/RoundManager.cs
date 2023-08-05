@@ -1,6 +1,7 @@
 using System;
+using Mirror;
 
-public class RoundManager
+public class RoundManager : NetworkBehaviour
 {
     private static RoundManager _instance;
 
@@ -15,8 +16,10 @@ public class RoundManager
         }
     }
 
+    [field: SyncVar]
     public int RoundCount { get; private set; }
-
+    
+    [field: SyncVar]
     public bool IsMidRound { get; private set; }
 
     public const int MaxWaveCount = 25;
@@ -29,12 +32,14 @@ public class RoundManager
     private RoundManager()
     { 
         Init();
-        PlayerData.ResetMoney();
+        GameDataProcessor.Instance.ResetMoneyForAllPlayers();
     }
     
+    [Server]
     private void Init()
         => UnitList.OnUnitRoundCountChange += CheckIfRoundEnded;
-
+    
+    [Server]
     public void StartNewRound()
     {
         if (UnitList.UnitRoundCount > 0)
@@ -52,9 +57,10 @@ public class RoundManager
 
         OnRoundStart?.Invoke();
 
-        PlayerData.Money += 15;
+        GameDataProcessor.Instance.AddMoneyForAllPlayers(15);
     }
-
+    
+    [Server]
     private void CheckIfRoundEnded()
     {
         if (UnitList.UnitRoundCount > 0)
@@ -63,7 +69,8 @@ public class RoundManager
         IsMidRound = false;
         OnRoundEnd?.Invoke();
     }
-
-    public void RESET()
+    
+    [Server]
+    public void Reset()
         => _instance = new();
 }

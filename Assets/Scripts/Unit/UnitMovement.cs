@@ -102,7 +102,7 @@ public class UnitMovement : MonoBehaviour
     }
 
     private void AddMoneyForProgress()
-        => PlayerData.Money += 30 * RoundManager.Instance.RoundCount;
+        => GameDataProcessor.Instance.AddMoneyToPlayer(30 * RoundManager.Instance.RoundCount, GameData.Instance.localPlayer);
 
     public void SetWaypoints(List<Transform> waypoints)
     {
