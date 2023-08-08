@@ -39,13 +39,13 @@ namespace Assets.Scripts.Unit.UnitTags
         {
             foreach (UnitTag tag in _unitTags)
             {
-                if (tag.ConflictingTypes.Contains(status))
+                if (tag.ConflictingStatuses.Contains(status))
                 {
                     Debug.LogError($"ConflinctingTypes with {status}", this);
                     return true;
                 }
 
-                if (tag.Type == status && !tag.IsStackAble)
+                if (tag.Status == status && !tag.IsStackable)
                 {
                     Debug.LogError($"ConflinctingTypes with {status}", this);
                     return true;
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Unit.UnitTags
 
         public bool AddTag(UnitStatus status)
         {
-            if (ContainsUnitStatus(status) && !UnitTagsCollection.GetUnitTag(status).IsStackAble)
+            if (ContainsUnitStatus(status) && !UnitTagsCollection.GetUnitTag(status).IsStackable)
                 return false;
 
             _unitTags.Add(UnitTagsCollection.GetUnitTag(status));

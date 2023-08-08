@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tower.Damage
         private static DamageModifierCollection Instance;
 
         [SerializedDictionary("DamageType", "Modifiers")]
-            private SerializedDictionary<DamageType, DamageModifiers[]> Modifiers;
+            public SerializedDictionary<DamageType, DamageModifiers[]> Modifiers;
 
         private void Awake()
         {

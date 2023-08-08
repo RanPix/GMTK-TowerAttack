@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Assets.Scripts.Unit.UnitTypes;
+using Assets.Scripts.Unit.UnitTags;
 
 public class Speedy : MonoBehaviour
 {

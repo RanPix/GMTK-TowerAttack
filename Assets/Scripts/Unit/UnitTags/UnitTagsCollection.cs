@@ -5,10 +5,9 @@ namespace Assets.Scripts.Unit.UnitTags
 {
     public class UnitTagsCollection : MonoBehaviour
     {
-        [SerializeField] private UnitTag[] unitTags;
-
         private static Dictionary<UnitStatus, UnitTag> TagsDictionary;
 
+        [SerializeField] private UnitTag[] unitTags;
 
         private void Awake()
         {
@@ -28,7 +27,7 @@ namespace Assets.Scripts.Unit.UnitTags
 
             foreach (var unitTag in unitTags)
             {
-                if (!tagsDictionary.TryAdd(unitTag.Type, unitTag))
+                if (!tagsDictionary.TryAdd(unitTag.Status, unitTag))
                     Debug.LogWarning($"Intersepting unitTypes {unitTag}", this);
             }
 

@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Scripts.Unit.UnitTypes;
+using Assets.Scripts.Unit.UnitTags;
 
 [CreateAssetMenu(fileName = "Unit", menuName = "Unit Data")]
 public class UnitTemplate : ScriptableObject

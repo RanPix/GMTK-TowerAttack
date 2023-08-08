@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Unit.UnitTypes;
+﻿using Assets.Scripts.Unit.UnitTags;
 
 namespace Assets.Scripts.Tower.Damage
 {

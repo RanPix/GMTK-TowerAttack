@@ -1,33 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Unit.UnitTags
 {
-    [CreateAssetMenu(fileName = "Unit", menuName = "Unit Tags")]
-    public class UnitTag : ScriptableObject
+    [CreateAssetMenu(fileName = "Unit tag", menuName = "Unit Tag")]
+    public class UnitTag : ScriptableObject, IEquatable<UnitTag>
     {
-        public readonly UnitStatus Type;
-        public readonly List<UnitStatus> ConflictingTypes;
-        public readonly bool IsStackAble;
+        [field: SerializeField] public UnitStatus Status { get; private set; }
+        [field: SerializeField] public List<UnitStatus> ConflictingStatuses { get; private set; }
+        [field: SerializeField] public bool IsStackable { get; private set; }
 
         public static implicit operator UnitStatus(UnitTag tag)
-            => tag.Type;
+            => tag.Status;
 
         public static bool operator ==(UnitTag tag1, UnitTag tag2)
-            => tag1.Type == tag2.Type && tag1.IsStackAble == tag2.IsStackAble;
+        {
+            if (tag1 is null && tag2 is null)
+                return true;
+
+            if (tag1 is null || tag2 is null)
+                return false;
+
+            return tag1.Status == tag2.Status && tag1.IsStackable == tag2.IsStackable;
+        }
 
         public static bool operator !=(UnitTag tag1, UnitTag tag2)
             => !(tag1 == tag2);
 
         public static bool operator ==(UnitTag tag, UnitStatus type)
-            => tag.Type == type;
+            => tag.Status == type;
 
         public static bool operator !=(UnitTag tag, UnitStatus type)
             => !(tag == type);
 
         public bool Equals(UnitStatus type)
         {
-            return Type == type;
+            return Status == type;
         }
 
         public bool Equals(UnitTag tagObj)
@@ -50,7 +59,7 @@ namespace Assets.Scripts.Unit.UnitTags
 
         public override int GetHashCode()
         {
-            return Type.GetHashCode();
+            return Status.GetHashCode();
         }
     }
 }

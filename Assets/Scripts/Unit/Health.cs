@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using Assets.Scripts.Unit.UnitTypes;
+using Assets.Scripts.Unit.UnitTags;
 
 [RequireComponent(typeof(UnitTags))]
 public class Health
@@ -20,11 +20,6 @@ public class Health
     {
         Max = parent.unitData.MaxHP;
         Current = Max;
-
-        _parentTags = parent.GetComponent<UnitTags>();
-        AddTagCounters();
-
-        _parentTags.OnTagsChanged += ToggleTagInCounters;
     }
 
     private void AddTagCounters()
