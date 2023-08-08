@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Unit.UnitTags
+namespace Assets.Scripts.Unit.TagSystem
 {
     [CreateAssetMenu(fileName = "Unit tag", menuName = "Unit Tag")]
     public class UnitTag : ScriptableObject, IEquatable<UnitTag>

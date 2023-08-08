@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Unit.UnitTags
+namespace Assets.Scripts.Unit.TagSystem
 {
     public class UnitTags : MonoBehaviour, IEnumerable
     {

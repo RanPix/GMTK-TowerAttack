@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Unit.UnitTags;
+using Assets.Scripts.Unit.TagSystem;
 
 [RequireComponent(typeof(UnitBase))]
 public class UnitMovement : MonoBehaviour

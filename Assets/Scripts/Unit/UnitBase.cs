@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Scripts.Unit.UnitTags;
+using Assets.Scripts.Unit.TagSystem;
 
 [RequireComponent(typeof(UnitMovement), typeof(UnitTags))]
 public class UnitBase : MonoBehaviour

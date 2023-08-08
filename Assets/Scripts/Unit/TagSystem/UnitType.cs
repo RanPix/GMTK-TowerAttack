@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Unit.UnitTags
+namespace Assets.Scripts.Unit.TagSystem
 {
     public enum UnitStatus
     {

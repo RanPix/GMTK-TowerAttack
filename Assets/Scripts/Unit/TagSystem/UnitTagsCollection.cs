@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Unit.UnitTags
+namespace Assets.Scripts.Unit.TagSystem
 {
     public class UnitTagsCollection : MonoBehaviour
     {
-        private static Dictionary<UnitStatus, UnitTag> TagsDictionary;
+        private static Dictionary<UnitStatus, UnitTag> _tagsDictionary;
 
         [SerializeField] private UnitTag[] unitTags;
 
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Unit.UnitTags
 
         private void SetDictionary()
         {
-            if (TagsDictionary != null)
+            if (_tagsDictionary != null)
             {
                 Debug.LogWarning("Another instance of UnitTagsCollection already exist");
                 return;
@@ -31,10 +31,10 @@ namespace Assets.Scripts.Unit.UnitTags
                     Debug.LogWarning($"Intersepting unitTypes {unitTag}", this);
             }
 
-            TagsDictionary = tagsDictionary;
+            _tagsDictionary = tagsDictionary;
         }
 
         public static UnitTag GetUnitTag(UnitStatus status)
-            => TagsDictionary[status];
+            => _tagsDictionary[status];
     }
 }

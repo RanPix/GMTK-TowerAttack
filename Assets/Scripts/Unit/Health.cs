@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
-using Assets.Scripts.Unit.UnitTags;
+using Assets.Scripts.Unit.TagSystem;
+using Assets.Scripts.Tower.DamageSystem;
 
 [RequireComponent(typeof(UnitTags))]
 public class Health

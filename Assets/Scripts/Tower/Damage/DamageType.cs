@@ -1,5 +1,8 @@
-public enum DamageType
+namespace Assets.Scripts.Tower.DamageSystem
 {
-    Blank,
-    Electric,
+    public enum DamageType
+    {
+        Blank,
+        Electric,
+    }
 }

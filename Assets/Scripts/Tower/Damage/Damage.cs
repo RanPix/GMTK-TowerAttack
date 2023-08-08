@@ -1,8 +1,11 @@
 using System;
 
-[Serializable]
-public struct Damage
+namespace Assets.Scripts.Tower.DamageSystem
 {
-    public float amount;
-    public DamageType type;
+    [Serializable]
+    public struct Damage
+    {
+        public float amount;
+        public DamageType type;
+    }
 }
