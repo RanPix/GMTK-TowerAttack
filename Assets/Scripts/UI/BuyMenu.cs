@@ -52,33 +52,33 @@ public class BuyMenu : MonoBehaviour
 
         int selectedUnitPrice = units.unitTemplates[SelectedUnitType].Price;
 
-        if (PlayerData.Money < selectedUnitPrice)
+        if (GameData.Instance.localPlayer.PlayerData.Money < selectedUnitPrice)
             return false;
 
         ReplaceUnit(existingUnitType, lineIndex, linePosition);
 
-        PlayerData.Money -= selectedUnitPrice;
+        GameData.Instance.localPlayer.PlayerData.RemoveMoney(selectedUnitPrice);
         unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
 
         return true;
     }
 
-    // замініти наявний продаж новим, нормальним
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void ReplaceUnit(byte existingUnitType, int lineIndex, int linePosition)
     {
         if (SelectedUnitType != 255)
             return;
 
-        PlayerData.Money += units.unitTemplates[existingUnitType].Price;
+        GameDataProcessor.Instance.AddMoneyToPlayer(units.unitTemplates[existingUnitType].Price, GameData.Instance.localPlayer);
         unitTypeLines[lineIndex, linePosition] = SelectedUnitType;
     }
 
     public bool BuyNewUnitLine(int price)
     {
-        if (PlayerData.Money < price)
+        if (GameData.Instance.localPlayer.PlayerData.Money < price)
             return false;
 
-        PlayerData.Money -= price;
+        GameData.Instance.localPlayer.PlayerData.RemoveMoney(price);
         return true;
     }
 

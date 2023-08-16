@@ -5,10 +5,10 @@ public class PlayerData : NetworkBehaviour
 {
     [SyncVar]
     private int _money = 50;
-
     public int Money 
     {  
         get => _money;
+        [Server]
         set 
         { 
             _money = value;
@@ -16,6 +16,12 @@ public class PlayerData : NetworkBehaviour
         }
     }
 
+    [SyncVar] 
+    public string PlayerName = "user";
+    [SyncVar] 
+    public string PlayerID;
+    
+    
     private const int startMoney = 50;
 
     public Action OnMoneyUpdate;
@@ -25,4 +31,7 @@ public class PlayerData : NetworkBehaviour
         
     public void AddMoney(int amount)
         => _money += amount;
+    
+    public void RemoveMoney(int amount)
+        => _money -= amount;
 }

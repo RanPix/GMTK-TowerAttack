@@ -1,15 +1,17 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class Gate : MonoBehaviour
+public class Gate : NetworkBehaviour
 {
     public static Gate Instance { get; private set; }
 
+    [SerializeField, SyncVar] private int gateHealth = 100;
     [property: SerializeField] public int GateHealth
     {
         get => gateHealth;
+        
+        [Server]
         private set
         {
             gateHealth = value;
@@ -24,7 +26,6 @@ public class Gate : MonoBehaviour
         }
     }
 
-    [SerializeField] private int gateHealth = 100;
 
     public Action OnGateHealthChanged;
     public Action OnVictory;
@@ -42,6 +43,7 @@ public class Gate : MonoBehaviour
             Debug.LogWarning("Gate instance already exists");
     }
 
+    [Server]
     public void DamageGate(int damage)
     => GateHealth -= damage;
 }

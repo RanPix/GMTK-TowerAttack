@@ -34,6 +34,19 @@ public class GameDataProcessor : NetworkBehaviour
     [Server]
     public void AddMoneyToPlayer(int amount, Player player)
     {
-        player.PlayerData.AddMoney(amount);
+        player.PlayerData.RemoveMoney(amount);
     }
+    [Server]
+    public void RemoveMoneyForAllPlayers(int amount)
+    {
+        AddMoneyToPlayer(amount, GameData.Instance.Attacker);
+        AddMoneyToPlayer(amount, GameData.Instance.Defender);
+    }
+    [Server]
+    public void RemoveMoneyToPlayer(int amount, Player player)
+    {
+        player.PlayerData.RemoveMoney(amount);
+    }
+    
+    
 }
