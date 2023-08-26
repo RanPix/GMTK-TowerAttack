@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Assets.Scripts.Unit.TagSystem;
 
 public class Speedy : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class Speedy : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, Radius, Vector2.zero, 0, UnitLM);
 
         foreach (var hit in hits)
-            hit.collider.GetComponent<UnitTags>().AddTemporarTag(UnitTypes.SpedUp, speedBuffDuration, false);
+            hit.collider.GetComponent<UnitBase>().Tags.AddTemporarTag(UnitStatus.SpedUp, speedBuffDuration, false);
 
         Invoke(nameof(StartSpeedBoost), speedBuffDelay);
         
