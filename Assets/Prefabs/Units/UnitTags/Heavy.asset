@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8713c3cf1ba37d429534c053437321f, type: 3}
   m_Name: Heavy
   m_EditorClassIdentifier: 
-  <Status>k__BackingField: 1
-  <ConflictingStatuses>k__BackingField: 00000000
+  <Status>k__BackingField: 2
+  <ConflictingStatuses>k__BackingField: 01000000
   <IsStackable>k__BackingField: 0

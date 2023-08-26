@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Speedy
   Description: Weak, but buffs speed for everyone around
   Price: 150
-  Type: 0
+  DesiredTypes: 00000000
   Damage: 1
   NormalSpeed: 1
   MaxHP: 10

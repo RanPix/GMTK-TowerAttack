@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Biking
   Description: Standard light unit
   Price: 10
-  Type: 0
+  DesiredTypes: 00000000
   Damage: 3
   NormalSpeed: 1
   MaxHP: 20

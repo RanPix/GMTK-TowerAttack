@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Fating
   Description: Slower,  but has more HP and armor
   Price: 100
-  Type: 1
+  DesiredTypes: 01000000
   Damage: 5
   NormalSpeed: 0.75
   MaxHP: 100

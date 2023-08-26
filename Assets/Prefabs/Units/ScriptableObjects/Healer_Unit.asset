@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Healer
   Description: Less speed and HP, but heals neighboring units
   Price: 150
-  Type: 0
+  DesiredTypes: 00000000
   Damage: 2
   NormalSpeed: 0.9
   MaxHP: 5

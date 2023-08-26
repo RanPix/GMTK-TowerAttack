@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Spiking
   Description: Weaker but faster than Biking
   Price: 35
-  Type: 0
+  DesiredTypes: 00000000
   Damage: 2
   NormalSpeed: 1.5
   MaxHP: 15
