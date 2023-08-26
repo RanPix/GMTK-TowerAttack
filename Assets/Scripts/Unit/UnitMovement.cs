@@ -29,7 +29,7 @@ public class UnitMovement : MonoBehaviour
         unitBase = GetComponent<UnitBase>();
         currentSpeed = unitBase.unitData.NormalSpeed;
         
-        GetComponent<UnitTags>().OnTagsChanged += ToggleSpeedEffects;
+        unitBase.Tags.OnTagsChanged += ToggleSpeedEffects;
         OnPrelastPosition += AddMoneyForProgress;
     }
 

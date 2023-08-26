@@ -3,7 +3,6 @@ using UnityEngine;
 using Assets.Scripts.Unit.TagSystem;
 using Assets.Scripts.Tower.DamageSystem;
 
-[RequireComponent(typeof(UnitTags))]
 public class Health
 {
     public float Current { get; private set; }
@@ -12,8 +11,6 @@ public class Health
         => Current / Max;
 
     private UnitTags _parentTags;
-    private CountAmountFor _counters;
-    private delegate float CountAmountFor(Damage damage);
 
     public Action Death;
 
@@ -21,43 +18,8 @@ public class Health
     {
         Max = parent.unitData.MaxHP;
         Current = Max;
-    }
 
-    private void AddTagCounters()
-    {
-        _counters = null;
-
-        foreach (UnitStatus tag in _parentTags)
-            ToggleTagInCounters(tag, true);
-    }
-
-    private void ToggleTagInCounters(UnitStatus tag, bool toggle)
-    {
-        switch (tag)
-        {
-            case UnitStatus.Light:
-                ToggleTagCounter(CountForLight, toggle);
-                break;
-
-            case UnitStatus.Heavy:
-                ToggleTagCounter(CountForHeavy, toggle);
-                break;
-
-            case UnitStatus.Organic:
-                ToggleTagCounter(CountForOrganic, toggle);
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    private void ToggleTagCounter(CountAmountFor func, bool toggle)
-    {
-        if (toggle)
-            _counters += func;
-        else
-            _counters -= func;
+        _parentTags = parent.Tags;
     }
 
     public void DealDamage(Damage damage)
@@ -78,58 +40,17 @@ public class Health
 
     private float CountAmount(Damage damage)
     {
-        if (_counters == null)
-            return damage.amount;
+        var damageModifiers = DamageModifiersCollection.GetDamageModifiers(damage);
+        Debug.Log($"Damage before {damage}");
 
-        foreach (CountAmountFor counter in _counters.GetInvocationList())
-            damage.amount = counter.Invoke(damage);
-
-        return damage.amount;
-    }
-
-    public float CountForLight(Damage damage)
-    {
-        float amount = damage.amount;
-
-        amount *= 1.1f;
-
-        switch (damage.type)
+        foreach (var damageModifier in damageModifiers)
         {
-            default:
-                break;
+            if (_parentTags.Contains(damageModifier.type))
+                damage *= damageModifier;
         }
 
-        return amount;
-    }
-
-    public float CountForHeavy(Damage damage)
-    {
-        float amount = damage.amount;
-
-        switch (damage.type)
-        {
-            case DamageType.Blank:
-                amount *= 0.9f;
-                break;
-
-            default:
-                break;
-        }
-
-        return amount;
-    }
-
-    public float CountForOrganic(Damage damage)
-    {
-        float amount = damage.amount;
-
-        switch (damage.type)
-        {
-            default:
-                break;
-        }
-
-        return amount;
+        Debug.Log($"Damage after {damage}");
+        return damage;
     }
 
     public void Kill()

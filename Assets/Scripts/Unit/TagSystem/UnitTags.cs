@@ -1,35 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Unit.TagSystem
 {
-    public class UnitTags : MonoBehaviour, IEnumerable
+    public class UnitTags : IEnumerable
     {
-        [SerializeField] private UnitStatus[] desiredStatuses;
-
-        private List<UnitTag> _unitTags;
+        private List<UnitTag> _unitTags = new();
         private Queue<UnitStatus> _deleteQueue = new();
     
         public Action<UnitStatus, bool> OnTagsChanged;
 
-        private void Awake()
+        public UnitTags(UnitTemplate template)
         {
-            ConfigureEntryTags();
+            ConfigureEntryTags(template.DesiredTypes);
         }
 
-        private void ConfigureEntryTags()
+        private void ConfigureEntryTags(UnitStatus[] desiredStatuses)
         {
-            List<UnitTag> tags = new();
-
             foreach (var status in desiredStatuses)
             {
                 if (!ContainsConflictingTypes(status))
-                    tags.Add(UnitTagsCollection.GetUnitTag(status));
+                    _unitTags.Add(UnitTagsCollection.GetUnitTag(status));
             }
-
-            _unitTags = tags;
         }
 
         /// <returns> 
@@ -41,13 +36,13 @@ namespace Assets.Scripts.Unit.TagSystem
             {
                 if (tag.ConflictingStatuses.Contains(status))
                 {
-                    Debug.LogError($"ConflinctingTypes with {status}", this);
+                    Debug.LogError($"ConflinctingTypes with {status}");
                     return true;
                 }
 
                 if (tag.Status == status && !tag.IsStackable)
                 {
-                    Debug.LogError($"ConflinctingTypes with {status}", this);
+                    Debug.LogError($"ConflinctingTypes with {status}");
                     return true;
                 }
             }
@@ -55,7 +50,7 @@ namespace Assets.Scripts.Unit.TagSystem
             return false;
         }
 
-        public bool ContainsUnitStatus(UnitStatus status)
+        public bool Contains(UnitStatus status)
             => _unitTags.Contains(UnitTagsCollection.GetUnitTag(status));
 
         public IEnumerator GetEnumerator()
@@ -63,7 +58,7 @@ namespace Assets.Scripts.Unit.TagSystem
 
         public bool AddTag(UnitStatus status)
         {
-            if (ContainsUnitStatus(status) && !UnitTagsCollection.GetUnitTag(status).IsStackable)
+            if (Contains(status) && !UnitTagsCollection.GetUnitTag(status).IsStackable)
                 return false;
 
             _unitTags.Add(UnitTagsCollection.GetUnitTag(status));
@@ -78,18 +73,18 @@ namespace Assets.Scripts.Unit.TagSystem
             _unitTags.Remove(UnitTagsCollection.GetUnitTag(status));
         }
 
-        private void RemoveQueuedTag()
-        {
-            RemoveTag(_deleteQueue.Dequeue());
-        }
-
         public void AddTemporarTag(UnitStatus status, float time, bool canStack = true)
         {
             if (!AddTag(status))
                 return;
 
             _deleteQueue.Enqueue(status);
-            Invoke(nameof(RemoveQueuedTag), time);
+
+            Task.Delay((int)(time * 1000))
+                .ContinueWith(o => RemoveQueuedTag());
         }
+
+        private void RemoveQueuedTag()
+            => RemoveTag(_deleteQueue.Dequeue());
     }
 }

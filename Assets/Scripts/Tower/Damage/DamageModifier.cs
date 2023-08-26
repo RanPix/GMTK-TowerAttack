@@ -7,5 +7,8 @@ namespace Assets.Scripts.Tower.DamageSystem
     {
         public UnitStatus type;
         public float Modifier;
+
+        public static implicit operator float(DamageModifier modifier)
+            => modifier.Modifier;
     }
 }

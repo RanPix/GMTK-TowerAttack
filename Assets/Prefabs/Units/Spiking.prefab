@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1012498838857311355}
   - component: {fileID: 8505437754340403090}
-  - component: {fileID: 282731861108312858}
   - component: {fileID: 660660235268640571}
   - component: {fileID: -4100152854025974540}
   - component: {fileID: -8864110067425486177}
@@ -55,19 +54,6 @@ MonoBehaviour:
   MovementPoints: []
   RequiredDistanceSquare: 0.00001
   currentSpeed: 0
---- !u!114 &282731861108312858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7233999750334857621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e196782dac2bd44a5c2d4647fcfac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisUnitTags: 0000000002000000
 --- !u!114 &660660235268640571
 MonoBehaviour:
   m_ObjectHideFlags: 0

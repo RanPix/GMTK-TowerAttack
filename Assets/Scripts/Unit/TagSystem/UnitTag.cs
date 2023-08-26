@@ -11,6 +11,9 @@ namespace Assets.Scripts.Unit.TagSystem
         [field: SerializeField] public List<UnitStatus> ConflictingStatuses { get; private set; }
         [field: SerializeField] public bool IsStackable { get; private set; }
 
+        public UnitTag(UnitStatus status) // new UnitTag(UnitStatus.Slowed)
+            => UnitTagsCollection.GetUnitTag(status);
+
         public static implicit operator UnitStatus(UnitTag tag)
             => tag.Status;
 

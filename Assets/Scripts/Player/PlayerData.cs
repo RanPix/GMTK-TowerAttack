@@ -14,7 +14,7 @@ public static class PlayerData
         }
     }
 
-    private const int startMoney = 50;
+    private const int startMoney = 600;
 
     public static Action OnMoneyUpdate;
 
