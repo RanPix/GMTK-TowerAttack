@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using Assets.Scripts.Unit.TagSystem;
 using Assets.Scripts.Tower.DamageSystem;
 
@@ -41,7 +40,6 @@ public class Health
     private float CountAmount(Damage damage)
     {
         var damageModifiers = DamageModifiersCollection.GetDamageModifiers(damage);
-        Debug.Log($"Damage before {damage}");
 
         foreach (var damageModifier in damageModifiers)
         {
@@ -49,7 +47,6 @@ public class Health
                 damage *= damageModifier;
         }
 
-        Debug.Log($"Damage after {damage}");
         return damage;
     }
 
