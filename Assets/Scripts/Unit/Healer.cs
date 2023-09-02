@@ -9,14 +9,15 @@ public class Healer : MonoBehaviour
     [SerializeField] private int healTicks = 2;
     [SerializeField] private float healTicksDelay = 0.5f;
     [Space]
-    [SerializeField] private float radius = 0.75f;
+    [SerializeField] private float radius = 1.5f;
+    [SerializeField] private GameObject aura;
     [Space]
     [SerializeField] private LayerMask unitLM;
 
     private void Awake()
     {
+        aura.GetComponent<Transform>().localScale = new Vector3(radius * 2, radius * 2, 1f);
         Invoke(nameof(StartHeal), healDelay);
-        GetComponentInChildren<Transform>().localScale = new Vector3(radius * 2, radius * 2, 1f);
     }
 
     private IEnumerator Heal()

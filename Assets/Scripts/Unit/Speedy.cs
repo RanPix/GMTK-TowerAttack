@@ -6,13 +6,15 @@ public class Speedy : MonoBehaviour
 {
     [SerializeField] private float speedBuffDuration = 1.5f;
     [SerializeField] private float speedBuffDelay = 2f;
-    [SerializeField] private float Radius = 1.5f;
     [Space]
-    [SerializeField] private LayerMask UnitLM;
+    [SerializeField] private float Radius = 1.5f;
+    [SerializeField] private GameObject aura;
+    [Space]
+    [SerializeField] private LayerMask UnitLM; 
 
     private void Awake()
     {
-        GetComponentInChildren<Transform>().localScale = new Vector3(Radius * 2, Radius * 2, 1f);
+        aura.GetComponent<Transform>().localScale = new Vector3(Radius * 2, Radius * 2, 1f);
         Invoke(nameof(StartSpeedBoost), speedBuffDelay);
     }
 
